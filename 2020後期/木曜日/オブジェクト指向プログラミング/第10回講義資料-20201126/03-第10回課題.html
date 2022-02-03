@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>第10回課題</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">第10回課題</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習2</p>
+<p>本日の作業の振り返りを行います。</p>
+</blockquote>
+<p>以下のMarkdownテンプレートを使用して、<code>K00000_10.md</code>(K00000は自身の学籍番号で置き換える)というファイル名で保存し、画像があれば画像も一緒にmoodleに提出してください。</p>
+<p>書式は、以下のサイトのGitHub上で文章を書く場合に使用するMarkdown書式に従ってください。</p>
+<ul>
+<li><a href="https://docs.github.com/ja/free-pro-team@latest/github/writing-on-github/getting-started-with-writing-and-formatting-on-github" target="_blank">GitHub で書き、フォーマットしてみる - GitHub Docs</a></li>
+</ul>
+<p>また、 <strong><em>moodleのアンケートにてGitHubのアカウントを集めるものがあります。</em></strong> こちらも忘れずに登録してください。</p>
+<hr />
+<h2 id="10">第10回課題テンプレート</h2>
+<pre><code># 第10回振り返りレポート
+
+## 1. GitHubアカウント
+
+| 氏名           | 学籍番号    | GitHubアカウント(登録メールアドレス) |
+| -------------- | ----------- | -------------------------------------- |
+| 愛工　大郎     | K00000      | AIT_TARO (k00000kk@aitech.ac.jp) |
+
+## 2. 作成した日記リポジトリのコミットログ
+
+ターミナルで、作成した日記リポジトリのローカルディレクトリにて、`$ git log --graph`を実行した結果を以下の`&lt;rpe&gt;〜&lt;/pre&gt;`内に貼り付けます。
+
+&lt;pre&gt;
+
+&lt;/pre&gt;
+
+
+## 3. Git及びGitHubに関する調査
+
+以下の各項目について、インターネットや書籍を利用し調べ、自分なりの言葉で説明をしてください。(参考文献等あればそれも記載すること)
+
+### 3-1. バージョン管理システムを利用することによるメリットはなにか
+
+
+
+### 3-2. Gitのキーワード「clone」「commit」「push」「checkout」についてそれぞれ何をするためのものか
+
+
+
+### 3-3. プロジェクト進行に、GitHub Flowを採用することで解決できるチーム開発での問題はなにか(実際にGitHub Flowで作業する手順も説明する)
+</code></pre>
+</body>
+</html>

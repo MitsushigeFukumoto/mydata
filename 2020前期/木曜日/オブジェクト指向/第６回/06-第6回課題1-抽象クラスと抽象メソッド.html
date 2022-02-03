@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>第6回課題1 - 抽象クラス・抽象メソッド</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">第6回課題1 - 抽象クラス・抽象メソッド</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習1 第6回</p>
+<p>抽象クラスについて学んだことを活かし、SimpleRPGをもっと扱いやすいものにブラッシュアップしましょう</p>
+</blockquote>
+<h2 id="1-characterbaseクラスの抽象クラス化">1. CharacterBaseクラスの抽象クラス化</h2>
+<p>前回の課題で作成したHero,Enemy両方の親クラスである<code>CharacterBase</code>クラスは、それ自体が親クラスとしての役割しかありません。</p>
+<p>このクラスを個別にインスタンス化することはないため、このクラスを抽象クラスに変更しましょう。</p>
+<h2 id="2-characterbaseクラスのattackメソッドを抽象メソッド化">2. CharacterBaseクラスのattackメソッドを抽象メソッド化</h2>
+<p>CharacterBaseを継承したHero,Enemy両方のクラスでの主な違いは、Heroクラスにてオーバーライドしている攻撃を行う処理<code>int attack(CharacterBase e)</code>です。Enemy側にも何らかの処理を加えたいと思っているため、このメソッドは親クラスで処理を決定させずに、継承を行った2つのクラスにて詳しい処理内容が決定されるよう抽象メソッドに変えましょう。</p>
+<p>加えて、前回の課題にて、戻り値が<code>int</code>であることが原因でクリティカルヒットの判定ができない旨をお話しました。今回は、この点も改善することを考えながら、いくつかの変更を行っていきます。</p>
+<h3 id="2-1-attackresultクラスの作成">2-1. AttackResultクラスの作成</h3>
+<p>このクラスは、<code>attack</code>メソッドの戻り値の型として使用されます。</p>
+<p>クラスのソースコードは以下の通りです。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">package</span><span class="im"> jp.ac.ait.k00000;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">public</span> <span class="kw">class</span> AttackResult {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="dt">boolean</span> isFailure = <span class="kw">false</span>;  <span class="co">// 攻撃失敗時true</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="dt">boolean</span> isCritical = <span class="kw">false</span>; <span class="co">// クリティカルヒット時true</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">int</span> damage = <span class="dv">0</span>;             <span class="co">// 与えたダメージ量</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>}</span></code></pre></div>
+<h3 id="2-2-characterbaseクラスのattackメソッドを変更">2-2. CharacterBaseクラスのattackメソッドを変更</h3>
+<p>現在の<code>CharacterBase</code>の<code>int attack(CharacterBase e)</code>メソッドを削除し、以下の抽象メソッドに置き換えます。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">public</span> <span class="kw">abstract</span> AttackResult <span class="fu">attack</span>(CharacterBase e);</span></code></pre></div>
+<p>これにより、<code>Hero</code>, <code>Enemy</code>, <code>SimpleRPG</code>にてコンパイルエラーが発生するようになります。<br />
+抽象メソッド化に伴う修正を行っていきます。</p>
+<h3 id="2-3-heroクラスにpublic-attackresult-attackcharacterbase-eを実装する">2-3. Heroクラスに<code>public AttackResult attack(CharacterBase e)</code>を実装する</h3>
+<p>抽象メソッドの中身をHeroクラスにて実装します。</p>
+<p>内容は、以前のHeroクラスのattackメソッドと同じで良いのですが、戻り値が<code>AttackResult</code>になっているため、以下の条件にしたがい、戻り値を作成して返すようにしてください。</p>
+<ol>
+<li>攻撃失敗時
+<ul>
+<li><code>isFailure</code> に <strong><em>true</em></strong> を設定</li>
+<li><code>damage</code> に <strong><em>0</em></strong> を設定</li>
+</ul></li>
+<li>クリティカルヒット成功時
+<ul>
+<li><code>isCritical</code> に <strong><em>true</em></strong> を設定</li>
+<li><code>damage</code> は計算されたダメージ値を倍にして設定</li>
+</ul></li>
+<li>通常攻撃時
+<ul>
+<li><code>damage</code> は計算されたダメージ値をそのまま設定</li>
+</ul></li>
+</ol>
+<h3 id="2-4-enemyクラスにもpublic-attackresult-attackcharacterbase-eを実装する">2-4. Enemyクラスにも<code>public AttackResult attack(CharacterBase e)</code>を実装する</h3>
+<p>CharacterBaseのattackメソッドを抽象メソッドにしたため、Enemyクラスでもattackメソッドを実装する必要があります。</p>
+<p>ついでなので、敵キャラクターの攻撃時に、20%の確率でクリティカルヒットするように機能追加を行います。 (攻撃成功率はいままでどおり100%でOKです。)</p>
+<p>attackメソッドの中身は、Heroクラスより必要に応じて抜粋して持ってくると良いでしょう。</p>
+<h3 id="2-5-simplerpgにてattackメソッドを呼んでいる箇所の修正">2-5. SimpleRPGにてattackメソッドを呼んでいる箇所の修正</h3>
+<p>戻り値の型が<code>AttackResult</code>になり、攻撃を行った場合の詳細情報が取得できるようになりました。</p>
+<p>SimpleRPGのmainメソッドにて、勇者、敵それぞれの攻撃行動を行っている箇所をそれに合わせて修正しましょう。</p>
+<ol>
+<li>攻撃を失敗した際は、<code>isFailure</code>が<code>true</code>になっている</li>
+<li>クリティカルヒット時、<code>isCritical</code>が<code>true</code>になっている</li>
+<li>与えたダメージ値は、<code>damage</code>に入っている</li>
+</ol>
+<p>上記3点を使い、クリティカルヒットのときのメッセージを変更するなどしてください。</p>
+<h4 id="25ex-simplerpgのメインメソッドをブラッシュアップ">2−5ex. SimpleRPGのメインメソッドをブラッシュアップ</h4>
+<p>これは任意です。</p>
+<p>勇者の行動メソッド(行動選択から行動、ゲームオーバー判定までを行うメソッド)で<code>private static boolean heroAction(Hero h, Enemy e)</code>や、敵の行動メソッド(敵の行動、ゲームオーバー判定までを行うメソッド)で<code>private static boolean enemyAction(Hero h, Enemy e)</code>などを作成すると、修正箇所を一つに絞れるので修正しやすくなるでしょう。</p>
+<p>ちなみに、booleanの戻り値は、ゲームが終了する場合は <code>false</code> を返すようにすると、無限ループを抜けるパターンが用意できるでしょう。</p>
+<h2 id="提出に関して">提出に関して</h2>
+<p>第6回の課題は2つ資料がありますが、提出していただくものは、その2つともを実装終わった状態で提出していただきます。</p>
+<p>詳しくは、もう一つの資料を見てください。</p>
+</body>
+</html>

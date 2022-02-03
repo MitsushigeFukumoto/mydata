@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>Flaskでじゃんけんアプリを作ろう</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">Flaskでじゃんけんアプリを作ろう</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習2</p>
+<p>WebアプリケーションフレームワークのFlaskを使ってみましょう<br>じゃんけんアプリをコピペで作成しながらFlaskを使ったWebアプリケーションの作成の手順をおさらいしましょう。</p>
+</blockquote>
+<h2>1. プロジェクトディレクトリの用意</h2>
+<p>じゃんけんアプリと、今回の課題のアプリを同じプロジェクトで作成します。</p>
+<p>そのため、任意の適当な場所に「<code>K00000_08</code>」のように学籍番号_08の形式でディレクトリを作成してください。</p>
+<p>また、VSCodeなどのエディタは、作成したディレクトリで開き、以下のディレクトリ構成を用意してください。</p>
+<pre><code>[K00000_08]
+  ├[static]
+  │  └今は空でOK
+  ├[templates]
+  │  └今は空でOK
+  └main.py ⇠ プロジェクトのエントリポイント</code></pre>
+<h2>2. アプリケーションの設計を考える</h2>
+<p>じゃんけんアプリを作成するにあたって、どのようなアプリケーションにするかを考えます。</p>
+<p>本当は皆さんに考えていただくのが良いのですが、今回は、私の方で以下のように考えました。</p>
+<ol>
+<li>入力画面では、名前とじゃんけんの自分の手を選ぶようにする
+<ul>
+<li>名前と手は、未入力、未選択でも可能として、手が未選択の場合は後出し扱いとする</li>
+</ul></li>
+<li>「じゃんけん」ボタンを押すと、入力内容をサーバーに送信する</li>
+<li>サーバー側では、ランダムなCPUの手と、送信した手で比較し勝敗をレスポンスでもらう
+<ul>
+<li>このとき、名前が未入力だった場合は、「名無しさん」という名前を勝手に設定し、手が未選択だった場合は、無条件でCPUの勝ちとする</li>
+</ul></li>
+<li>レスポンスでもらった結果表示画面には、戻るボタンを配置し、戻るボタン押下時にはブラウザバックを行う処理をJavaScriptで追加する</li>
+</ol>
+<p>大まかな流れを適当に文章化しました。</p>
+<p>作成する画面の構成は、以下の３画面となります。</p>
+<ol>
+<li>プロジェクトのトップ（じゃんけんアプリや、課題のアプリへのリンクを配置するだけ）
+<ul>
+<li><code>/</code>でルーティング</li>
+</ul></li>
+<li>じゃんけんアプリの入力フォーム
+<ul>
+<li><code>/janken</code>でルーティング</li>
+</ul></li>
+<li>じゃんけんデータ送信先とじゃんけん結果表示画面
+<ul>
+<li><code>/janken/play</code>でルーティング(POSTのみ受け付け)</li>
+</ul></li>
+</ol>
+<p>これを順に実装していきましょう。</p>
+<h2>3. アプリケーションのエントリポイントを作成する</h2>
+<p><code>main.py</code>の中身を以下のPythonコードで置き換えます。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template
+<span class="im">import</span> random <span class="co"># ランダムデータ作成のためのライブラリ</span>
+
+app <span class="op">=</span> Flask(<span class="va">__name__</span>)
+
+<span class="co"># 1. プロジェクトのトップ（じゃんけんアプリや、課題のアプリへのリンクを配置するだけ）</span>
+<span class="at">@app.route</span>(<span class="st">'/'</span>)
+<span class="kw">def</span> index():
+    <span class="cf">return</span> render_template(<span class="st">'index.html'</span>)
+
+
+<span class="co"># 2. じゃんけんアプリの入力フォーム</span>
+<span class="at">@app.route</span>(<span class="st">'/janken'</span>)
+<span class="kw">def</span> janken():
+    <span class="co"># じゃんけんの入力画面のテンプレートを呼び出し</span>
+    <span class="cf">return</span> render_template(<span class="st">'janken_form.html'</span>)
+
+
+<span class="co"># 3. じゃんけんデータ送信先とじゃんけん結果表示画面</span>
+<span class="at">@app.route</span>(<span class="st">'/janken/play'</span>, methods<span class="op">=</span>[<span class="st">&quot;POST&quot;</span>])
+<span class="kw">def</span> janken_play():
+    <span class="cf">pass</span> <span class="co"># 関数の中身を空にできないので、pass構文を使って埋めてます</span>
+
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:
+    app.run()</code></pre></div>
+<h2>4. プロジェクトのトップ（じゃんけんアプリや、課題のアプリへのリンクを配置するだけ）画面を作る</h2>
+<p><code>main.py</code>内の以下の関数にて、指定されているテンプレートファイルを作成します。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="at">@app.route</span>(<span class="st">'/'</span>)
+<span class="kw">def</span> index():
+    <span class="cf">return</span> render_template(<span class="st">'index.html'</span>)</code></pre></div>
+<p><code>templates</code>ディレクトリ以下に、<code>index.html</code>という名前で以下のHTMLファイルを作成してください。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>第８回課題&lt;/title&gt;
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>K00000 - 第８回課題&lt;/h1&gt;
+  <span class="kw">&lt;ol&gt;</span>
+    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/janken&quot;</span><span class="kw">&gt;</span>じゃんけんゲーム<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="kw">&lt;/ol&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>学籍番号等は、適宜変更してください。</p>
+<p>配置後は、一旦動作確認をしておくと良いでしょう。</p>
+<h2>5. じゃんけんアプリの画面を作成する</h2>
+<p>じゃんけんアプリの画面は、<code>templates</code>ディレクトリに<code>janken_form.html</code>というファイル名で、以下の入力フォームを用意します。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>じゃんけんゲーム<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for('static', filename='janken.css') }}&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;main&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>じゃんけんゲーム<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;/janken/play&quot;</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;name_input&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;your_name&quot;</span><span class="kw">&gt;</span>名前: <span class="kw">&lt;/label&gt;</span>
+        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;your_name&quot;</span><span class="ot"> name=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;/p&gt;</span>
+      <span class="kw">&lt;fieldset</span><span class="ot"> id=</span><span class="st">&quot;janken_hand&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> id=</span><span class="st">&quot;hand_rock&quot;</span><span class="ot"> value=</span><span class="st">&quot;rock&quot;</span><span class="ot"> name=</span><span class="st">&quot;hand&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;hand_rock&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_gu.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Rock&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/label&gt;</span>
+        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> id=</span><span class="st">&quot;hand_scissor&quot;</span><span class="ot"> value=</span><span class="st">&quot;scissor&quot;</span><span class="ot"> name=</span><span class="st">&quot;hand&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;hand_scissor&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_choki.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Scissor&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/label&gt;</span>
+        <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> id=</span><span class="st">&quot;hand_paper&quot;</span><span class="ot"> value=</span><span class="st">&quot;paper&quot;</span><span class="ot"> name=</span><span class="st">&quot;hand&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;hand_paper&quot;</span><span class="kw">&gt;&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_pa.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Paper&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/label&gt;</span>
+      <span class="kw">&lt;/fieldset&gt;</span>
+      <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>じゃんけん<span class="kw">&lt;/button&gt;</span>
+    <span class="kw">&lt;/form&gt;</span>
+  <span class="kw">&lt;/main&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>このHTMLのポイントは、以下の３点です。</p>
+<ol>
+<li>入力フォームである<code>&lt;form action=&quot;/janken/play&quot; method=&quot;POST&quot;&gt;〜&lt;/form&gt;</code>にてSubmit時のデータ送信先URLとHTTP methodを指定している</li>
+<li>名前の入力は、<code>&lt;input type=&quot;text&quot; id=&quot;your_name&quot; name=&quot;name&quot;&gt;</code>で入力を受け付け、送信時のデータの名前は<code>name</code>である</li>
+<li>手の指定は、<code>&lt;input type=&quot;radio&quot; id=&quot;hand_rock&quot; value=&quot;rock&quot; name=&quot;hand&quot;&gt;</code>の３つのラジオボタンで入力を受け付け、送信時のデータの名前は<code>hand</code>である
+<ul>
+<li>初期値を設定していない。</li>
+<li>未選択でも送信は可能</li>
+<li>サーバー側では、handには選択されたinputタグのvalue属性の値が入る</li>
+</ul></li>
+</ol>
+<h2>6. 静的ファイルの配置</h2>
+<p>以下のサイトより、必要な画像をダウンロードし、<code>static</code>ディレクトリに配置しましょう。</p>
+<ul>
+<li><a href="https://www.irasutoya.com/2013/07/blog-post_5608.html" target="_blank">じゃんけんのイラスト「グー・チョキ・パー」 | かわいいフリー素材集 いらすとや</a></li>
+<li><a href="https://www.irasutoya.com/2014/01/blog-post_9764.html" target="_blank">バツのマークのイラスト「×」 | かわいいフリー素材集 いらすとや</a></li>
+</ul>
+<p>次に、CSSファイルを用意します。</p>
+<p>じゃんけんアプリは、こちらで用意したCSSを使ってもらいますが、通常は自分で書く必要があります。 別途CSSでのレイアウト等の参考リンクを伝えますので、CSSによる装飾やレイアウトに興味のある方はそちらを参照しておいてください。</p>
+<p>以下のCSSファイルを<code>janken.css</code>という名前で<code>static</code>ディレクトリ以下に配置してください。</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">* <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">box-sizing:</span> <span class="dt">border-box</span><span class="kw">;</span>
+<span class="kw">}</span>
+*<span class="dv">::before</span>, *<span class="dv">::after</span> <span class="kw">{</span>
+  <span class="kw">box-sizing:</span> <span class="dt">inherit</span><span class="kw">;</span>
+<span class="kw">}</span>
+<span class="dv">:root</span> <span class="kw">{</span>
+  <span class="kw">font-size:</span> <span class="dt">20pt</span><span class="kw">;</span>
+  <span class="kw">font-family:</span> -apple-system, BlinkMacSystemFont, <span class="st">'Segoe UI'</span>, Roboto, Oxygen, Ubuntu, Cantarell, <span class="st">'Open Sans'</span>, <span class="st">'Helvetica Neue'</span>, <span class="dt">sans-serif</span><span class="kw">;</span>
+  <span class="kw">font-feature-settings:</span> <span class="st">&quot;palt&quot;</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+html <span class="kw">{</span>
+  <span class="kw">min-height:</span> <span class="dt">100%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+body <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">box-sizing:</span> <span class="dt">border-box</span><span class="kw">;</span>
+  <span class="kw">width:</span> <span class="dt">100%</span><span class="kw">;</span>
+  <span class="kw">height:</span> <span class="dt">100vh</span><span class="kw">;</span>
+  <span class="kw">display:</span> grid<span class="kw">;</span>
+  <span class="kw">place-items:</span> <span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">background:</span> <span class="dt">#003973</span><span class="kw">;</span>
+  <span class="kw">background:</span> linear-gradient(to <span class="dt">bottom</span>, <span class="dt">#003973</span>, <span class="dt">#e5e5be</span>)<span class="kw">;</span>
+<span class="kw">}</span>
+
+input <span class="kw">{</span>
+  <span class="kw">font:</span> <span class="dt">inherit</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+<span class="fl">.name_input</span> <span class="kw">{</span>
+  <span class="kw">display:</span> flex<span class="kw">;</span>
+  <span class="kw">align-items:</span> <span class="dt">center</span><span class="kw">;</span>
+<span class="kw">}</span>
+<span class="fl">.name_input</span> input<span class="at">[type=</span><span class="st">&quot;text&quot;</span><span class="at">]</span> <span class="kw">{</span>
+  <span class="kw">flex:</span> <span class="dt">1</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">0</span> <span class="dt">0.5rem</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+label<span class="at">[for=</span><span class="st">&quot;is_settai&quot;</span><span class="at">]</span> <span class="kw">{</span>
+  <span class="kw">font-size:</span> <span class="dt">0.6rem</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">0</span> <span class="dt">0.25em</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+fieldset <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">1rem</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">text-align:</span> <span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">none</span><span class="kw">;</span>
+  <span class="kw">display:</span> flex<span class="kw">;</span>
+  <span class="kw">align-items:</span> <span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">justify-content:</span> <span class="dt">center</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+input<span class="at">[type=</span><span class="st">&quot;radio&quot;</span><span class="at">]</span> + label <span class="kw">{</span>
+  <span class="kw">display:</span> <span class="dt">inline-block</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">20px</span><span class="kw">;</span>
+  <span class="kw">width:</span> <span class="dt">200px</span><span class="kw">;</span>
+  <span class="kw">border:</span> <span class="dt">5px</span> <span class="dt">transparent</span> <span class="dt">solid</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+input<span class="at">[type=</span><span class="st">&quot;radio&quot;</span><span class="at">]</span><span class="dv">:checked</span> + label <span class="kw">{</span>
+  <span class="kw">border:</span> <span class="dt">5px</span> <span class="dt">red</span> <span class="dt">solid</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+button <span class="kw">{</span>
+  <span class="kw">font:</span> <span class="dt">inherit</span><span class="kw">;</span>
+  <span class="kw">width:</span> <span class="dt">100%</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+main <span class="kw">{</span>
+  <span class="kw">position:</span> <span class="dt">relative</span><span class="kw">;</span>
+  <span class="kw">overflow:</span> <span class="dt">hidden</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">5rem</span> <span class="dt">2rem</span> <span class="dt">2rem</span><span class="kw">;</span>
+  <span class="kw">background:</span> <span class="dt">#fff</span><span class="kw">;</span>
+  <span class="kw">border-radius:</span> <span class="dt">1rem</span><span class="kw">;</span>
+  <span class="kw">box-shadow:</span> <span class="dt">rgba(0</span>, <span class="dt">0</span>, <span class="dt">0</span>, <span class="dt">0.1)</span> <span class="dt">0</span> <span class="dt">20px</span> <span class="dt">60px</span> <span class="dt">-10px</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+h1 <span class="kw">{</span>
+  <span class="kw">position:</span> <span class="dt">absolute</span><span class="kw">;</span>
+  <span class="kw">top:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">left:</span> <span class="dt">0</span><span class="kw">;</span>
+  <span class="kw">width:</span> <span class="dt">100%</span><span class="kw">;</span>
+  <span class="kw">font-size:</span> <span class="dt">2rem</span><span class="kw">;</span>
+  <span class="kw">letter-spacing:</span> <span class="dt">.07rem</span><span class="kw">;</span>
+  <span class="kw">text-align:</span> <span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">background-color:</span> <span class="dt">#232323</span><span class="kw">;</span>
+  <span class="kw">color:</span> <span class="dt">#fff</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+section <span class="kw">{</span>
+  <span class="kw">display:</span> flex<span class="kw">;</span>
+  <span class="kw">justify-content:</span> <span class="dt">center</span><span class="kw">;</span>
+  <span class="kw">align-items:</span> flex-end<span class="kw">;</span>
+<span class="kw">}</span>
+
+figure <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">1rem</span> <span class="dt">2rem</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+figure figcaption <span class="kw">{</span>
+  <span class="kw">text-align:</span> <span class="dt">center</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+main h2 <span class="kw">{</span>
+  <span class="kw">text-align:</span> <span class="dt">center</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div>
+<p>ファイルの配置が完了したら、一度動作確認をしておきましょう。</p>
+<h2>7. じゃんけんのゲーム処理の実装とレスポンスデータの組み立て</h2>
+<p><code>main.py</code>の<code>janken_play()</code>関数の中身を考えます。</p>
+<p>今回は、<code>/janken/play</code>に対して、HTTPのPOST methodでデータが送信されます。</p>
+<p>以下のコードで<code>janken_play()</code>の中身を書き換えてください。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="at">@app.route</span>(<span class="st">'/janken/play'</span>, methods<span class="op">=</span>[<span class="st">&quot;POST&quot;</span>])
+<span class="kw">def</span> janken_play():
+
+    <span class="co"># &lt;input type=&quot;text&quot; id=&quot;your_name&quot; name=&quot;name&quot;&gt;</span>
+    name <span class="op">=</span> request.form.get(<span class="st">&quot;name&quot;</span>)
+    <span class="cf">if</span> <span class="kw">not</span> name:
+        name <span class="op">=</span> <span class="st">&quot;名無しさん&quot;</span>
+    
+    <span class="co"># &lt;input type=&quot;radio&quot; id=&quot;hand_rock&quot; value=&quot;rock&quot; name=&quot;hand&quot;&gt;</span>
+    <span class="co"># &lt;input type=&quot;radio&quot; id=&quot;hand_scissor&quot; value=&quot;scissor&quot; name=&quot;hand&quot;&gt;</span>
+    <span class="co"># &lt;input type=&quot;radio&quot; id=&quot;hand_paper&quot; value=&quot;paper&quot; name=&quot;hand&quot;&gt;</span>
+    hand <span class="op">=</span> request.form.get(<span class="st">&quot;hand&quot;</span>, <span class="va">None</span>)
+
+    <span class="co"># リストの中からランダムに選ぶ</span>
+    cpu <span class="op">=</span> random.choice([<span class="st">&quot;rock&quot;</span>, <span class="st">&quot;scissor&quot;</span>, <span class="st">&quot;paper&quot;</span>])
+
+    <span class="co"># じゃんけん処理</span>
+    <span class="cf">if</span> hand <span class="op">==</span> cpu:
+        result_message <span class="op">=</span> <span class="st">&quot;あいこ&quot;</span>
+    <span class="cf">else</span>:
+        <span class="cf">if</span> hand <span class="op">==</span> <span class="st">&quot;rock&quot;</span>:
+            <span class="cf">if</span> cpu <span class="op">==</span> <span class="st">&quot;scissor&quot;</span>:
+                result_message <span class="op">=</span> <span class="st">&quot;</span><span class="sc">{}</span><span class="st">の勝ち&quot;</span>.<span class="bu">format</span>(name)
+            <span class="cf">else</span>:
+                result_message <span class="op">=</span> <span class="st">&quot;</span><span class="sc">{}</span><span class="st">の負け&quot;</span>.<span class="bu">format</span>(name)
+        <span class="cf">elif</span> hand <span class="op">==</span> <span class="st">&quot;scissor&quot;</span>:
+            <span class="cf">if</span> cpu <span class="op">==</span> <span class="st">&quot;paper&quot;</span>:
+                result_message <span class="op">=</span> <span class="st">&quot;</span><span class="sc">{}</span><span class="st">の勝ち&quot;</span>.<span class="bu">format</span>(name)
+            <span class="cf">else</span>:
+                result_message <span class="op">=</span> <span class="st">&quot;</span><span class="sc">{}</span><span class="st">の負け&quot;</span>.<span class="bu">format</span>(name)
+        <span class="cf">elif</span> hand <span class="op">==</span> <span class="st">&quot;paper&quot;</span>:
+            <span class="cf">if</span> cpu <span class="op">==</span> <span class="st">&quot;rock&quot;</span>:
+                result_message <span class="op">=</span> <span class="st">&quot;</span><span class="sc">{}</span><span class="st">の勝ち&quot;</span>.<span class="bu">format</span>(name)
+            <span class="cf">else</span>:
+                result_message <span class="op">=</span> <span class="st">&quot;</span><span class="sc">{}</span><span class="st">の負け&quot;</span>.<span class="bu">format</span>(name)
+        <span class="cf">else</span>:
+            result_message <span class="op">=</span> <span class="st">&quot;後出しはダメです。&quot;</span>
+
+    <span class="co"># 渡したいデータを先に定義しておいてもいいし、テンプレートを先に作っておいても良い</span>
+    <span class="cf">return</span> render_template(<span class="st">'janken_play.html'</span>,
+                           result_message<span class="op">=</span>result_message,
+                           name<span class="op">=</span>name,
+                           hand<span class="op">=</span>hand,
+                           cpu<span class="op">=</span>cpu)</code></pre></div>
+<p><code>templates</code>ディレクトリ以下に、<code>janken_play.html</code>を作成しましょう。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>じゃんけんゲーム - 結果<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for('static', filename='janken.css') }}&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;main&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>ぽん！&lt;/h1&gt;
+    <span class="kw">&lt;section&gt;</span>
+      <span class="kw">&lt;figure&gt;</span>
+        {% if hand == &quot;rock&quot; %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_gu.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Rock&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% elif hand == &quot;scissor&quot; %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_choki.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Scissor&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% elif hand == &quot;paper&quot; %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_pa.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Paper&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% else %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='mark_batsu.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Batsu&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% endif %}
+        <span class="kw">&lt;figcaption&gt;</span>
+          {{ name }}
+        <span class="kw">&lt;/figcaption&gt;</span>
+      <span class="kw">&lt;/figure&gt;</span>
+      <span class="kw">&lt;figure&gt;</span>
+        {% if cpu == &quot;rock&quot; %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_gu.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Rock&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% elif cpu == &quot;scissor&quot; %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_choki.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Scissor&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% elif cpu == &quot;paper&quot; %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='janken_pa.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Paper&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% else %}
+        <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;{{ url_for('static', filename='mark_batsu.png') }}&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Batsu&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;</span>
+        {% endif %}
+        <span class="kw">&lt;figcaption&gt;</span>
+          CPU
+        <span class="kw">&lt;/figcaption&gt;</span>
+      <span class="kw">&lt;/figure&gt;</span>
+    <span class="kw">&lt;/section&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>{{ result_message }}<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;button</span><span class="ot"> onclick=</span><span class="st">&quot;javascript:window.history.back(-1);return false;&quot;</span><span class="kw">&gt;</span>戻る<span class="kw">&lt;/button&gt;</span>
+  <span class="kw">&lt;/main&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<h2>8. 完成</h2>
+<p>最後にきちんと動作確認をしましょう。</p>
+<p>また、このじゃんけんアプリは、そのまま第8回課題の基準プログラムになりますので、動作しない場合は講義時間内にサポートを受けてください。</p>
+</body>
+</html>

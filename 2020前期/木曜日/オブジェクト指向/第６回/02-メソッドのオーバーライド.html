@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>メソッドのオーバーライド</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">メソッドのオーバーライド</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習1 第6回</p>
+<p>子クラスで親クラスのメソッドを上書きする手法を学びましょう</p>
+</blockquote>
+<h1 id="オーバーライド-is-not-オーバーロード">オーバーライド is not オーバーロード</h1>
+<p>親クラスから継承したけど、メソッドを子クラスで上書きをしたい。といった場合に使用する仕組みを「<strong><em>オーバーライド</em></strong>」と呼びます。</p>
+<p>多態性を実現するために引数を変えるオーバーロードと間違えやすいですが、オーバーライドは継承した親クラスのメソッドの機能自体をまるごと上書きするため仕組みです。</p>
+<p>親クラスで定義されたメソッドとは異なる処理を子クラスにて定義し直したい場合にオーバーライドを使用します。</p>
+<h2 id="オーバーライドはどのようにするか">オーバーライドはどのようにするか</h2>
+<p>子クラスで、親クラスと同じメソッドを再定義することでオーバーライドが可能。</p>
+<h3 id="characterbaseクラスにobjectクラスのtostringメソッドをオーバーライドしてみよう">CharacterBaseクラスにObjectクラスのtoStringメソッドをオーバーライドしてみよう</h3>
+<p>CharacterBaseクラスの最下部のメソッド記入位置にて、<code>p</code>と入力し、自動補完機能の中から<code>public String toString()</code>メソッドを選択してEnterキーを押しオーバーライドの記述を差し込みましょう。</p>
+<p>以下のように、新しくメソッドが出てくると思います。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>    <span class="at">@Override</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span>() {</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        <span class="kw">return</span> <span class="kw">super</span>.<span class="fu">toString</span>();</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    }</span></code></pre></div>
+<p>このメソッド内部を以下のように変更します。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="at">@Override</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span>() {</span>
+<span id="cb2-3"><a href="#cb2-3"></a>        <span class="kw">return</span> <span class="bu">String</span><span class="fu">.format</span>(<span class="st">&quot;</span><span class="sc">%s</span><span class="st"> : HP </span><span class="sc">%d</span><span class="st">, ATK </span><span class="sc">%d</span><span class="st">, DEF </span><span class="sc">%d</span><span class="st">, AGI </span><span class="sc">%d</span><span class="st">&quot;</span>, <span class="kw">this</span>.<span class="fu">name</span>, <span class="kw">this</span>.<span class="fu">hp</span>, <span class="kw">this</span>.<span class="fu">atk</span>, <span class="kw">this</span>.<span class="fu">def</span>, <span class="kw">this</span>.<span class="fu">agi</span>);</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    }</span></code></pre></div>
+<p>これで、CharacterBaseクラスやこのクラスを継承しているHero,Enemyクラスのオブジェクトから、toString()メソッドを呼び出すと、以下のような文字列を取得できます。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>Hero h = CharacterFactory.<span class="fu">createHero</span>(<span class="st">&quot;勇者の名前&quot;</span>);</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(h.<span class="fu">toString</span>());</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">// System.out.println(h); // System.out.println()は引数のObjectのtoString()メソッドを呼び出すのでこれでもOK</span></span></code></pre></div>
+<p>出力結果:</p>
+<pre><code>勇者の名前 : HP 50, ATK 9, DEF 5, AGI 10</code></pre>
+<h4 id="tostringメソッドのオーバーライドの補足">toStringメソッドのオーバーライドの補足</h4>
+<p><code>toString</code>メソッドは、<code>java.lang.Object</code>クラスのメンバで、インスタンスの文字列表現を返すメソッドです。 Javaにおいて、すべてのクラスがjava.lang.Objectを継承しており、すべてのクラスでtoStringメソッドを呼び出すことができます。ただし、クラスを新規作成した際にはこのメソッドをオーバーライドし、個別の実装を行わないと意図したインスタンスの文字列を正しく取得することはできません。</p>
+<p>オーバーライドをしない状態で取得される文字列は「<a href="mailto:クラス名@ハッシュコード" class="email">クラス名@ハッシュコード</a>」の形式であり、具体的には<code>getClass().getName() + &#39;@&#39; + Integer.toHexString(hashCode()</code>と等しい値を返します。</p>
+<p>以下ドキュメントより抜粋:</p>
+<blockquote>
+<p>toStringメソッドはこのオブジェクトを「テキストで表現する」文字列を返します。この結果は、人間が読める簡潔で有益な情報であるべきです。すべてのサブクラスで、このメソッドをオーバーライドすることをお勧めします。</p>
+</blockquote>
+<p>この様に、toStringメソッドは、「オブジェクトをテキストで表現する、人間が読める簡潔で有益な情報を返す役割」を持っており、全てのクラスでtoStringメソッドをオーバーライドすることが推奨されています。</p>
+<p>優れたtoStringの実装を提供することでそのクラスが使いやすくなり、そのクラスを使っているシステムをデバッグしやすくなります。 また、System.out.printlnや、文字列結合演算子<code>+</code>など、インスタンスが渡されたり、デバッガによりインスタンスが表示されたりすると、内部的にtoStringが自動的に呼び出されます。つまり、toStringを自分では呼び出さないとしても、他の誰かが呼び出す可能性があります。 例えば、そのインスタンスの内容をそのままログ出力するケース等がそれにあたるかと思います。そういったケースも考慮して、可能な限りtoStringはオーバーライドして自身の情報を親切に伝えることを意識すると良いかと思います。</p>
+<h3 id="heroクラスのみランダムに攻撃時に攻撃ミスクリティカルが発生するようにしよう">Heroクラスのみ、ランダムに攻撃時に攻撃ミス/クリティカルが発生するようにしよう</h3>
+<p>次の仕様をHeroクラスにのみ追加します。</p>
+<ol>
+<li>攻撃時、次表の攻撃成功判定処理を行い、攻撃失敗時には与えるダメージ量を0とする(面倒なのでゲーム内メッセージは変更しない)</li>
+<li>攻撃成功時、10%の確率で与えるダメージ量を2倍とする(面倒なのでゲーム内メッセージは変更しない)</li>
+</ol>
+<h4 id="攻撃成功判定">攻撃成功判定</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">条件（勇者のagi : 敵のagi）</th>
+<th style="text-align: center;">攻撃成功率算出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">&gt; (かつ、差が3以上)</td>
+<td style="text-align: center;">100％</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&gt; (かつ、差が3未満)</td>
+<td style="text-align: center;">90％</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">==</td>
+<td style="text-align: center;">80%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&lt; (かつ、差が5未満)</td>
+<td style="text-align: center;">70%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&lt; (かつ、差が5以上)</td>
+<td style="text-align: center;">60%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="herojavaへの変更">Hero.javaへの変更</h4>
+<p>CharacterBaseを親としたHeroクラスにて<code>attack()</code>メソッドをオーバーライドします。</p>
+<p>処理内容は以下のようにしましょう。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a>    <span class="co">// 引数の相手に攻撃を行う</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="at">@Override</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">attack</span>(CharacterBase e) {</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="co">// 引数の敵と自分自身で与えられるダメージを計算して取得</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="dt">int</span> damage = <span class="fu">calcAttackPoint</span>(e);</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="co">// 素早さの比較値を取得</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>        <span class="dt">int</span> agiDiff = <span class="kw">this</span>.<span class="fu">getAgi</span>() - e.<span class="fu">getAgi</span>();</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="dt">int</span> successRate = <span class="dv">100</span>;  <span class="co">// 攻撃成功率 (初期値を100％としておく)</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="kw">if</span> (agiDiff &lt; <span class="dv">0</span>) {</span>
+<span id="cb5-12"><a href="#cb5-12"></a>            <span class="co">// 遅い場合</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>            <span class="kw">if</span> (<span class="bu">Math</span>.<span class="fu">abs</span>(agiDiff) &gt;= <span class="dv">5</span>) {</span>
+<span id="cb5-14"><a href="#cb5-14"></a>                successRate = <span class="dv">60</span>;   <span class="co">// 差が5以上: 60%</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>            } <span class="kw">else</span> {</span>
+<span id="cb5-16"><a href="#cb5-16"></a>                successRate = <span class="dv">60</span>;   <span class="co">// 差が5未満: 70%</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>            }</span>
+<span id="cb5-18"><a href="#cb5-18"></a>        } <span class="kw">else</span> <span class="kw">if</span> (agiDiff == <span class="dv">0</span>) {</span>
+<span id="cb5-19"><a href="#cb5-19"></a>            <span class="co">// 等速</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>            successRate = <span class="dv">80</span>;   <span class="co">// 同じ場合: 80%</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>        } <span class="kw">else</span> {</span>
+<span id="cb5-22"><a href="#cb5-22"></a>            <span class="co">// 速い</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>            <span class="kw">if</span> (<span class="bu">Math</span>.<span class="fu">abs</span>(agiDiff) &lt; <span class="dv">3</span>) {</span>
+<span id="cb5-24"><a href="#cb5-24"></a>                successRate = <span class="dv">60</span>;   <span class="co">// 差が3未満: 90%</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>            }</span>
+<span id="cb5-26"><a href="#cb5-26"></a>        }</span>
+<span id="cb5-27"><a href="#cb5-27"></a></span>
+<span id="cb5-28"><a href="#cb5-28"></a>        <span class="bu">Random</span> r = <span class="kw">new</span> <span class="bu">Random</span>();</span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a>        <span class="co">// 上記成功判定で攻撃が成功する(それ以外は失敗)</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>        <span class="kw">if</span> (r.<span class="fu">nextInt</span>(<span class="dv">101</span>) &gt; successRate) { <span class="co">// 失敗判定</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>            <span class="kw">return</span> <span class="dv">0</span>;   <span class="co">// ダメージ処理をしないで0を返す</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a>        }</span>
+<span id="cb5-34"><a href="#cb5-34"></a></span>
+<span id="cb5-35"><a href="#cb5-35"></a>        <span class="co">// 攻撃成功時 15% の確率でクリティカル</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>        <span class="kw">if</span> (r.<span class="fu">nextInt</span>(<span class="dv">101</span>) &lt;= <span class="dv">15</span>) {</span>
+<span id="cb5-37"><a href="#cb5-37"></a>            damage *= <span class="dv">2</span>;</span>
+<span id="cb5-38"><a href="#cb5-38"></a>        }</span>
+<span id="cb5-39"><a href="#cb5-39"></a></span>
+<span id="cb5-40"><a href="#cb5-40"></a>        <span class="co">// &quot;敵&quot;にダメージを与える</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>        e.<span class="fu">damage</span>(damage);</span>
+<span id="cb5-42"><a href="#cb5-42"></a></span>
+<span id="cb5-43"><a href="#cb5-43"></a>        <span class="co">// 計算したダメージ量を返す</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>        <span class="kw">return</span> damage;</span>
+<span id="cb5-45"><a href="#cb5-45"></a>    }</span></code></pre></div>
+<p>SimpleRPGクラスに変更はありません。</p>
+<p>一度ここで正しく動作するか各自確認してください。</p>
+<h1 id="overrideアノテーションについて">@Overrideアノテーションについて</h1>
+<p>Java SE 7よりオーバーライドを行う場合は、メソッドのすぐ上に<code>@Override</code>を記述することが推奨されています。</p>
+<p>これを記述しておくことで、そのメソッドはオーバーライドされたものとコンパイラに伝えることができます。</p>
+<p>例えば、@Overrideが付いたメソッドにて、そのメソッドがオーバーライドできない(親クラスにないメソッドや、引数・戻り値が異なるなどの)場合にコンパイルエラーの形で教えてくれます。</p>
+<p>間違いを減らすためにも、<a href="mailto:オーバーライドを行う場合は必ず@Overrideアノテーションを付けるようにしましょう" class="email">オーバーライドを行う場合は必ず@Overrideアノテーションを付けるようにしましょう</a>。<br>(IDEの自動補完機能を使うことでアノテーションは自動的に追加されているはずです。これを消さないようにしましょう。)</p>
+</body>
+</html>

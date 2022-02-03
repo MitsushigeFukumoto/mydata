@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>クラスライブラリとパッケージ</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">クラスライブラリとパッケージ</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習1 第5回</p>
+<p>クラスライブラリを使用して、より楽にプログラミングをしよう</p>
+</blockquote>
+<h1 id="javaの強力なライブラリ群">Javaの強力なライブラリ群</h1>
+<p>Javaには、標準で幾つかのクラスがすでに作成されており、それらのクラスを利用してプログラム開発が行えます。</p>
+<p>例えば、System.out.printlnなどの標準出力などをサポートしているSystemクラスや、文字列を整数型に変えるメソッドなどを持ち、整数型自体を表すIntegerクラス、数学計算などの静的メソッドを持つMathクラスなどがクラスライブラリとして提供されています。</p>
+<p>これらは、Java SEのAPIとして標準搭載されています。</p>
+<p>また、クラスライブラリを自分で作成することもできます。 作成したクラスライブラリを配布することで、他の開発者がそのクラスを使ってプログラム開発が行えるようになります。</p>
+<h1 id="java-seのapiドキュメント">Java SEのAPIドキュメント</h1>
+<p>Javaの標準機能のドキュメントとして、<a href="https://docs.oracle.com/javase/jp/11/docs/api/index.html" target="_blank">JavaSDK &amp; JDK API仕様 概要 (Java SE 11 &amp; JDK 11 )</a> があります。 講義中に使用するクラスライブラリは適宜解説いたしますが、自分で調べる場合は、上記リンク先より調べて使うようにしましょう。</p>
+<p>特に、テキストで使用されているクラスのメソッドなどは、一度ドキュメントを読んでおくことを強くオススメします。</p>
+<h2 id="stringクラスを見てみよう">Stringクラスを見てみよう</h2>
+<p>上記ドキュメントサイトの検索ボックスより、「String」と入力して、<code>java.lang.String</code>について見てみましょう。</p>
+<h1 id="文字列操作">文字列操作</h1>
+<p>Stringクラスのいろいろなメソッドを使って、文字列を操作してみましょう。</p>
+<h2 id="文字列の長さと文字を取り出す">文字列の長さと文字を取り出す</h2>
+<p>サンプルプログラムでは、コメントを削除しています。</p>
+<p>このサンプルプログラムでは、インスタンス化したStringの変数に対して処理が行われている点を確認しましょう。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">public</span> <span class="kw">class</span> Sample51 {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">String</span> str = <span class="st">&quot;Hello&quot;</span>;</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="dt">char</span> ch1 = str.<span class="fu">charAt</span>(<span class="dv">0</span>);</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">char</span> ch2 = str.<span class="fu">charAt</span>(<span class="dv">1</span>);</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="dt">int</span> len = str.<span class="fu">length</span>();</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(str + <span class="st">&quot;の1番目の文字は&quot;</span> + ch1 + <span class="st">&quot;です。&quot;</span>);</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(str + <span class="st">&quot;の2番目の文字は&quot;</span> + ch2 + <span class="st">&quot;です。&quot;</span>);</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(str + <span class="st">&quot;の長さは&quot;</span> + len + <span class="st">&quot;です。&quot;</span>);</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  }</span>
+<span id="cb1-13"><a href="#cb1-13"></a>}</span></code></pre></div>
+<p>実行結果:</p>
+<pre><code>Helloの1番目の文字はHです。
+Helloの2番目の文字はeです。
+Helloの長さは5です。</code></pre>
+<p>変数<code>str</code>の中身を変えて試してみましょう。日本語も使えます。</p>
+<h2 id="文字列の大文字と小文字を変換する">文字列の大文字と小文字を変換する</h2>
+<p>このサンプルプログラムでは、<code>.toUpperCase()</code>と<code>.toLowerCase()</code>を実行した後に、String型のインスタンスである<code>str</code>の中身は変化していないことも確認しておきましょう。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">public</span> <span class="kw">class</span> Sample52 {</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;英字を入力してください。&quot;</span>);</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="bu">String</span> str = sc.<span class="fu">nextLine</span>();</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="bu">String</span> stru = str.<span class="fu">toUpperCase</span>();</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="bu">String</span> strl = str.<span class="fu">toLowerCase</span>();</span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;大文字に変換すると&quot;</span> + stru + <span class="st">&quot;です。&quot;</span>);</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;小文字に変換すると&quot;</span> + strl + <span class="st">&quot;です。&quot;</span>);</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  }</span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a>}</span></code></pre></div>
+<h2 id="文字列から文字を検索する">文字列から文字を検索する</h2>
+<p>このサンプルプログラムでは、<code>.indexOf</code>の戻り値に対して条件分岐が行われています。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">public</span> <span class="kw">class</span> Sample53 {</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;文字列を入力してください。&quot;</span>);</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="bu">String</span> str1 = sc.<span class="fu">nextLine</span>();</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;検索文字を入力してください。&quot;</span>);</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="bu">String</span> str2 = sc.<span class="fu">nextLine</span>();</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="dt">char</span> ch = str2.<span class="fu">charAt</span>(<span class="dv">0</span>);</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="dt">int</span> num = str1.<span class="fu">indexOf</span>(ch);</span>
+<span id="cb4-18"><a href="#cb4-18"></a></span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="kw">if</span> (num != -<span class="dv">1</span>) {</span>
+<span id="cb4-20"><a href="#cb4-20"></a>      <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(str1 + <span class="st">&quot;の&quot;</span> + (num + <span class="dv">1</span>) + <span class="st">&quot;番目に「&quot;</span> + ch + <span class="st">&quot;」がみつかりました。&quot;</span>);</span>
+<span id="cb4-21"><a href="#cb4-21"></a>    } <span class="kw">else</span> {</span>
+<span id="cb4-22"><a href="#cb4-22"></a>      <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(str1 + <span class="st">&quot;に「&quot;</span> + ch + <span class="st">&quot;」はありません。&quot;</span>);</span>
+<span id="cb4-23"><a href="#cb4-23"></a>    }</span>
+<span id="cb4-24"><a href="#cb4-24"></a></span>
+<span id="cb4-25"><a href="#cb4-25"></a>  }</span>
+<span id="cb4-26"><a href="#cb4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27"></a>}</span></code></pre></div>
+<h2 id="文字列を連結する">文字列を連結する</h2>
+<p>このサンプルプログラムでは、新しく<code>StringBuilder</code>クラスを使用しています。このクラスは、文字列を連結するためのバッファを用意し、連結操作自体をサポートするクラスです。 ドキュメントにも目を通しておきましょう。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">public</span> <span class="kw">class</span> Sample54 {</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;文字列を入力してください。&quot;</span>);</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="bu">String</span> str1 = sc.<span class="fu">nextLine</span>();</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;追加する文字列を入力してください。&quot;</span>);</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="bu">String</span> str2 = sc.<span class="fu">nextLine</span>();</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="bu">StringBuilder</span> sb = <span class="kw">new</span> <span class="bu">StringBuilder</span>(str1);</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    sb.<span class="fu">append</span>(str2);</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(str1 + <span class="st">&quot;に&quot;</span> + str2 + <span class="st">&quot;を追加すると&quot;</span> + sb + <span class="st">&quot;です。&quot;</span>);</span>
+<span id="cb5-17"><a href="#cb5-17"></a>  }</span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a>}</span></code></pre></div>
+<p>また、ほぼ同じ処理ができるライブラリとして、<code>StringBuffer</code>というものがあります。しかし。Java SE 7以降では、このクラスではなく<code>StringBuilder</code>を使用することが推奨されています。StringBufferもStringBuilderもどちらとも文字列連結のためのクラスですが、StringBuilderの方が、今作成しているようなシングルスレッドプログラムでは処理が高速です。 (GUIアプリケーションなどのマルチスレッドプログラミングにて、スレッド間での共有を行う場合は、StringBufferを使ってください。それ以外は、StringBuilderの方が確実です。わざわざ文字連結のためのオブジェクトを共有することはあまりしないので良いと思いますが……)</p>
+<h2 id="文字列からchar型の配列を取得する">文字列からchar型の配列を取得する</h2>
+<p>String型の文字列は、内部的にcharの配列を生成することができます。</p>
+<p>String型のオブジェクトから、<code>toCharArray()</code>メソッドを使うことで、その文字列を<code>char[]</code>で取得することができます。j 文字列を１文字ずつ処理したい場合などには、これを使いましょう。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">import</span><span class="im"> java.util.Scanner;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">public</span> <span class="kw">class</span> Sample55 {</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;文字列を入力してください。&quot;</span>);</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="bu">Scanner</span> sc = <span class="kw">new</span> <span class="bu">Scanner</span>(<span class="bu">System</span>.<span class="fu">in</span>);</span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="bu">String</span> str = sc.<span class="fu">nextLine</span>();</span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;１文字ずつ表示します。&quot;</span>);</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        <span class="co">// 拡張forを使って1文字ずつ取り出して処理する</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>        <span class="kw">for</span> (<span class="dt">char</span> c : str.<span class="fu">toCharArray</span>()) {</span>
+<span id="cb6-14"><a href="#cb6-14"></a>            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(c);</span>
+<span id="cb6-15"><a href="#cb6-15"></a>        }</span>
+<span id="cb6-16"><a href="#cb6-16"></a>    }</span>
+<span id="cb6-17"><a href="#cb6-17"></a>}</span></code></pre></div>
+<h2 id="その他のクラス">その他のクラス</h2>
+<p>Javaには、Stringだけでなく、他にも便利なクラスライブラリが多数存在しています。 「これどうやればいいんだろう？」などと思った時には、JavaのAPIドキュメントを見たり、Googleなどの検索エンジンに聞いてみるなどしてみるとよいでしょう。</p>
+<p>※ただし、Googleで検索をする場合で、ブログの記事などがヒットした場合には、Javaのバージョンはいくつなのかとか、投稿日時などを見てなるべく新しい記事を参考にするようにしましょう。</p>
+<hr />
+<h1 id="パッケージ">パッケージ</h1>
+<p>Javaでは、クラス名が被ってしまうとコンパイルができなくなってしまいます。 クラス名は、そのクラスを表現する名前を付けることが望ましいため、場合によっては標準搭載されたクラスライブラリと被ってしまうこともあります。クラス名が被らないようにクラス名を長くすることもできますが、それではソースコードの可読性が悪くなってしまうおそれがあります。 そのため、Javaにはこれを避けるための仕組みが用意されています。</p>
+<p>それが、パッケージ(package)と呼ばれるものです。</p>
+<h2 id="パッケージとは">パッケージとは</h2>
+<p>クラスをグループにまとめるものです。</p>
+<p>例えば、独自に作成するアプリケーションにおいてシステムを表すクラスに「System」という名前を付けたいとします。しかし、JavaではすでにSystemクラスが用意されているため、このSystemという名前をクラス名として使うことはできません。</p>
+<p>こんなときは独自のパッケージhogeを用意し、Systemクラスをappパッケージ以下へ含めるようにします。</p>
+<p>こうするとシステムを表すクラス名はapp.Systemとなります。この結果、自分で作成したapp.SystemとJavaで用意されているSystemとは明確に区別することができます。</p>
+<p>このようにJavaが提供しているクラス以外に独自に作成したクラスについてはパッケージを作ってまとめておくと、同じ名前のクラスも使えますし、既存のクラスと簡単に区別をつけることもできます。</p>
+<h2 id="パッケージ名とディレクトリツリー">パッケージ名とディレクトリツリー</h2>
+<p>パッケージは、パッケージ名にて<code>.</code>で区切られる部分がディレクトリの階層を分けます。</p>
+<p>パッケージを設定している場合は、パッケージ名に従ったディレクトリツリー上にソースコード、クラスファイルが格納される必要があります。</p>
+<p>例えば、<code>jp.ac.ait</code>というパッケージを作成しクラスを追加した場合は、<code>jp</code>ディレクトリがあり、その中に<code>ac</code>ディレクトリがあり、更にその中に<code>ait</code>ディレクトリがあり、そのディレクトリ内にクラスファイルを存在させる必要があります。</p>
+<h2 id="パッケージの命名規則">パッケージの命名規則</h2>
+<p>インターネットなどで公開するクラスライブラリでは、パッケージ名自体が被ってしまうことも考えられます。</p>
+<p>暗黙的なルールではありますが、一応ルールが定められています。</p>
+<p>何をパッケージ名にするかというと、URLなどで指定するドメイン名を使用します。</p>
+<p>例えば、<code>yahoo.co.jp</code>のドメインを持つYahoo Japanがクラスライブラリを作成した場合には、そのクラスライブラリのパッケージ名は何にするかと言うと、<code>jp.co.yahoo.クラスライブラリ名</code>となります。書き方としては、ドメインの逆から並べて書きます。</p>
+<p>また、パッケージ名は<strong>すべて小文字</strong>としておきましょう。</p>
+<p>自分の作成したクラスを他人に使ってもらう際には、適切なパッケージでクラスをまとめておきましょう。</p>
+<h2 id="課題提出のプログラムのパッケージ名">課題提出のプログラムのパッケージ名</h2>
+<p>皆さんの使用するパッケージは、以下のようにしましょう。</p>
+<pre><code>jp.ac.ait.k00000</code></pre>
+<p>k00000は各自の学籍番号としてください。</p>
+<h2 id="intellij-ideaでのパッケージ指定方法">IntelliJ IDEAでのパッケージ指定方法</h2>
+<p>Javaクラスを新規作成する際に指定する「新規」メニューにて、「パッケージ」を選んで作成します。</p>
+<p>パッケージは、そのまま<code>jp.ac.ait.k00000</code>と入力してOKです。</p>
+<h1 id="パッケージを省略して書くためのimport構文">パッケージを省略して書くためのimport構文</h1>
+<p>クラスライブラリのクラスを自分のプログラムで使用するためには、パッケージ名.クラス名という書き方をすればクラスライブラリのクラスを使用する事ができますが、使用頻度の高いクラスに関しては、冗長になってしまいコードが見難くなります。</p>
+<p>そのときは、クラスの宣言文の前にimport構文を用いることで、パッケージ名.クラス名をクラス名だけで使用できるように短縮表記することができます。</p>
+<p>import構文は以下の通りです。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">//クラス指定のインポート</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">import</span><span class="im"> パッケージ名.クラス名;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">//パッケージに含まれるクラスすべてをインポート</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">import</span><span class="im"> パッケージ名.*;</span></span></code></pre></div>
+<h2 id="パッケージとアクセス制限">パッケージとアクセス制限</h2>
+<p>アクセス修飾子の復習です。</p>
+<table>
+<thead>
+<tr class="header">
+<th>アクセス修飾子</th>
+<th>制限範囲(どこからアクセスできるか)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>public</td>
+<td>どこからでもアクセス可能</td>
+</tr>
+<tr class="even">
+<td>指定なし</td>
+<td>同じパッケージ内からのみ</td>
+</tr>
+<tr class="odd">
+<td>protected</td>
+<td>同じパッケージ内からと、サブクラスからのみ</td>
+</tr>
+<tr class="even">
+<td>private</td>
+<td>そのクラス内からのみ</td>
+</tr>
+</tbody>
+</table>
+<p>protectedを指定している場合は、継承するサブクラス(今後の講義で登場します)以外では異なるパッケージからアクセスすることができなくなります。</p>
+<h2 id="クラスライブラリ使用時のimport構文の目的">クラスライブラリ使用時のimport構文の目的</h2>
+<p>クラスライブラリを使用する際にパッケージ名をすべて書かなくてもクラス名のみで使用する事ができるようにする宣言。</p>
+<h2 id="完全限定名">完全限定名</h2>
+<p>パッケージ名.クラス名とすると、import構文でパッケージを指定しなくても、使用する事ができます。</p>
+<p>例) java.util.regex.Pattern , java.util.Random など</p>
+<p>ただ、ソースコードの可読性を下げかねないので、複数箇所で完全限定名を使用するようなことになる場合は、import構文を書いたほうがよいでしょう。</p>
+<h2 id="オンデマンドインポート">オンデマンドインポート</h2>
+<p>import構文にて、クラス名を指定する代わりに「*(アスタリスク)」を使用することで、指定したパッケージにあるクラスすべてをimportすることができる。</p>
+<p>例) import java.util.*;</p>
+<h2 id="import文が足りない場合のエラー">import文が足りない場合のエラー</h2>
+<p>「名前解決ができません」等のエラーが出ている場合には、import構文を確認してください。 もし、自分が書いたコード中に、Javaの標準で</p>
+<h2 id="import構文の注意点">import構文の注意点</h2>
+<p>以下のソースコードでは、コンパイルエラーとなります。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">package</span><span class="im"> sample;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">import</span><span class="im"> java.awt.*;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">import</span><span class="im"> java.util.*;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">public</span> <span class="kw">class</span> ImportListSample {</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="bu">List</span> list;</span>
+<span id="cb9-7"><a href="#cb9-7"></a>}</span></code></pre></div>
+<p>上記例では、importしている<code>java.awt</code>パッケージ、<code>java.util</code>パッケージのどちらにも<code>List</code>クラスが存在しています。</p>
+<p>このままでは、ImportListSampleクラスのフィールドとして書いた<code>List</code>が、<code>java.awt</code>パッケージ、<code>java.util</code>パッケージのどちらのパッケージのクラスか判断できません。</p>
+<p>これを修正するには、以下のようにimport構文を使用しないで完全限定名を使用するようにしましょう。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">package</span><span class="im"> sample;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">import</span><span class="im"> java.awt.*;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">public</span> <span class="kw">class</span> ImportListSample {</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    java.<span class="fu">util</span>.<span class="fu">List</span> list;    <span class="co">//java.utilパッケージのListを使用する</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>}</span></code></pre></div>
+<h2 id="パッケージのまとめ">パッケージのまとめ</h2>
+<ul>
+<li>クラスを役割や機能ごとにまとめることができる
+<ul>
+<li>そのクラスの役割や機能を把握しやすくさせる</li>
+</ul></li>
+<li>同じ名前のクラスは、異なるパッケージにあれば作成できる</li>
+<li>アクセス修飾子により、アクセス制限を設けられる</li>
+</ul>
+<h1 id="まとめ">まとめ</h1>
+<ul>
+<li>先人たちが残してくれている強大なクラスライブラリを使い、楽にプログラミングをしよう。</li>
+<li>クラスライブラリを使うことで、オブジェクト指向の考え方について知ろう。</li>
+<li>パッケージはクラスをまとめて管理するために有効活用しよう。</li>
+</ul>
+</body>
+</html>

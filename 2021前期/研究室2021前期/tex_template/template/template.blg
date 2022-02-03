@@ -1,0 +1,47 @@
+This is pBibTeX, Version 0.99d-j0.33 (utf8.euc) (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: template.aux
+The style file: junsrt.bst
+Database file #1: template.bib
+You've used 2 entries,
+            2270 wiz_defined-function locations,
+            546 strings with 4213 characters,
+and the built_in function-call counts, 372 in all, are:
+= -- 21
+> -- 8
+< -- 0
++ -- 4
+- -- 2
+* -- 5
+:= -- 46
+add.period$ -- 5
+call.type$ -- 2
+change.case$ -- 1
+chr.to.int$ -- 0
+cite$ -- 2
+duplicate$ -- 28
+empty$ -- 50
+format.name$ -- 4
+if$ -- 92
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 2
+newline$ -- 12
+num.names$ -- 1
+pop$ -- 24
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 20
+stack$ -- 0
+substring$ -- 0
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 1
+width$ -- 3
+write$ -- 19
+is.kanji.str$ -- 16

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>JavaScriptでWebページを操作する</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">JavaScriptでWebページを操作する</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習2</p>
+<p>Webページ上で動作するクライアントサイドJavaScriptの書き方をサンプルプログラムを実行しながら知ろう</p>
+</blockquote>
+<h1 id="javascript">クライアントサイドJavaScript</h1>
+<p>WebページでJavaScriptを使う上で、いくつか覚えてほしいことをまとめました。</p>
+<p>ポイントとしては、以下の項目が挙げられます。</p>
+<ul>
+<li>HTMLとDOM</li>
+<li>DOMから要素の取り出し</li>
+<li>要素自体の操作</li>
+<li>要素へイベントのアタッチ</li>
+</ul>
+<p>今回の資料では、ざっくりといくつかのサンプルプログラムとともにこれらの項目を知識として蓄えましょう。</p>
+<h1 id="javascripthtmlcss">JavaScriptでHTMLとCSSを操作する</h1>
+<p>JavaScriptでHTMLの要素を操作するには、HTMLをDOMというJavaScriptのオブジェクトとして扱えるものを使用して、操作したい要素をJavaScriptのオブジェクトとして扱うことができます。</p>
+<h2 id="dom">DOM</h2>
+<p>JavaScriptでHTMLを操作するには、ある標準的な仕組みに基づいて行われます。<br />
+それがDOM(Document Object Model)と呼ばれるものです。</p>
+<p>事前に理解しておいて欲しいことは、「HTMLは <strong><em>階層構造</em></strong> になっている」という点です。</p>
+<p>htmlをトップレベルの階層として、head,bodyの要素が子の階層となり、それぞれ更に子要素が階層を構成しています。<br />
+この階層構造をツリー上の構造としてHTMLを解釈します。</p>
+<p>このツリー構造をDOMとしてJavaScriptから参照することで、それぞれの要素に対してアクセスする事ができます。</p>
+<h2 id="html">HTMLの要素を取得する</h2>
+<p>以下のコードを書いて、ボタンをクリックしてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>JavaScript learning<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;h1</span><span class="ot"> id=</span><span class="st">&quot;h1-id&quot;</span><span class="ot"> class=</span><span class="st">&quot;h1-class&quot;</span><span class="kw">&gt;</span>JavaScript learning<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;script&gt;</span>
+        <span class="co">// #h1-idの要素を取得</span>
+        <span class="kw">let</span> elm <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'h1-id'</span>)<span class="op">;</span>
+        <span class="co">// 要素のタグ内にあるHTMLをアラートで表示</span>
+        <span class="va">window</span>.<span class="at">alert</span>(<span class="va">elm</span>.<span class="at">innerHTML</span>)<span class="op">;</span>
+    <span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>window.alert()内の<code>document.getElementById('h1-id')</code>では、DOMよりid属性が「<code>h1-id</code>」のElement(つまり要素自体)を取得しています。</p>
+<p>アラート表示のタイミングで、それの<code>innerHTML</code>というプロパティを取得しています。</p>
+<p>また、以下のようにclassなどのHTML上で設定された属性値の取得も可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">window</span>.<span class="at">alert</span>(<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'h1-id'</span>).<span class="at">className</span>)<span class="op">;</span></code></pre></div>
+<p>取得した要素に対して、どんな操作が可能かは、以下のURLを参考にしてください。</p>
+<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Element">Element - Web API インターフェイス | MDN</a></li>
+</ul>
+<h2 id="dom">DOM操作コードまとめ</h2>
+<h3>要素の取得</h3>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">//id属性を指定して単一取得</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'id'</span>)<span class="op">;</span>
+<span class="co">// (指定されたid属性の値を持つ要素を一つ取得します。戻り値はHTMLElement)</span>
+
+<span class="co">//class属性を指定して複数取得</span>
+<span class="va">document</span>.<span class="at">getElementsByClassName</span>(<span class="st">'class'</span>)<span class="op">;</span>
+<span class="co">// (指定されたクラスを持つ要素をすべて取得できます。(要素は複数取得されます。戻り値はHTMLCollection))</span>
+
+<span class="co">//タグ指定して複数取得</span>
+<span class="va">document</span>.<span class="at">getElementsByTagName</span>(<span class="st">'div'</span>)<span class="op">;</span>
+<span class="co">// (指定されたタグ名の要素をすべて取得できます。(要素は複数取得されます。戻り値はHTMLCollection))</span>
+
+<span class="co">//cssセレクタで指定し単一取得</span>
+<span class="va">document</span>.<span class="at">querySelector</span>(<span class="st">'#hoge .fuga p'</span>)<span class="op">;</span>
+<span class="co">// (指定されたセレクタが指し示す要素をDOMの先頭から一つだけ取得できます。(要素は単一取得されます。戻り値はHTMLElement, getElementByIdと同じ))</span>
+
+<span class="co">//cssセレクタで指定し複数取得</span>
+<span class="va">document</span>.<span class="at">querySelectorAll</span>(<span class="st">'a'</span>)<span class="op">;</span> 
+<span class="co">// (指定されたセレクタが指し示す要素をすべて取得できます。(要素は複数取得されます。戻り値はNodeList))</span></code></pre></div>
+<h4>複数取得された要素に対する処理</h4>
+<p>以下のコードを使うと、複数取得された要素に対して要素１つずつの処理を書くことができます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> elements <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementsByTagName</span>(<span class="st">'div'</span>)<span class="op">;</span>  <span class="co">// 戻値がHTMLCollectionでElementの配列として扱える</span>
+<span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">forEach</span>.<span class="at">call</span>(elements<span class="op">,</span> <span class="kw">function</span>(element<span class="op">,</span> i)<span class="op">{</span>
+  <span class="co">//elementには、divタグの要素が一つづつ入り、すべてのdiv要素に対してこの関数の処理が行われます。</span>
+
+<span class="op">}</span>)<span class="op">;</span>
+<span class="co">// ↓は↑のforEachと同じ処理ですが、実装がかなり簡素になります。(ES2015)</span>
+<span class="va">elements</span>.<span class="at">forEach</span>((element<span class="op">,</span> i) <span class="op">=&gt;</span> <span class="op">{</span>
+  
+<span class="op">}</span>)<span class="op">;</span></code></pre></div>
+<p>とすると、divタグの要素すべてに対して、処理を行えます。</p>
+<p>または、CSSのセレクタと同じように要素を取り出すことも可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> elements <span class="op">=</span> <span class="va">document</span>.<span class="at">querySelectorAll</span>(<span class="st">'#target&gt;.class-name'</span>)<span class="op">;</span>   <span class="co">// 戻り値がNodeListで取得でき、forEachで全体走査が可能</span>
+<span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">forEach</span>.<span class="at">call</span>(elements<span class="op">,</span> <span class="kw">function</span>(element<span class="op">,</span> i)<span class="op">{</span>
+  <span class="co">//elementには、CSSのセレクタと同様に#target&gt;.class-nameで取得できる要素が一つづつ入り、セレクタに対応する要素すべてに対してこの関数の処理が行われます。</span>
+
+<span class="op">}</span>)<span class="op">;</span>
+<span class="co">// ↓は↑のforEachと同じ処理ですが、実装がかなり簡素になります。(ES2015)</span>
+<span class="va">elements</span>.<span class="at">forEach</span>((element<span class="op">,</span> i) <span class="op">=&gt;</span> <span class="op">{</span>
+  
+<span class="op">}</span>)<span class="op">;</span></code></pre></div>
+<h3>単一の要素から親子関係、兄弟関係の要素へアクセスする</h3>
+<p>あまり使う場所がないかもしれませんが、JavaScriptであれば、CSSではできなかったDOMを辿っての親要素取得や、別の子要素へのアクセスも可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> element <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'id'</span>)<span class="op">;</span> <span class="co">// 要素を単一取得(Elementオブジェクト)</span>
+<span class="co">// 親要素を取得</span>
+<span class="va">element</span>.<span class="at">parentNode</span><span class="op">;</span>
+<span class="co">// 子要素を取得</span>
+<span class="va">element</span>.<span class="at">children</span><span class="op">;</span> <span class="co">// 子要素を配列で取得</span>
+<span class="va">element</span>.<span class="at">firstElementChild</span><span class="op">;</span> <span class="co">// 子要素の中で最初に取得できる要素</span>
+<span class="va">element</span>.<span class="at">lastElementChild</span><span class="op">;</span>  <span class="co">// 子要素の中で最後に取得できる要素</span>
+
+<span class="co">// 兄弟関係の１つ前の要素を取得</span>
+<span class="va">element</span>.<span class="at">previousElementSibling</span><span class="op">;</span>
+<span class="co">// 兄弟関係の１つ前の要素を取得</span>
+<span class="va">element</span>.<span class="at">nextElementSibling</span><span class="op">;</span></code></pre></div>
+<h3>要素を追加削除</h3>
+<p>JavaScriptで要素を作成し、DOMに追加したり削除したりすることも可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> element <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'id'</span>)<span class="op">;</span> <span class="co">// 要素を単一取得(Elementオブジェクト)</span>
+<span class="co">// 要素を作成する</span>
+<span class="kw">let</span> div <span class="op">=</span> <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">'div'</span>)<span class="op">;</span>
+<span class="va">div</span>.<span class="at">textContent</span> <span class="op">=</span> <span class="st">'hoge'</span><span class="op">;</span>
+
+<span class="co">// 作成した要素を子要素として末尾に追加</span>
+<span class="va">element</span>.<span class="at">appendChild</span>(div)<span class="op">;</span>
+<span class="co">// 作成した要素を子要素として先頭に追加</span>
+<span class="va">element</span>.<span class="at">insertBefore</span>(div<span class="op">,</span> <span class="va">element</span>.<span class="at">firstChild</span>)<span class="op">;</span>
+
+
+<span class="co">// 特定の子要素削除 chiidは取得された要素</span>
+<span class="va">element</span>.<span class="at">removeChild</span>(child)<span class="op">;</span> 
+<span class="co">// 子要素を全削除</span>
+<span class="cf">while</span> (<span class="va">element</span>.<span class="at">firstChild</span>) <span class="op">{</span>
+    <span class="va">element</span>.<span class="at">removeChild</span>(<span class="va">element</span>.<span class="at">firstChild</span>)<span class="op">;</span>
+<span class="op">}</span>
+<span class="co">// 特定の要素から要素自体を削除</span>
+<span class="va">element</span>.<span class="va">parentNode</span>.<span class="at">removeChild</span>(element)<span class="op">;</span></code></pre></div>
+<h3>属性値を取得、操作する</h3>
+<p>HTMLの属性自体をJavaScriptから操作することも可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> element <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'id'</span>)<span class="op">;</span> <span class="co">// 要素を単一取得(Elementオブジェクト)</span>
+
+<span class="co">// 属性の存在チェック</span>
+<span class="va">element</span>.<span class="at">hasAttribute</span>(<span class="st">'hoge'</span>)<span class="op">;</span>
+<span class="co">//属性を削除</span>
+<span class="va">element</span>.<span class="at">removeAttribute</span>(<span class="st">'hoge'</span>)<span class="op">;</span>
+<span class="co">// 属性の取得 (存在しない場合はnullもしくは空文字が戻る)</span>
+<span class="va">element</span>.<span class="at">getAttribute</span>(<span class="st">'hoge'</span>)<span class="op">;</span>
+<span class="co">// 属性を設定</span>
+<span class="va">element</span>.<span class="at">setAttribute</span>(<span class="st">'href'</span><span class="op">,</span> <span class="st">'http://sample.com/'</span>)<span class="op">;</span></code></pre></div>
+<h3>スタイル操作</h3>
+<h4 id="class">class属性を操作する</h4>
+<p>CSSは先に定義しておき、JavaScriptからclass属性を追加削除しておくことでスタイルの操作が行えます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> element <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">'id'</span>)<span class="op">;</span> <span class="co">// 要素を単一取得(Elementオブジェクト)</span>
+
+<span class="co">// class属性を追加</span>
+<span class="va">element</span>.<span class="va">classList</span>.<span class="at">add</span>(<span class="st">'fuga'</span>)<span class="op">;</span>
+<span class="co">// class属性を削除</span>
+<span class="va">element</span>.<span class="va">classList</span>.<span class="at">remove</span>(<span class="st">'hoge'</span>)<span class="op">;</span>
+<span class="co">//class属性をトグル(あれば削除、なければ追加)</span>
+<span class="va">element</span>.<span class="va">classList</span>.<span class="at">toggle</span>(<span class="st">'piyo'</span>)<span class="op">;</span></code></pre></div>
+<p>Webシステムの開発などでは、決められた装飾を何かしらのアクションで所定の要素に追加することが多く、CSS側でクラスセレクタ等にまとめておき、JavaScriptからclass属性を追加する手法が広く用いられています。</p>
+<h3 id="css">CSSを直接操作する</h3>
+<p>取得したElementには、以下の様なスタイルを設定するプロパティがあります。</p>
+<pre class="javacript"><code>let element = document.getElementById('id'); // 要素を単一取得(Elementオブジェクト)
+element.style;</code></pre>
+<p><code>style</code>プロパティ以下には更に個別のスタイルを取得・設定するためのプロパティが幾つかあります。 試してみると良いでしょう。</p>
+<table>
+<colgroup>
+<col style="width: 16%"></col>
+<col style="width: 16%"></col>
+<col style="width: 67%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>属性(一例)</th>
+<th>説明</th>
+<th>使用例( elementには、document.getElementById(&quot;idが入ります&quot;)の様にElementオブジェクトが入ります。 )</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>backgroundColor</td>
+<td>背景色</td>
+<td>element.style.backgroundColor = &quot;#BBCCDD&quot;</td>
+</tr>
+<tr class="even">
+<td>color</td>
+<td>文字色</td>
+<td>element.style.color = &quot;#BBCCDD&quot;</td>
+</tr>
+<tr class="odd">
+<td>visibility</td>
+<td>表示非表示</td>
+<td>element.style.visibility = &quot;hidden&quot; element.style.visibility = &quot;visible&quot;</td>
+</tr>
+<tr class="even">
+<td>position</td>
+<td>位置指定</td>
+<td>element.style.position = &quot;absolute&quot;</td>
+</tr>
+<tr class="odd">
+<td>borderWidth</td>
+<td>枠線の太さ</td>
+<td>element.style.borderWidth = &quot;2px&quot;</td>
+</tr>
+<tr class="even">
+<td>borderColor</td>
+<td>枠線の色</td>
+<td>element.style.borderColor = &quot;#645fa7&quot;</td>
+</tr>
+<tr class="odd">
+<td>borderStyle</td>
+<td>枠線の種類</td>
+<td>element.style.borderStyle = &quot;solid&quot;</td>
+</tr>
+<tr class="even">
+<td>width</td>
+<td>幅</td>
+<td>element.style.width = &quot;100px&quot;</td>
+</tr>
+<tr class="odd">
+<td>height</td>
+<td>高さ</td>
+<td>element.style.height = &quot;200px&quot;</td>
+</tr>
+<tr class="even">
+<td>top</td>
+<td>上位置</td>
+<td>element.style.top = 10</td>
+</tr>
+<tr class="odd">
+<td>left</td>
+<td>左位置</td>
+<td>element.style.left = 10</td>
+</tr>
+</tbody>
+</table>
+<p>また、CSSでは、<code>background-color</code>のようにハイフンで単語間を接続していた書き方(これをスネークケースなどと呼びます)ですが、JavaScriptでは、<code>backgroundColor</code>単語間を次の単語の先頭文字を大文字にする書き方(キャメルケースなどと呼びます)となります。 CSSのプロパティ名をそのままJavaScriptで使用できるわけではありません。CSSプロパティ名にハイフンが入っている場合は注意してください。</p>
+<p><br> <br> <br></p>
+<hr />
+<h1>イベントアタッチ</h1>
+<h2>プログラムが実行されるタイミング</h2>
+<p>JavaScriptのプログラムは、ファイルが読みこまれると同時にブラウザ上で実行されます。(scriptタグにsrc属性とdefer属性を付加した場合を除く)</p>
+<h3>イベントと紐付けてプログラムを実行しよう</h3>
+<p>今までのサンプルコードは、すべてJavaScriptが読み込まれたタイミング(HTMLとCSSが画面に完全に表示されるよりも前)で実行されています。</p>
+<p>これを、要素をクリックした時や、マウスオーバーした時などにプログラムを実行するようにしてみましょう。</p>
+<p>以下のサンプルソースでは、画像をクリックした際にアラートを表示するプログラムが書かれています。<br />
+画像は適当なものを用意してください。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>JavaScript learning<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>JavaScript learning<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;sample.jpg&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;window.alert('クリックしたぜ！');&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<h2 id="html">HTMLのイベント</h2>
+<p>HTMLには、JavaScriptを実行させるトリガーになるイベントが幾つかあります。</p>
+<p>HTMLの要素に対して何らかの動きを付ける場合には必須になるテクニックです。</p>
+<h3>イベントにはどんなものがあるか</h3>
+<p>HTML5対応のイベントの一部(主要なもの)を以下にまとめます。</p>
+<h4>ロードイベント</h4>
+<p>読み込まれたタイミングで発生するイベント</p>
+<table>
+<thead>
+<tr class="header">
+<th>イベント属性名</th>
+<th>発生条件</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>onload</td>
+<td>要素が読み込まれた時</td>
+</tr>
+</tbody>
+</table>
+<h4>フォームイベント</h4>
+<p>ユーザーへの入力を要求するformタグ内の要素に対して設定するのが一般的です。</p>
+<table>
+<thead>
+<tr class="header">
+<th>イベント属性名</th>
+<th>発生条件</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>onblur</td>
+<td>要素がフォーカスを失った時</td>
+</tr>
+<tr class="even">
+<td>onchange</td>
+<td>要素が変更された時</td>
+</tr>
+<tr class="odd">
+<td>oncontextmenu</td>
+<td>コンテキストメニュー(右クリックメニュー)を起動した時</td>
+</tr>
+<tr class="even">
+<td>onfocus</td>
+<td>要素にフォーカスが当った時</td>
+</tr>
+<tr class="odd">
+<td>onformchange</td>
+<td>フォームの内容が変更された時</td>
+</tr>
+<tr class="even">
+<td>onforminput</td>
+<td>フォームにユーザ入力があった時</td>
+</tr>
+<tr class="odd">
+<td>oninput</td>
+<td>要素にユーザ入力があった時</td>
+</tr>
+<tr class="even">
+<td>onselect</td>
+<td>要素が選択された時</td>
+</tr>
+<tr class="odd">
+<td>onsubmit</td>
+<td>フォームを送信した時</td>
+</tr>
+</tbody>
+</table>
+<h4>キーボードイベント</h4>
+<p>キーボードによる入力によって発生するイベント。すべてのHTML5要素に対して有効です。</p>
+<table>
+<thead>
+<tr class="header">
+<th>イベント属性名</th>
+<th>発生条件</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>onkeydown</td>
+<td>キーが押された時</td>
+</tr>
+<tr class="even">
+<td>onkeypress</td>
+<td>キーを押して放した時</td>
+</tr>
+<tr class="odd">
+<td>onkeyup</td>
+<td>キーを放した時</td>
+</tr>
+</tbody>
+</table>
+<h4>マウスイベント</h4>
+<p>マウスの入力によって発生するイベント。すべてのHTML5要素に対して有効です。</p>
+<table>
+<thead>
+<tr class="header">
+<th>イベント属性名</th>
+<th>発生条件</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>onclick</td>
+<td>マウスクリック</td>
+</tr>
+<tr class="even">
+<td>ondblclick</td>
+<td>マウスのダブルクリック</td>
+</tr>
+<tr class="odd">
+<td>ondrag</td>
+<td>要素をドラッグした時</td>
+</tr>
+<tr class="even">
+<td>ondragend</td>
+<td>ドラッグ操作の最後</td>
+</tr>
+<tr class="odd">
+<td>ondragenter</td>
+<td>要素が有効なドロップ目標にドラッグされた時</td>
+</tr>
+<tr class="even">
+<td>ondragleave</td>
+<td>要素が有効なドロップ目標から離れた時</td>
+</tr>
+<tr class="odd">
+<td>ondragover</td>
+<td>要素が有効なドロップ目標の上にドラッグされている時</td>
+</tr>
+<tr class="even">
+<td>ondragstart</td>
+<td>ドラッグ操作を開始した時</td>
+</tr>
+<tr class="odd">
+<td>ondrop</td>
+<td>ドラッグした要素をドロップした時</td>
+</tr>
+<tr class="even">
+<td>onmousedown</td>
+<td>マウスボタンを押した時</td>
+</tr>
+<tr class="odd">
+<td>onmousemove</td>
+<td>マウスポインタを移動した時</td>
+</tr>
+<tr class="even">
+<td>onmouseout</td>
+<td>マウスポインタを要素の外へ移動した時</td>
+</tr>
+<tr class="odd">
+<td>onmouseover</td>
+<td>マウスポインタを要素の上に移動した時</td>
+</tr>
+<tr class="even">
+<td>onmouseup</td>
+<td>マウスボタンを放した時</td>
+</tr>
+<tr class="odd">
+<td>onmousewheel</td>
+<td>マウスホイールを回転した時</td>
+</tr>
+<tr class="even">
+<td>onscroll</td>
+<td>要素のスクロールバーをスクロールした時</td>
+</tr>
+</tbody>
+</table>
+<h3 id="javascript">イベントとJavaScriptを関連付ける方法</h3>
+<h4 id="html">HTMLの属性として指定する</h4>
+<p>HTMLの属性として指定することができます。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;sample.jpg&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;imageClick();&quot;</span><span class="kw">&gt;</span></code></pre></div>
+<p>関数については後述します。プログラムをまとめておく機能だと思ってください。</p>
+<p>前述のように、関数を指定しないで直接プログラムを書くこともできます。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;sample.jpg&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;window.alert('君、今クリックしたね！？');&quot;</span><span class="kw">&gt;</span></code></pre></div>
+<h4 id="javascript">JavaScriptからイベントを指定する</h4>
+<p>JavaScriptでイベントにJavaScriptの関数を指定することもできます。</p>
+<h5 id="html-1">HTML</h5>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;sample.jpg&quot;</span><span class="ot"> id=</span><span class="st">&quot;img1&quot;</span><span class="kw">&gt;</span></code></pre></div>
+<h5 id="javascript-1">JavaScript</h5>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">//画像クリック時の処理をまとめた関数</span>
+<span class="kw">let</span> imageClick <span class="op">=</span> <span class="kw">function</span>(e) <span class="op">{</span>
+  <span class="va">window</span>.<span class="at">alert</span>(<span class="st">'画像クリックしたよね？'</span>)<span class="op">;</span>
+<span class="op">}</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;img1&quot;</span>).<span class="at">addEventListener</span>(<span class="st">'click'</span><span class="op">,</span> imageClick)<span class="op">;</span></code></pre></div>
+<p>addEventListenerを使用します。</p>
+<p>addEventListenerには、2つの引数が必要で、1つ目がイベントの名前を設定します。このイベントの名前は、先ほどの要素に対するイベント属性から、「on」をなくした書き方で良いでしょう。(厳密には異なる場合もあります。)<br />
+2つ目は、関数自体を指定します。この時、関数名の後に()はつけません。(関数もJavaScriptではオブジェクトとして扱われます。)</p>
+<p>この書き方は、以下のように無名関数(上で言うimageClickなどの名前を設定しないその場限りの関数)を使用することも可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;img1&quot;</span>).<span class="at">addEventListener</span>(<span class="st">'click'</span><span class="op">,</span> <span class="kw">function</span>(e) <span class="op">{</span>
+  <span class="va">window</span>.<span class="at">alert</span>(<span class="st">'画像クリックしたよね？'</span>)<span class="op">;</span>
+<span class="op">}</span>)<span class="op">;</span></code></pre></div>
+<p>JavaScriptからイベントを設定する方法は、これ以外にも幾つか方法がありますが、私のおすすめの方法はaddEventListenerを使用する方法です。 煩わしくなってしまうため、その他のイベント設定については省略します。</p>
+<h4>ページが開かれた後に実行する方法</h4>
+<p>先ほども書いていますが、JavaScriptは「読みこまれたときに実行」されます。</p>
+<p>ページのレンダリングが終わったタイミングで処理を実行させるには、JavaScriptを外部ファイルとして、scriptタグに<code>defer</code>属性を付与しておくとHTML読み込み完了後にJavaScriptを実行するようになります。そのため、JavaScriptは外部ファイルにしてdeferをつけて読み込ませるのが個人的に最適のように思います。</p>
+</body>
+</html>

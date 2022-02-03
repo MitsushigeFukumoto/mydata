@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>04_外部モジュールの利用</title>
+  <style type="text/css">
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+code{ white-space: pre-wrap; }
+span.smallcaps{ font-variant: small-caps; }
+span.underline{ text-decoration: underline; }
+div.column{ display: inline-block; vertical-align: top; width: 50%; }
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+  url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+p, table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+h1 { font-size: 2rem; margin: 2rem auto 1rem; text-align: center; }
+h2 { font-size: 1.75rem; border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin: 2rem 0 1rem; }
+h3 { font-size: 1.5rem; border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin: 2rem 0 1rem; }
+h4 { font-size: 1.25rem; margin: 2rem 0 1rem; }
+h5 { font-size: 1.2rem; margin: 2rem 0 1rem; }
+h6 { font-size: 1.1rem; margin: 2rem 0 1rem; }
+ul, ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+ul li, ol li {
+  padding-left: .5rem;
+}
+ul ul, ol ul,
+ul ol, ol ol {
+  padding-left: 1.5rem;
+}
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+a {
+  color: #5484c8;
+}
+.margin-clear {
+  margin-left: 0;
+}
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+blockquote * {
+  color: #999;
+}
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+pre, code, var, samp, kbd, .mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 4px;
+}
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+pre.sourceCode {
+  overflow: auto !important;
+}
+img, iframe, figure {
+  max-width: 100%;
+}
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+  </style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="外部モジュールの利用">外部モジュールの利用</h1>
+<p>ドキュメント</p>
+<p>XMLを辞書型に変換</p>
+<ul>
+<li>xmltodict HP: https://github.com/martinblech/xmltodict</li>
+</ul>
+<p>描画ツール</p>
+<ul>
+<li>matplotlib ドキュメント: https://matplotlib.org/ （英語）</li>
+</ul>
+<p>科学技術計算</p>
+<ul>
+<li>scipy ドキュメント:　https://www.scipy.org/docs.html （英語）</li>
+</ul>
+<h2 id="外部モジュールの利用例１">外部モジュールの利用例１</h2>
+<p>課題2 の回答例2を実行を実行してみる</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> xml.etree.ElementTree <span class="im">as</span> ET</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">def</span> lecture02_02():</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="im">import</span> xmltodict</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;lecture02_data.xml&#39;</span>) <span class="im">as</span> xml:</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        odict <span class="op">=</span> xmltodict.parse(xml.read())</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="co"># odictはOrderedDict型なので課題に従いdict型にする</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="co"># 辞書型の入れ子の要素はOrderedDict型のままだがキー(book)のバリューについては自由</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="bu">print</span>(<span class="bu">dict</span>(odict))</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    lecture02_02()</span></code></pre></div>
+<p>モジュールが見つからないと言われたらインストールする</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">python3</span> -m pip install xmltodict</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">python3</span> -m pip install matplotlib</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">python3</span> -m pip install scipy</span></code></pre></div>
+<h2 id="外部モジュールの利用例２">外部モジュールの利用例２</h2>
+<p>いさら聞けないPythonでデータ分析のリスト5.2.1単回帰分析を試す．</p>
+<p>regression.pyとreaddata.pyをMoodleからダウンロードして実行する．</p>
+<p><code>input data type...</code>と聞かれるので，<code>3</code>を入力する．</p>
+<p>regression.py</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> readdata <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="im">import</span> scipy.stats <span class="im">as</span> scst</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="bu">print</span>(<span class="st">&#39;input data type...&#39;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="bu">print</span>(<span class="st">&#39;Data is set in the list RawData -&gt; 1&#39;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="bu">print</span>(<span class="st">&#39;Data is set in the text file    -&gt; 2&#39;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="bu">print</span>(<span class="st">&#39;Data is set in the csv  file    -&gt; 3&#39;</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>ck<span class="op">=</span><span class="bu">input</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">Your choice=&#39;</span>)</span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="cf">try</span>:</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="cf">if</span> ck<span class="op">==</span><span class="st">&#39;1&#39;</span>:</span>
+<span id="cb3-13"><a href="#cb3-13"></a>        RawData,f_out,f_out_nm<span class="op">=</span>ReadData_lst()</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="cf">elif</span> ck<span class="op">==</span><span class="st">&#39;2&#39;</span>:</span>
+<span id="cb3-15"><a href="#cb3-15"></a>        RawData,f_out,f_out_nm<span class="op">=</span>ReadData_txt()</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="cf">elif</span> ck<span class="op">==</span><span class="st">&#39;3&#39;</span>:</span>
+<span id="cb3-17"><a href="#cb3-17"></a>        RawData,f_out,f_out_nm<span class="op">=</span>ReadData_csv()</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-19"><a href="#cb3-19"></a>        <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">Invalid choice...&#39;</span>)</span>
+<span id="cb3-20"><a href="#cb3-20"></a>        <span class="cf">raise</span> <span class="pp">Exception</span>()</span>
+<span id="cb3-21"><a href="#cb3-21"></a>        </span>
+<span id="cb3-22"><a href="#cb3-22"></a>    f_out.write(<span class="st">&#39;Data...</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb3-23"><a href="#cb3-23"></a>    <span class="bu">print</span>(<span class="st">&#39;Data...&#39;</span>)</span>
+<span id="cb3-24"><a href="#cb3-24"></a>    <span class="cf">for</span> v <span class="kw">in</span> RawData:</span>
+<span id="cb3-25"><a href="#cb3-25"></a>        f_out.write(<span class="st">&#39;</span><span class="sc">{0}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(v))</span>
+<span id="cb3-26"><a href="#cb3-26"></a>        <span class="bu">print</span>(v)</span>
+<span id="cb3-27"><a href="#cb3-27"></a>        </span>
+<span id="cb3-28"><a href="#cb3-28"></a>    VarNames<span class="op">=</span>RawData[<span class="dv">0</span>]</span>
+<span id="cb3-29"><a href="#cb3-29"></a>    </span>
+<span id="cb3-30"><a href="#cb3-30"></a>    ID<span class="op">=</span>[]</span>
+<span id="cb3-31"><a href="#cb3-31"></a>    y<span class="op">=</span>[]</span>
+<span id="cb3-32"><a href="#cb3-32"></a>    X<span class="op">=</span>[]</span>
+<span id="cb3-33"><a href="#cb3-33"></a>    <span class="cf">for</span> v <span class="kw">in</span> RawData[<span class="dv">1</span>:]:</span>
+<span id="cb3-34"><a href="#cb3-34"></a>        ID.append(v[<span class="dv">0</span>])</span>
+<span id="cb3-35"><a href="#cb3-35"></a>        y.append([v[<span class="dv">1</span>]])</span>
+<span id="cb3-36"><a href="#cb3-36"></a>        X.append([<span class="dv">1</span>,v[<span class="dv">2</span>]])</span>
+<span id="cb3-37"><a href="#cb3-37"></a>    y<span class="op">=</span>np.array(y)</span>
+<span id="cb3-38"><a href="#cb3-38"></a>    X<span class="op">=</span>np.array(X)</span>
+<span id="cb3-39"><a href="#cb3-39"></a>    </span>
+<span id="cb3-40"><a href="#cb3-40"></a>    b<span class="op">=</span>np.linalg.inv(X.transpose()<span class="op">@</span>X)<span class="op">@</span>X.transpose()<span class="op">@</span>y</span>
+<span id="cb3-41"><a href="#cb3-41"></a>    <span class="bu">print</span>(<span class="st">&#39;b=&#39;</span>,b)</span>
+<span id="cb3-42"><a href="#cb3-42"></a>    </span>
+<span id="cb3-43"><a href="#cb3-43"></a>    X1<span class="op">=</span>X.transpose()[<span class="dv">1</span>]</span>
+<span id="cb3-44"><a href="#cb3-44"></a>    vy<span class="op">=</span>[]</span>
+<span id="cb3-45"><a href="#cb3-45"></a>    <span class="cf">for</span> v <span class="kw">in</span> y:</span>
+<span id="cb3-46"><a href="#cb3-46"></a>        vy.append(v[<span class="dv">0</span>])</span>
+<span id="cb3-47"><a href="#cb3-47"></a>    y<span class="op">=</span>vy</span>
+<span id="cb3-48"><a href="#cb3-48"></a>    r,p<span class="op">=</span>scst.pearsonr(X1,y)</span>
+<span id="cb3-49"><a href="#cb3-49"></a>    <span class="bu">print</span>(<span class="st">&#39;r=&#39;</span>,r)</span>
+<span id="cb3-50"><a href="#cb3-50"></a>    R2<span class="op">=</span>r<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a>    <span class="bu">print</span>(<span class="st">&#39;R2=&#39;</span>,R2)</span>
+<span id="cb3-52"><a href="#cb3-52"></a>    </span>
+<span id="cb3-53"><a href="#cb3-53"></a>    min_x<span class="op">=</span>np.amin(X1)</span>
+<span id="cb3-54"><a href="#cb3-54"></a>    max_x<span class="op">=</span>np.amax(X1)</span>
+<span id="cb3-55"><a href="#cb3-55"></a>    y_left<span class="op">=</span>b[<span class="dv">0</span>][<span class="dv">0</span>]<span class="op">+</span>b[<span class="dv">1</span>][<span class="dv">0</span>]<span class="op">*</span>min_x</span>
+<span id="cb3-56"><a href="#cb3-56"></a>    y_right<span class="op">=</span>b[<span class="dv">0</span>][<span class="dv">0</span>]<span class="op">+</span>b[<span class="dv">1</span>][<span class="dv">0</span>]<span class="op">*</span>max_x</span>
+<span id="cb3-57"><a href="#cb3-57"></a>    plt.plot([min_x,max_x],[y_left,y_right],<span class="st">&#39;b-&#39;</span>)</span>
+<span id="cb3-58"><a href="#cb3-58"></a>    </span>
+<span id="cb3-59"><a href="#cb3-59"></a>    dis_x<span class="op">=</span>(max_x<span class="op">-</span>min_x)<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb3-60"><a href="#cb3-60"></a>    dis_y<span class="op">=</span>(np.amax(y)<span class="op">-</span>np.amin(y))<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>    </span>
+<span id="cb3-62"><a href="#cb3-62"></a>    plt.plot(X1,y,<span class="st">&#39;bo&#39;</span>)</span>
+<span id="cb3-63"><a href="#cb3-63"></a>    </span>
+<span id="cb3-64"><a href="#cb3-64"></a>    <span class="cf">for</span> vx,vy,name <span class="kw">in</span> <span class="bu">zip</span>(X1,y,ID):</span>
+<span id="cb3-65"><a href="#cb3-65"></a>        plt.text(vx<span class="op">+</span>dis_x,vy<span class="op">+</span>dis_y,name)</span>
+<span id="cb3-66"><a href="#cb3-66"></a>    plt.xlabel(VarNames[<span class="dv">2</span>])</span>
+<span id="cb3-67"><a href="#cb3-67"></a>    plt.ylabel(VarNames[<span class="dv">1</span>])</span>
+<span id="cb3-68"><a href="#cb3-68"></a>    plt.title(<span class="st">&#39;Simple Linear Regression</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">+</span><span class="st">&#39;r=</span><span class="sc">{0:.3}</span><span class="st"> $R^2$=</span><span class="sc">{1:.3}</span><span class="st">&#39;</span>.<span class="bu">format</span>(r,R2))</span>
+<span id="cb3-69"><a href="#cb3-69"></a>    </span>
+<span id="cb3-70"><a href="#cb3-70"></a>    plt.show()</span>
+<span id="cb3-71"><a href="#cb3-71"></a>    </span>
+<span id="cb3-72"><a href="#cb3-72"></a>    f_out.write(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">b0&lt;Constant&gt;=</span><span class="sc">{0:.5}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(b[<span class="dv">0</span>][<span class="dv">0</span>]))</span>
+<span id="cb3-73"><a href="#cb3-73"></a>    f_out.write(<span class="st">&#39;b1&lt;</span><span class="sc">{0}</span><span class="st">&gt;=</span><span class="sc">{1:.5}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(VarNames[<span class="dv">2</span>],b[<span class="dv">1</span>][<span class="dv">0</span>]))</span>
+<span id="cb3-74"><a href="#cb3-74"></a>    f_out.write(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">r=</span><span class="sc">{0:.3}</span><span class="st"> R^2=</span><span class="sc">{1:.3}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(r,R2))</span>
+<span id="cb3-75"><a href="#cb3-75"></a>    </span>
+<span id="cb3-76"><a href="#cb3-76"></a>    f_out.close()</span>
+<span id="cb3-77"><a href="#cb3-77"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{0}</span><span class="st"> was saved.&#39;</span>.<span class="bu">format</span>(f_out_nm))</span>
+<span id="cb3-78"><a href="#cb3-78"></a>    </span>
+<span id="cb3-79"><a href="#cb3-79"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb3-80"><a href="#cb3-80"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">Exception...&#39;</span>,e)</span></code></pre></div>
+<p>readdata.py</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> csv</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">def</span> ReadData_list():</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    RawData<span class="op">=</span>[[<span class="st">&#39;City&#39;</span>,<span class="st">&#39;Temperature&#39;</span>,<span class="st">&#39;Latitude&#39;</span>],</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    [<span class="st">&#39;Sapporo&#39;</span>,<span class="dv">15</span>,<span class="fl">43.1</span>],</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    [<span class="st">&#39;Sendai&#39;</span>,<span class="dv">20</span>,<span class="fl">38.3</span>],</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    [<span class="st">&#39;Niigata&#39;</span>,<span class="dv">17</span>,<span class="fl">37.9</span>],</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    [<span class="st">&#39;Kanazawa&#39;</span>,<span class="dv">18</span>,<span class="fl">36.6</span>],</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    [<span class="st">&#39;Tokyo&#39;</span>,<span class="dv">24</span>,<span class="fl">35.7</span>],</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    [<span class="st">&#39;Osaka&#39;</span>,<span class="dv">22</span>,<span class="fl">34.7</span>],</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    [<span class="st">&#39;Fukuoka&#39;</span>,<span class="dv">22</span>,<span class="fl">33.6</span>],</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    [<span class="st">&#39;Kochi&#39;</span>,<span class="dv">24</span>,<span class="fl">33.6</span>],</span>
+<span id="cb4-13"><a href="#cb4-13"></a>    [<span class="st">&#39;Kagoshima&#39;</span>,<span class="dv">23</span>,<span class="fl">31.6</span>],</span>
+<span id="cb4-14"><a href="#cb4-14"></a>    [<span class="st">&#39;Naha&#39;</span>,<span class="dv">26</span>,<span class="fl">26.2</span>]]</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    file_name<span class="op">=</span><span class="bu">input</span>(<span class="st">&#39;Output file name=&#39;</span>)</span>
+<span id="cb4-16"><a href="#cb4-16"></a>    f_out<span class="op">=</span><span class="bu">open</span>(file_name,<span class="st">&#39;w&#39;</span>)</span>
+<span id="cb4-17"><a href="#cb4-17"></a>    </span>
+<span id="cb4-18"><a href="#cb4-18"></a>    <span class="cf">return</span> RawData,f_out,file_name</span>
+<span id="cb4-19"><a href="#cb4-19"></a>    </span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="kw">def</span> ReadData_txt():</span>
+<span id="cb4-21"><a href="#cb4-21"></a>    f_in_nm<span class="op">=</span><span class="bu">input</span>(<span class="st">&#39;input data file =&#39;</span>)</span>
+<span id="cb4-22"><a href="#cb4-22"></a>    f_in<span class="op">=</span><span class="bu">open</span>(f_in_nm,<span class="st">&#39;r&#39;</span>)</span>
+<span id="cb4-23"><a href="#cb4-23"></a>    f_data<span class="op">=</span>f_in.readlines()</span>
+<span id="cb4-24"><a href="#cb4-24"></a>    pos<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="cf">while</span> Ture:</span>
+<span id="cb4-26"><a href="#cb4-26"></a>        <span class="cf">if</span> <span class="bu">len</span>(f_data[pos])<span class="op">&gt;</span><span class="dv">0</span>:</span>
+<span id="cb4-27"><a href="#cb4-27"></a>            <span class="cf">if</span> f_data[pos][<span class="dv">0</span>]<span class="op">==</span><span class="st">&#39;/&#39;</span>:</span>
+<span id="cb4-28"><a href="#cb4-28"></a>                pos<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>                <span class="cf">break</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a>        pos<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a>        </span>
+<span id="cb4-32"><a href="#cb4-32"></a>    RawData<span class="op">=</span>[]</span>
+<span id="cb4-33"><a href="#cb4-33"></a>    ck<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a>    <span class="cf">while</span> Ture:</span>
+<span id="cb4-35"><a href="#cb4-35"></a>        <span class="cf">if</span> f_data[pos][<span class="dv">0</span>]<span class="op">==</span><span class="st">&#39;/&#39;</span>:</span>
+<span id="cb4-36"><a href="#cb4-36"></a>            <span class="cf">break</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a>        t_str<span class="op">=</span>f_data[pos].split()</span>
+<span id="cb4-38"><a href="#cb4-38"></a>        <span class="cf">if</span> ck<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb4-39"><a href="#cb4-39"></a>            RawData.append(t_str)</span>
+<span id="cb4-40"><a href="#cb4-40"></a>            ck<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-42"><a href="#cb4-42"></a>            RawData.append([t_str[<span class="dv">0</span>],<span class="bu">float</span>(t_str[<span class="dv">1</span>]),<span class="bu">float</span>(t_str[<span class="dv">2</span>])])</span>
+<span id="cb4-43"><a href="#cb4-43"></a>        pos<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a>        </span>
+<span id="cb4-45"><a href="#cb4-45"></a>    file_name<span class="op">=</span><span class="bu">input</span>(<span class="st">&#39;Output file name =&#39;</span>)</span>
+<span id="cb4-46"><a href="#cb4-46"></a>    f_out<span class="op">=</span><span class="bu">open</span>(file_name,<span class="st">&#39;w&#39;</span>)</span>
+<span id="cb4-47"><a href="#cb4-47"></a>    f_out.write(<span class="st">&#39;input data = </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(f_in_nm))</span>
+<span id="cb4-48"><a href="#cb4-48"></a>    </span>
+<span id="cb4-49"><a href="#cb4-49"></a>    <span class="cf">return</span> RawData,f_out,file_name</span>
+<span id="cb4-50"><a href="#cb4-50"></a></span>
+<span id="cb4-51"><a href="#cb4-51"></a><span class="kw">def</span> ReadData_csv():</span>
+<span id="cb4-52"><a href="#cb4-52"></a>    f_in_nm<span class="op">=</span><span class="bu">input</span>(<span class="st">&#39;input data file(*.csv) =&#39;</span>)</span>
+<span id="cb4-53"><a href="#cb4-53"></a>    <span class="cf">with</span> <span class="bu">open</span>(f_in_nm,<span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb4-54"><a href="#cb4-54"></a>        csv_data<span class="op">=</span>[d <span class="cf">for</span> d <span class="kw">in</span> csv.reader(f)]</span>
+<span id="cb4-55"><a href="#cb4-55"></a>        </span>
+<span id="cb4-56"><a href="#cb4-56"></a>    RawData<span class="op">=</span>[]</span>
+<span id="cb4-57"><a href="#cb4-57"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(csv_data)):</span>
+<span id="cb4-58"><a href="#cb4-58"></a>        <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb4-59"><a href="#cb4-59"></a>            RawData.append(csv_data[i])</span>
+<span id="cb4-60"><a href="#cb4-60"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-61"><a href="#cb4-61"></a>            RawData.append([csv_data[i][<span class="dv">0</span>],<span class="bu">float</span>(csv_data[i][<span class="dv">1</span>]),<span class="bu">float</span>(csv_data[i][<span class="dv">2</span>])])</span>
+<span id="cb4-62"><a href="#cb4-62"></a>            </span>
+<span id="cb4-63"><a href="#cb4-63"></a>    file_name<span class="op">=</span><span class="bu">input</span>(<span class="st">&#39;Output file name=&#39;</span>)</span>
+<span id="cb4-64"><a href="#cb4-64"></a>    f_out<span class="op">=</span><span class="bu">open</span>(file_name,<span class="st">&#39;w&#39;</span>)</span>
+<span id="cb4-65"><a href="#cb4-65"></a>    f_out.write(<span class="st">&#39;Input data = </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">&#39;</span>.<span class="bu">format</span>(f_in_nm))</span>
+<span id="cb4-66"><a href="#cb4-66"></a>    </span>
+<span id="cb4-67"><a href="#cb4-67"></a>    <span class="cf">return</span> RawData,f_out,file_name</span></code></pre></div>
+<p>モジュールが見つからないと言われたらインストールする</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">python3</span> -m pip install xmltodict</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">python3</span> -m pip install matplotlib</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">python3</span> -m pip install scipy</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<p>外部モジュールを利用しているプログラムでモジュールのインストール方法とを紹介した．</p>
+<p>Pythonでは，データさえあれば処理は外部モジュールに任せられるケースが多い</p>
+<p>来週からは，GUIなどアプリケーション制作に役立つ外部モジュールの利用例を紹介していく．</p>
+</body>
+</html>

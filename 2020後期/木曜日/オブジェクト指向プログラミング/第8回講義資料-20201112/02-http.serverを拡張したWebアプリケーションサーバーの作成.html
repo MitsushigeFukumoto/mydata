@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>http.serverを拡張したWebアプリケーションサーバーの作成</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">http.serverを拡張したWebアプリケーションサーバーの作成</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習2</p>
+<p>Pythonの標準モジュールのhttp.serverを継承して、Webアプリケーションサーバーを作成しましょう。</p>
+</blockquote>
+<h2 id="http.server">http.serverモジュール</h2>
+<ul>
+<li><a href="https://docs.python.org/ja/3.8/library/http.server.html#module-http.server" target="_blank">http.server --- HTTP サーバ — Python 3.8.6 ドキュメント</a></li>
+</ul>
+<p>Webサーバーの基本機能は、こちらのモジュールに搭載されています。</p>
+<p>Webサーバーの基本機能の大部分はそのままで継承を使い、HTTPリクエストを受け取った際に何かしらの処理を行うように一部の機能の拡張を行いましょう。</p>
+<p>http.serverのモジュールには、以下のクラスが用意されておりますが、今回は便宜上<code>http.server.BaseHTTPRequestHandler</code>を親クラスとして使用します。</p>
+<ul>
+<li><a href="https://docs.python.org/ja/3.8/library/http.server.html#http.server.BaseHTTPRequestHandler" target="_blank">http.server.BaseHTTPRequestHandler</a> (今回はこちらを使用)</li>
+<li><a href="https://docs.python.org/ja/3.8/library/http.server.html#http.server.SimpleHTTPRequestHandler" target="_blank">http.server.SimpleHTTPRequestHandler</a></li>
+<li><a href="https://docs.python.org/ja/3.8/library/http.server.html#http.server.CGIHTTPRequestHandler" target="_blank">http.serverCGIHTTPRequestHandler</a></li>
+</ul>
+<h3 id="basehttprequesthandler">BaseHTTPRequestHandlerの拡張クラスの作成</h3>
+<p>以下のテンプレートを使用してください。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> http.server <span class="im">import</span> BaseHTTPRequestHandler, HTTPServer  <span class="co"># モジュールのインポート</span>
+
+
+<span class="co"># BaseHTTPRequestHandlerを継承した自作クラスの定義</span>
+<span class="kw">class</span> MyHTTPRequestHandler(BaseHTTPRequestHandler):
+    <span class="kw">def</span> do_GET(<span class="va">self</span>): <span class="co"># 親クラスの機能をオーバーライド</span>
+
+        <span class="co"># Responseのステータスコード設定</span>
+        <span class="va">self</span>.send_response(<span class="dv">200</span>)
+        <span class="co"># ResponseHeaderのContent-type設定</span>
+        <span class="va">self</span>.send_header(<span class="st">'Content-Type'</span>, <span class="st">'text/html; charset=utf-8'</span>)
+        <span class="co"># ResponseHeader終端処理</span>
+        <span class="va">self</span>.end_headers()
+
+        <span class="co"># Responseコンテンツの構築</span>
+        <span class="va">self</span>.wfile.write(<span class="st">'&lt;html&gt;Hello, World!! (from GET)&lt;/html&gt;'</span>.encode())
+
+    <span class="kw">def</span> do_POST(<span class="va">self</span>): <span class="co"># 親クラスの機能をオーバーライド</span>
+        <span class="cf">return</span> <span class="va">self</span>.do_GET() <span class="co"># GETと同じ処理を通過させる</span>
+
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:
+    <span class="co"># サーバーアドレスの定義</span>
+    address <span class="op">=</span> (<span class="st">'localhost'</span>, <span class="dv">8080</span>)
+
+    <span class="co"># 自作クラスの呼び出し</span>
+    <span class="cf">with</span> HTTPServer(address, MyHTTPRequestHandler) <span class="im">as</span> server:
+        server.serve_forever()</code></pre></div>
+<p>実行後、Webブラウザで<code>http://localhost:8080</code>へアクセスするか、以下のコマンドでHTTPリクエストを発行した結果を取得してください。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">curl</span> -i <span class="st">'localhost:8080'</span></code></pre></div>
+<h3 id="getpost">GETメソッド、POSTメソッドでのパラメータの取得</h3>
+<p>BaseHTTPRequestHandlerを拡張したクラスでは、<code>do_????</code>に該当するHTTPメソッドごとの各メソッドにて取得できる<code>self</code>の各フィールドにリクエストヘッダの内容が含まれています。それらのフィールドからHTTPのリクエストパラメータを取得することが可能です。</p>
+<p>以下のサンプルコードでは、リクエストパラメータが含まれるURLの解析を行う標準ライブラリ<code>urllib.parse</code>(<a href="https://docs.python.org/ja/3.8/library/urllib.parse.html" target="_blank">urllib.parse --- URL を解析して構成要素にする</a>)を用いて、GETメソッド、POSTメソッドのリクエストパラメータをサーバー側に出力するようにしています。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> http.server <span class="im">import</span> BaseHTTPRequestHandler, HTTPServer  <span class="co"># モジュールのインポート</span>
+<span class="im">from</span> urllib.parse <span class="im">import</span> parse_qs, urlparse <span class="co"># URL解析モジュール</span>
+
+
+<span class="kw">class</span> MyHTTPRequestHandler(BaseHTTPRequestHandler):
+    <span class="kw">def</span> do_GET(<span class="va">self</span>):
+
+        <span class="co"># リクエストパスを表示</span>
+        <span class="bu">print</span>(<span class="va">self</span>.path)
+
+        <span class="co"># リクエストパスから、リクエストパラメータ(URL内のパラメータ)を解析</span>
+        parsed_param <span class="op">=</span> urlparse(<span class="va">self</span>.path)
+        <span class="co"># 解析後のパラメータなしリクエストパス</span>
+        <span class="bu">print</span>(parsed_param.path)
+        <span class="co"># 解析後のリクエストパラメータのクエリのみ取り出し</span>
+        <span class="bu">print</span>(parsed_param.query)
+        <span class="co"># クエリ文字列を連想配列に変換</span>
+        params <span class="op">=</span> parse_qs(parsed_param.query)
+        <span class="bu">print</span>(params)
+        <span class="co"># ヘッダ全文の表示</span>
+        <span class="bu">print</span>(<span class="va">self</span>.headers)
+
+        <span class="co"># レスポンスデータの組み立て</span>
+        <span class="va">self</span>.send_response(<span class="dv">200</span>)
+        <span class="va">self</span>.send_header(<span class="st">'Content-Type'</span>, <span class="st">'text/html; charset=utf-8'</span>)
+        <span class="va">self</span>.end_headers()
+        <span class="va">self</span>.wfile.write(<span class="st">'&lt;html&gt;Hello, World!!&lt;br&gt;&lt;br&gt;params: </span><span class="sc">{}</span><span class="st">&lt;/html&gt;'</span>.<span class="bu">format</span>(params).encode())
+
+    <span class="kw">def</span> do_POST(<span class="va">self</span>):
+
+        <span class="co"># リクエストパスを表示</span>
+        <span class="bu">print</span>(<span class="va">self</span>.path)
+
+        <span class="co"># リクエストパスから、リクエストパラメータ(URL内のパラメータ)を解析</span>
+        parsed_param <span class="op">=</span> urlparse(<span class="va">self</span>.path)
+        <span class="co"># 解析後のパラメータなしリクエストパス</span>
+        <span class="bu">print</span>(parsed_param.path)
+        <span class="co"># 解析後のリクエストパラメータのクエリのみ取り出し</span>
+        <span class="bu">print</span>(parsed_param.query)
+        <span class="co"># クエリ文字列を連想配列に変換</span>
+        params <span class="op">=</span> parse_qs(parsed_param.query)
+        <span class="bu">print</span>(params)
+        <span class="co"># ヘッダ全文の表示</span>
+        <span class="bu">print</span>(<span class="va">self</span>.headers)
+
+        <span class="co"># POSTメソッドでのリクエストは、Request Body内に送信データが含まれる</span>
+        content_length <span class="op">=</span> <span class="bu">int</span>(<span class="va">self</span>.headers[<span class="st">'content-length'</span>])
+        <span class="co"># RequestBodyの取得(コンテンツの長さ分リクエストデータから読み出して文字コード指定してデコード)</span>
+        request_body <span class="op">=</span> <span class="va">self</span>.rfile.read(content_length).decode(<span class="st">'utf-8'</span>)
+        <span class="bu">print</span>(request_body)
+
+        <span class="co"># レスポンスデータの組み立て</span>
+        <span class="va">self</span>.send_response(<span class="dv">200</span>)
+        <span class="va">self</span>.send_header(<span class="st">'Content-Type'</span>, <span class="st">'text/html; charset=utf-8'</span>)
+        <span class="va">self</span>.end_headers()
+        <span class="va">self</span>.wfile.write(<span class="st">'&lt;html&gt;Hello, World!!&lt;br&gt;&lt;br&gt;params: </span><span class="sc">{}</span><span class="st">&lt;br&gt;request-body: </span><span class="sc">{}</span><span class="st">&lt;/html&gt;'</span>.<span class="bu">format</span>(params, request_body).encode())
+
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:
+    <span class="co"># サーバーアドレスの定義</span>
+    address <span class="op">=</span> (<span class="st">'localhost'</span>, <span class="dv">8080</span>)
+
+    <span class="co"># 自作クラスの呼び出し</span>
+    <span class="cf">with</span> HTTPServer(address, MyHTTPRequestHandler) <span class="im">as</span> server:
+        server.serve_forever()</code></pre></div>
+<p>動作確認のためのHTMLを用意します。</p>
+<p>以下のHTMLファイルを適当な場所に作成し、FinderでダブルクリックしてHTMLファイルをブラウザで直接開きましょう。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>動作確認フォーム<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>動作確認フォーム<span class="kw">&lt;/h1&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>GETメソッドの動作確認&lt;/h2&gt;
+  <span class="kw">&lt;ol&gt;</span>
+    <span class="kw">&lt;li&gt;</span>通常のリクエスト - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/&quot;</span><span class="kw">&gt;</span>http://localhost:8080/<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>パラメータセット - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/?hoge=hogehoge</span><span class="er">&amp;</span><span class="st">fuga=fugafuga&quot;</span><span class="kw">&gt;</span>http://localhost:8080/?hoge=hogehoge<span class="er">&amp;</span>fuga=fugafuga<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>フォームから送信 - <span class="kw">&lt;br&gt;</span>
+      <span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/&quot;</span><span class="ot"> method=</span><span class="st">&quot;get&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span>hoge:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="ot"> name=</span><span class="st">&quot;hoge&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span>fuga:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input2&quot;</span><span class="ot"> name=</span><span class="st">&quot;fuga&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input3&quot;</span><span class="kw">&gt;</span>piyo(number):<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;number&quot;</span><span class="ot"> id=</span><span class="st">&quot;input3&quot;</span><span class="ot"> name=</span><span class="st">&quot;piyo&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>送信<span class="kw">&lt;/button&gt;</span>
+      <span class="kw">&lt;/form&gt;</span>
+    <span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;/ol&gt;</span>
+  <span class="kw">&lt;hr&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>POSTメソッドの動作確認&lt;/h2&gt;
+  <span class="kw">&lt;ol&gt;</span>
+    <span class="kw">&lt;li&gt;</span>フォームから送信 - <span class="kw">&lt;br&gt;</span>
+      <span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/&quot;</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span>hoge:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="ot"> name=</span><span class="st">&quot;hoge&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span>fuga:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input2&quot;</span><span class="ot"> name=</span><span class="st">&quot;fuga&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input3&quot;</span><span class="kw">&gt;</span>piyo(number):<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;number&quot;</span><span class="ot"> id=</span><span class="st">&quot;input3&quot;</span><span class="ot"> name=</span><span class="st">&quot;piyo&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>送信<span class="kw">&lt;/button&gt;</span>
+      <span class="kw">&lt;/form&gt;</span>
+    <span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;/ol&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>それぞれの動作確認を行ってください。</p>
+<p>または、以下の<code>curl</code>コマンドでも代用できます。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">curl</span> -i <span class="st">'localhost:8080/?hoge=hogehoge&amp;fuga=fugafuga'</span> <span class="co"># GETメソッドテスト</span>
+$ <span class="ex">curl</span> -i <span class="st">'localhost:8080/?hoge=hogehoge&amp;fuga=fugafuga'</span> -d <span class="st">'hoge=HOGE&amp;fuga=FUGA'</span> <span class="co"># POSTメソッドテスト</span></code></pre></div>
+<h2>まとめ</h2>
+<p>Pythonの標準モジュールである、<code>http.server</code>を拡張すれば、上記のような簡単なWebアプリケーションを作成することができます。 HTTPのリクエストデータを取得して様々な処理を行い、レスポンスデータとして結果を返すプログラムなどは、サンプルソースをさらに拡張すれば良いです。 しかし、機能拡張の方法が、素のモジュールではできている静的ファイル(HTMLやCSSなど)のレスポンス自体を潰してしまっている機能拡張となってしまっています。 このままもっとコードを追加していけば、静的ファイルの配布にも対応したWebアプリケーションも作成できるのですが、完成までの道のりが長すぎます。</p>
+<p>そこで、Webアプリケーションの作成に特化したライブラリを使用してもっと楽にWebアプリケーションを作成していく方法があります。 次項より、Webアプリケーション作成のためのライブラリである<code>flask</code>をインストールして開発を進めます。</p>
+</body>
+</html>

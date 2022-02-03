@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>ストップウォッチ</title>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="StopWatch.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">StopWatch</h1>
+    <h1 id="timerLabel">00:00:00</h1>
+    <div>
+    <input type="button" class="myButton" onclick="start()" value="START" id="startBtn">
+    <input type="button" class="myButton" onclick="stop()" value="STOP">
+    <input type="button" class="myButton" onclick="lap()" value="LAP">
+    <input type="button" class="myButton" onclick="reset()" value="RESET">
+    </div>
+    <input type="button" id="reButton" onclick="location.href='./moji.html'" value="HOME">
+    <ul id="lapList">
+
+    </ul>
+</div>
+
+
+<script>
+    var status = 0; // 0:停止中 1:動作中
+    var time = 0;
+    var startBtn = document.getElementById("startBtn");
+    var timerLabel = document.getElementById('timerLabel');
+    var count=0;//LAPのカウント用変数
+
+    var query = location.search;
+    var value = query.split('=');
+    $("#timerLabel").css("color",value[1]);
+    $('.title').css("color",value[1]);
+    $('.myButton').css("color",value[1]);
+    $("#lapList").css("color",value[1]);
+    $("#reButton").css("color",value[1]);
+
+    $("#timerLabel").css("background-color",value[2]);
+    $('.title').css("background-color",value[2]);
+    $('.myButton').css("background-color",value[2]);
+    $("#lapList").css("background-color",value[2]);
+    $("#reButton").css("background-color",value[2]);
+    $("body").css("background-color",value[2]);
+
+    $('.container').css("font-size",value[3]);
+    $("#reButton").css("font-size",value[3])
+    $('.myButton').css("font-size",value[3])
+
+    $('.container').css("font-family",value[4]);
+    $("#reButton").css("font-family",value[4])
+    $('.myButton').css("font-family",value[4])
+
+    function lap() {
+    count++;
+    var newlap = document.createTextNode("LAP"+count+": "+timerLabel.innerHTML);
+
+    // li 要素の作成
+    var newLi = document.createElement("li");
+    newLi.appendChild ( newlap );
+
+    // リストに追加
+    var list = document.getElementById("lapList");
+    list.appendChild( newLi );
+    }
+
+    // STARTボタン
+	function start(){
+        // 動作中にする
+        status = 1;
+        // スタートボタンを押せないようにする
+        startBtn.disabled = true;
+
+        timer();
+    }
+
+    // STOPボタン
+    function stop(){
+        // 停止中にする
+        status = 0;
+        // スタートボタンを押せるようにする
+        startBtn.disabled = false;
+    }
+
+    // RESETボタン
+    function reset(){
+        // 停止中にする
+        status = 0;
+        // タイムを0に戻す
+        time = 0;
+        // タイマーラベルをリセット
+        timerLabel.innerHTML = '00:00:00';
+        // スタートボタンを押せるようにする
+        startBtn.disabled = false;
+
+        $('#lapList').empty();
+
+        count=0;
+    }
+
+    function timer(){
+        // ステータスが動作中の場合のみ実行
+        if (status == 1) {
+            setTimeout(function() {
+                time++;
+
+                // 分・秒・ミリ秒を計算
+                var min = Math.floor(time/100/60);
+                var sec = Math.floor(time/100);
+                var mSec = time % 100;
+
+                // 分が１桁の場合は、先頭に０をつける
+                if (min < 10) min = "0" + min;
+
+                // 秒が６０秒以上の場合　例）89秒→29秒にする
+                if (sec >= 60) sec = sec % 60;
+
+                // 秒が１桁の場合は、先頭に０をつける
+                if (sec < 10) sec = "0" + sec;
+
+                // ミリ秒が１桁の場合は、先頭に０をつける
+                if (mSec < 10) mSec = "0" + mSec;
+
+                // タイマーラベルを更新
+                timerLabel.innerHTML = min + ":" + sec + ":" + mSec;
+
+                // 再びtimer()を呼び出す
+                timer();
+            }, 10);
+        }
+    }
+
+    document.onkeydown = function(event) {
+        if (event) {
+            if (event.keyCode == 32 || event.which == 32) {
+                if(status == 1) {
+                    stop();
+                } else if (status == 0) {
+                    start();
+                }
+            }
+        }
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>Flaskを使った簡単なWebアプリケーションの作成</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">Flaskを使った簡単なWebアプリケーションの作成</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習2</p>
+<p>WebアプリケーションフレームワークのFlaskを使ってみましょう</p>
+</blockquote>
+<h2 id="webflask">WebアプリケーションフレームワークFlaskの導入</h2>
+<p>Flaskは、PythonでWebアプリケーションを構築するためのライブラリです。</p>
+<p>講義で説明する内容以外のことは、以下の公式サイトか、日本語翻訳版のどちらかを参照するようにしてください。</p>
+<ul>
+<li><a href="https://flask.palletsprojects.com/en/1.1.x/" target="_blank">Welcome to Flask — Flask Documentation (1.1.x)</a></li>
+<li><a href="https://msiz07-flask-docs-ja.readthedocs.io/ja/latest/" target="_blank">Flaskへようこそ — Flask Documentation (1.1.x)</a></li>
+</ul>
+<h2 id="flask">Flaskを使った簡単なアプリケーションの作成</h2>
+<h3>1. インストール</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">python3</span> -m pip install flask</code></pre></div>
+<p>または</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">pip</span> install flask</code></pre></div>
+<h3>2. プロジェクトの作成</h3>
+<p>任意のディレクトリを作成し、そのディレクトリの中に以下のファイル、ディレクトリを作成してください。</p>
+<pre><code>[projectディレクトリ]
+  ├[static]
+  │  └ここには、CSSやJavaScriptなどの静的なファイルを格納します。今は空でOK
+  ├[templates]
+  │  └ここには、後述するJinja2用のテンプレートHTMLを格納します。今は空でOK
+  └main.py ⇠ プロジェクトのエントリポイント</code></pre>
+<h3 id="main.py">3. main.pyのコーディング</h3>
+<p>以下のコードを<code>main.py</code>に書いてください。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> flask <span class="im">import</span> Flask, request    <span class="co"># Flaskは必須、requestはリクエストパラメータを処理する場合に使用します。</span>
+app <span class="op">=</span> Flask(<span class="va">__name__</span>)
+
+
+<span class="co"># http://localhost:8080/hello</span>
+<span class="at">@app.route</span>(<span class="st">'/hello'</span>)
+<span class="kw">def</span> hello():
+    <span class="cf">return</span> <span class="st">&quot;&lt;html&gt;&lt;h1&gt;Hello, Flask!!&lt;/h1&gt;&lt;/html&gt;&quot;</span>
+
+
+<span class="co"># GETパラメータの取得（クエリストリングより）</span>
+<span class="co"># http://localhost:8080/</span>
+<span class="at">@app.route</span>(<span class="st">'/'</span>)
+<span class="kw">def</span> index():
+    html <span class="op">=</span> <span class="st">&quot;&lt;html&gt;&lt;h3&gt;index page&lt;/h3&gt;&lt;ol&gt;&quot;</span>
+
+    <span class="co"># URL中のクエリストリングを処理(個別に取得したい場合は、request.args.get(&quot;hoge&quot;)が使えます)</span>
+    <span class="cf">for</span> key, value <span class="kw">in</span> request.args.items():
+        html <span class="op">+=</span> <span class="st">&quot;&lt;li&gt;</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st">&lt;/li&gt;&quot;</span>.<span class="bu">format</span>(key, value)
+
+    html <span class="op">+=</span> <span class="st">&quot;&lt;/ol&gt;&lt;/html&gt;&quot;</span>
+    <span class="cf">return</span> html
+
+
+<span class="co"># GETパラメータの取得（REST APIに対応可能）</span>
+<span class="co"># http://localhost:8080/get/</span>
+<span class="co"># http://localhost:8080/get/&lt;String&gt;</span>
+<span class="at">@app.route</span>(<span class="st">'/get/'</span>)
+<span class="at">@app.route</span>(<span class="st">'/get/&lt;name&gt;'</span>)
+<span class="kw">def</span> get_param(name<span class="op">=</span><span class="st">&quot;no name&quot;</span>):  <span class="co"># nameパラメータが渡されなかった場合、「no name」が渡されます</span>
+    <span class="cf">return</span> <span class="st">&quot;&lt;html&gt;&lt;h1&gt;Hello, </span><span class="sc">{}</span><span class="st">!!&lt;/h1&gt;&lt;/html&gt;&quot;</span>.<span class="bu">format</span>(name)
+
+
+<span class="co"># GET,POSTどちらでもリクエストを受け付け、POSTの場合はリクエストボディを取得</span>
+<span class="co"># http://localhost:8080/post/</span>
+<span class="at">@app.route</span>(<span class="st">'/post/'</span>, methods<span class="op">=</span>[<span class="st">&quot;GET&quot;</span>, <span class="st">&quot;POST&quot;</span>])  <span class="co"># methods=[&quot;POST&quot;]のみにすればGETメソッドでのリクエストはエラーにできる</span>
+<span class="kw">def</span> post_param():
+    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">'POST'</span>:
+        <span class="co"># name = request.form['name']</span>
+        name <span class="op">=</span> request.form.get(<span class="st">&quot;name&quot;</span>)
+        <span class="cf">return</span> <span class="st">&quot;&lt;html&gt;&lt;h1&gt;Hello, </span><span class="sc">{}</span><span class="st">!!&lt;/h1&gt;&lt;/html&gt;&quot;</span>.<span class="bu">format</span>(name)
+    <span class="cf">else</span>:
+        name <span class="op">=</span> <span class="st">&quot;no name&quot;</span>
+        <span class="cf">return</span> <span class="st">&quot;&lt;html&gt;&lt;h1&gt;Hello, </span><span class="sc">{}</span><span class="st">!!&lt;/h1&gt;&lt;/html&gt;&quot;</span>.<span class="bu">format</span>(name)
+
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:
+    <span class="co"># debugモードが不要の場合は、debug=Trueを消してください</span>
+    app.run(host<span class="op">=</span><span class="st">&quot;localhost&quot;</span>, port<span class="op">=</span><span class="dv">8080</span>, debug<span class="op">=</span><span class="va">True</span>)</code></pre></div>
+<h3>4. 実行してみる</h3>
+<p>プロジェクトディレクトリをターミナルで開き、以下のコマンドで実行します。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">python</span> main.py</code></pre></div>
+<p>動作確認はブラウザを開き、<code>http://localhost:8080/hello</code>、または、<code>http://localhost:8080/</code>にアクセスしてください。</p>
+<p>また、<code>index()</code>関数で定義しているリクエストパスでは、リクエストに含まれるクエリストリングを解析して表示するプログラムも含まれています。以下のURLも試してみましょう。</p>
+<ul>
+<li><code>http://localhost:8080/?name=HOGE&amp;age=20</code></li>
+<li><code>http://localhost:8080/?name=FUGA&amp;age=120</code></li>
+<li><code>http://localhost:8080/?hoge=HOGEHOGE&amp;fuga=FUGAFUGA</code></li>
+</ul>
+<p>動作確認のために、以下のようなHTMLを作成しても良いでしょう。 適当な名前で以下のHTMLを作成し、ブラウザで直接開いてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>Flask動作確認フォーム<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>Flask動作確認フォーム<span class="kw">&lt;/h1&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>GETメソッドの動作確認&lt;/h2&gt;
+  <span class="kw">&lt;ol&gt;</span>
+    <span class="kw">&lt;li&gt;</span>通常のリクエスト(hello) - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/hello&quot;</span><span class="kw">&gt;</span>http://localhost:8080/hello<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>通常のリクエスト - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/&quot;</span><span class="kw">&gt;</span>http://localhost:8080/<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>パラメータセット - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/?hoge=hogehoge</span><span class="er">&amp;</span><span class="st">fuga=fugafuga&quot;</span><span class="kw">&gt;</span>http://localhost:8080/?hoge=hogehoge<span class="er">&amp;</span>fuga=fugafuga<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>フォームから送信 - <span class="kw">&lt;br&gt;</span>
+      <span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/&quot;</span><span class="ot"> method=</span><span class="st">&quot;get&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span>hoge:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="ot"> name=</span><span class="st">&quot;hoge&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span>fuga:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input2&quot;</span><span class="ot"> name=</span><span class="st">&quot;fuga&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input3&quot;</span><span class="kw">&gt;</span>piyo(number):<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;number&quot;</span><span class="ot"> id=</span><span class="st">&quot;input3&quot;</span><span class="ot"> name=</span><span class="st">&quot;piyo&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>送信<span class="kw">&lt;/button&gt;</span>
+      <span class="kw">&lt;/form&gt;</span>
+    <span class="kw">&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>RESTっぽいリクエスト（パラメータなし） - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/get/&quot;</span><span class="kw">&gt;</span>http://localhost:8080/get/<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>RESTっぽいリクエスト（パラメータあり） - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/get/Taro&quot;</span><span class="kw">&gt;</span>http://localhost:8080/get/Taro<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="kw">&lt;/ol&gt;</span>
+  <span class="kw">&lt;hr&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>POSTメソッドの動作確認&lt;/h2&gt;
+  <span class="kw">&lt;ol&gt;</span>
+    <span class="kw">&lt;li&gt;</span>通常のリクエスト(post: methods=[&quot;GET&quot;, &quot;POST&quot;]の場合、こちらはエラーにならないはず) - <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://localhost:8080/post/&quot;</span><span class="kw">&gt;</span>http://localhost:8080/post/<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>フォームから送信 - <span class="kw">&lt;br&gt;</span>
+      <span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/post/&quot;</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input1&quot;</span><span class="kw">&gt;</span>name:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input1&quot;</span><span class="ot"> name=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>送信<span class="kw">&lt;/button&gt;</span>
+      <span class="kw">&lt;/form&gt;</span>
+    <span class="kw">&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>フォームから送信(必要なパラメータが設定されていない場合エラーになる) - <span class="kw">&lt;br&gt;</span>
+      <span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;http://localhost:8080/post/&quot;</span><span class="ot"> method=</span><span class="st">&quot;POST&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div&gt;</span>
+          <span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;input2&quot;</span><span class="kw">&gt;</span>hoge:<span class="kw">&lt;/label&gt;</span>
+          <span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;input2&quot;</span><span class="ot"> name=</span><span class="st">&quot;hoge&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+        <span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>送信<span class="kw">&lt;/button&gt;</span>
+      <span class="kw">&lt;/form&gt;</span>
+    <span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;/ol&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<h3>5. プログラムの停止</h3>
+<p>実行しているプログラムは、<code>[control] + [C]</code>で停止させられます。</p>
+<hr />
+<h2>テンプレートエンジンを使用する</h2>
+<p>Flaskでは、Jinja2と呼ばれるテンプレートエンジンを採用しています。Flaskをインストールすると、内部的にはJinja2もインストール済みになります。</p>
+<p>テンプレートエンジンのJinja2は、以下の公式サイトにてドキュメントを確認できます。</p>
+<ul>
+<li><a href="https://jinja.palletsprojects.com/en/2.11.x/" target="_blank">Jinja — Jinja Documentation (2.11.x)</a></li>
+</ul>
+<h3>1. テンプレートファイルの用意</h3>
+<p>以下のHTMLを<code>templates</code>ディレクトリ以下に、<code>template1.html</code>として作成してください。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>トップページ<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>Flask with Jinja2 Template<span class="kw">&lt;/h1&gt;</span>
+  {% if name %}
+  <span class="kw">&lt;h3&gt;</span>Hello, {{ name }}!<span class="kw">&lt;/h3&gt;</span>
+  {% else %}
+  <span class="kw">&lt;h3&gt;</span>Hello, Jinja2!!<span class="kw">&lt;/h3&gt;</span>
+  {% endif %}
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<h3 id="main.py">2. main.pyの修正</h3>
+<p><code>main.py</code>の１行目の以下の様にインポートに、<code>rendar_template</code>を追加します。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> flask <span class="im">import</span> Flask, request, render_template</code></pre></div>
+<p>続いて、以下の関数を<code>main.py</code>に追加してください。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Jinja2を使ったテンプレートファイルのサンプル</span>
+<span class="co"># http://localhost:8080/template_sample/</span>
+<span class="co"># http://localhost:8080/template_sample/&lt;String&gt;</span>
+<span class="at">@app.route</span>(<span class="st">'/template_sample/'</span>)
+<span class="at">@app.route</span>(<span class="st">'/template_sample/&lt;name&gt;'</span>)
+<span class="kw">def</span> from_template(name<span class="op">=</span><span class="va">None</span>):
+    <span class="cf">return</span> render_template(<span class="st">'template1.html'</span>, name<span class="op">=</span>name)</code></pre></div>
+<h3>3. 動作確認</h3>
+<p>実行後、以下のURLで動作確認をしましょう。</p>
+<ul>
+<li><code>http://localhost:8080/template_sample/</code></li>
+<li><code>http://localhost:8080/template_sample/Saburo</code></li>
+</ul>
+<h2 id="jinja2">Jinja2テンプレートで使用できる構文</h2>
+<p>以下の公式ドキュメントを見てください。</p>
+<ul>
+<li><a href="https://jinja.palletsprojects.com/en/2.11.x/" target="_blank">Jinja — Jinja Documentation (2.11.x)</a></li>
+</ul>
+<p>ListやDictなどをテンプレート側に渡すこともできますし、テンプレートのみでコンポーネント化を行うことも可能です。 Webアプリケーションで複数の画面を扱う場合には、以下のテンプレート構築のマニュアルがあります。</p>
+<ul>
+<li><a href="https://jinja.palletsprojects.com/en/2.11.x/templates/" target="_blank">Template Designer Documentation — Jinja Documentation (2.11.x)</a></li>
+</ul>
+<p>英文ですがこれさえ見ておけば大抵なんとかなるはずです。</p>
+<hr />
+<h2 id="cssjavascript">CSSやJavaScriptなどの静的なファイルを使う</h2>
+<p>ドキュメントは、以下のURLを参照してください。</p>
+<ul>
+<li><a href="https://msiz07-flask-docs-ja.readthedocs.io/ja/latest/tutorial/static.html?highlight=static" target="_blank">静的ファイル — Flask Documentation (1.1.x)</a></li>
+</ul>
+<h3>1. ファイルの用意</h3>
+<p>以下のCSSを<code>static</code>ディレクトリ以下に<code>index.css</code>というファイル名で配置しましょう。</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">h1 <span class="kw">{</span>
+    <span class="kw">color:</span> <span class="dt">red</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div>
+<p>配置が完了したら、以下のテンプレートを<code>index.html</code>というファイル名で、<code>templates</code>ディレクトリ以下に配置してください。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>Hello<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for('static', filename='index.css') }}&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>Hello, Flask!!<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<h3 id="main.py-1">2. main.pyの修正</h3>
+<p>以下の関数を<code>main.py</code>に追加してください。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Jinja2テンプレートで静的なファイルを参照するサンプル</span>
+<span class="co"># http://localhost:8080/index</span>
+<span class="at">@app.route</span>(<span class="st">'/index'</span>)
+<span class="kw">def</span> static_index():
+    <span class="cf">return</span> render_template(<span class="st">'index.html'</span>)</code></pre></div>
+<h3 id="-1">3. 動作確認</h3>
+<p><code>$ python main.py</code>で実行後、以下のURLで動作確認をしましょう。</p>
+<ul>
+<li><code>http://localhost:8080/index</code></li>
+</ul>
+<p>CSSにより、装飾がなされていて、<code>Hello, Flask!!</code> の文字が赤くなっていればOKです。</p>
+<hr />
+<h1 id="flask">Flaskまとめ</h1>
+<p>WebアプリケーションフレームワークのFlaskを使用すると、Webアプリケーションの必要最低限の部分をライブラリにおまかせして、プログラマはアプリケーションのロジック開発に専念することが可能となります。</p>
+<p>Webアプリケーションフレームワークには、Flask以外にもいくつかあり、作成したいアプリケーションの特徴に応じて使用するライブラリを切り替えると良いでしょう。</p>
+</body>
+</html>

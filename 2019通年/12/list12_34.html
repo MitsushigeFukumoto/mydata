@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(function(){
+        setsubCategory();
+        $("#main").on("change", setsubCategory);
+      });
+      function setsubCategory(){
+        var subList =[
+          ["ノート","タワー型","一体型"],
+          ["マウス","キーボード","モニタ","スピーカー"]
+        ];
+
+        var i = $("#main > option:selected").val();
+
+        var sub = $("#sub");
+        sub.empty();
+        for(var j=0;j<subList[i].length; j++){
+          sub.append("<option value='"+ j +"'>" + subList[i][j] + "</option>");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <select id="main">
+      <option value="0">PC本体</option>
+      <option value="1">PC周辺機器</option>
+    </select>
+    <select id="sub">
+    </select>
+  </body>
+</html>

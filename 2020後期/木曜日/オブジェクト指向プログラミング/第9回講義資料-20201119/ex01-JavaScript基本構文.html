@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>JavaScript基礎</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">JavaScript基礎</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習2</p>
+<p>JavaScript基本構文とプログラミングをする上で重要なデバッギングについて</p>
+</blockquote>
+<h1>事前準備</h1>
+<h2 id="javascript">JavaScriptを書く場所</h2>
+<p>CSSと同じく、内部埋め込みか、外部ファイルとするかの2パターンがあります。</p>
+<ul>
+<li>内部埋め込みする場合
+<ul>
+<li><code>&lt;script&gt;&lt;/script&gt;</code>タグを用いて、その内部にJavaScriptを書きます。</li>
+<li><code>&lt;head&gt;&lt;/head&gt;</code>内、<code>&lt;body&gt;&lt;/body&gt;</code>内どちらにも書くことができます。</li>
+</ul></li>
+<li>外部ファイルとする場合
+<ul>
+<li>一般的にファイル名には、<code>.js</code>という拡張子を付けます。</li>
+<li>HTMLでは、scriptタグのsrc属性にファイルへのパスを指定します。
+<ul>
+<li><code>&lt;head&gt;〜&lt;/head&gt;</code>内に<code>&lt;script src=&quot;script.js&quot; defer&gt;&lt;/script&gt;</code>のように書きます。</li>
+<li><code>defer</code>属性をscriptタグに追加しておくと、外部ファイルに限り対象ファイルのプログラムの実行タイミングをDOM読み込み後にずらすことが可能です。</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="html">HTMLに直接埋め込む</h3>
+<p>HTMLに直接書き込む場合は以下の様にscriptタグを用います。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>JavaScript learning<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>JavaScript learning<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;script&gt;</span>
+
+        <span class="co">//ここにJavaScriptのコードを書きます。</span>
+
+    <span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>実際に以下のコードを内に書き込んで、ブラウザで開いて動作確認してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">window</span>.<span class="at">alert</span>(<span class="st">&quot;Hello, World!!&quot;</span>)<span class="op">;</span></code></pre></div>
+<p>ブラウザで動作確認すると、ブラウザの警告ウィンドウで「Hello, World!!」と表示されます。</p>
+<p>※HTML上にscriptタグでコードを埋め込む場合、scriptタグの位置はbodyタグの閉じタグ直前がおすすめです。</p>
+<h3>外部スクリプトを埋め込む</h3>
+<p>別途用意するJavaScriptファイル「script.js」をHTMLに埋め込む場合は、以下のようにscriptタグのsrc属性を使用して、JavaScriptファイルのあるファイルパスを指定します。</p>
+<p>「script.js」のファイル名で、以下の1行だけ書き、HTMLファイルと同じ階層に保存しておいてください。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">window</span>.<span class="at">alert</span>(<span class="st">&quot;Hello, JavaScript!!&quot;</span>)<span class="op">;</span></code></pre></div>
+<p>HTMLを以下のように変更します。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>JavaScript learning<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;script.js&quot;</span><span class="ot"> defer</span><span class="kw">&gt;&lt;/script&gt;</span><span class="co">&lt;!--外部ファイルを読み込み 実行タイミングはDOM読み込み後 --&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>JavaScript learning<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>ブラウザで動作確認すると、メッセージボックスで「Hello, JavaScript!!」と表示されます。</p>
+<p>HTMLとJavaScriptを別のファイルに記載させるのには、それぞれを別のファイルとすることで管理しやすくさせる目的や、同じプログラムを複数箇所で書かないようにしてプログラミングのミス(バグ)を少なくする目的があります。</p>
+<p>また、scriptタグにdefer属性を付与することでJavaScriptの実行タイミングをHTML読み込み完了後にずらすことができます。※src属性とセットで使用しないと機能しません。</p>
+<h1 id="javascript5">JavaScriptの5つのポイント</h1>
+<ol>
+<li>コード(命令文)の記述
+<ul>
+<li>Webブラウザに実行してもらいたい内容を記述します。</li>
+</ul></li>
+<li>コードを実行したい順番に上から並べて書く
+<ul>
+<li>JavaScriptのプログラムは基本的に上から下へ順にコードが実行されます。</li>
+</ul></li>
+<li>1つのコードは、「;(セミコロン)」で終わる
+<ul>
+<li>複数のコードを書く場合には、1つのコードの終端に必ず「;(セミコロン)」を入れましょう。</li>
+</ul></li>
+<li>コードのアルファベットの大文字小文字は区別される
+<ul>
+<li>コードのアルファベットは、大文字と小文字で別の文字として認識されます。</li>
+<li>JavaScriptの文法上、大文字小文字が混在する場合もありますので間違いのないようにしましょう。</li>
+</ul></li>
+<li>文字列は「'(シングルクォーテーション)」や「&quot;(ダブルクォーテーション)」で囲う
+<ul>
+<li>表示したいメッセージなどの文字列は、他のコードと区別するためにきちんと囲いましょう。</li>
+</ul></li>
+</ol>
+<h1>簡単なプログラムを動かしてみましょう</h1>
+<p>以下のHTMLを用意してください。</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;ja&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>JavaScript learning<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>JavaScript learning<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;script&gt;</span>
+
+        <span class="va">window</span>.<span class="at">alert</span>(<span class="st">&quot;こんにちは！&quot;</span>)<span class="op">;</span>
+
+    <span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>このプログラムでは、『「windowオブジェクト(ページをひらいている画面自体)」で「こんにちは！とアラート表示をしてください。」』という命令が書かれています。</p>
+<p>このように、JavaScriptでは、〇〇で✕✕するという命令を、「〇〇.✕✕(✕✕する内容)」というように表します。</p>
+<h1 id="javascript">JavaScriptの記述に必要な基礎書式</h1>
+<p>前述の通り、プログラムの命令は、何をどうするという形式で書く必要があります。</p>
+<ul>
+<li>操作する対象は「オブジェクト」
+<ul>
+<li>上の例では、「window」という画面自体を表すオブジェクトに対して処理を行っています。</li>
+<li>上記例以外では、HTMLの要素自体などもオブジェクトと言えます。</li>
+</ul></li>
+<li>オブジェクトの動作を示す「メソッド」
+<ul>
+<li>上の例では、「alert()」と言う警告表示を行う動作を行っています。</li>
+</ul></li>
+<li>オブジェクトの状態を表す「プロパティ」
+<ul>
+<li>プロパティは、そのオブジェクトが持つ状態を表し、値の取得や、そのプロパティに対して何らかの操作を行うことでオブジェクトを変化させる働きを加えることができます。</li>
+</ul></li>
+</ul>
+<p><br> <br> <br></p>
+<hr />
+<h1>エラーの見方</h1>
+<p>以下の構文エラーを含むプログラムを書いてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">console</span>.<span class="at">log</span>(<span class="dv">1</span><span class="op">;</span></code></pre></div>
+<p>作成したHTMLを保存し、Google Chromeで開いて、[F12]キーでコンソールを開いてみましょう。</p>
+<p>以下のエラーメッセージが出ているはずです。</p>
+<pre><code>Uncaught SyntaxError: missing ) after argument list      test.html:12</code></pre>
+<p>このエラーの内容は、以下の通りです。</p>
+<pre><code>Uncaught SyntaxError: missing ) after argument list      test.html:12 
+         ^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      ^^^^^^^^　^^^^
+         エラーの種類                |                        |  　行番号
+                            エラー内容の説明                 ファイル名</code></pre>
+<p>JavaScriptのエラーは、上記のようにWebブラウザのコンソールで閲覧します。 コンソールを開いてみない限り、エラーは表示されませんので、開発中はコンソールを常に開いておくぐらいで良いでしょう。</p>
+<h1 id="javascript">JavaScriptデバッギング</h1>
+<p>JavaScriptで書いたプログラムの動作を確認する方法として、いくつかの方法を書いておきます。</p>
+<h2>アラートボックス表示</h2>
+<pre><code>window.alert(&quot;メッセージ&quot;);</code></pre>
+<p>上記のように、JavaScriptのalertを用いる方法です。<br />
+処理の途中経過などを、alertで表示させながらプログラムの進行状況を確認するときなどに使用します。</p>
+<p>アラートウィンドウが出ている間は、JavaScriptの処理自体は止まっています。</p>
+<h2>コンソール出力</h2>
+<p>Google Chromeで[option]+[command]+[j]を同時に押すと、JavaScriptコンソールが開きます。</p>
+<p>ここにログデータとして出力するには、以下のようにJavaScriptを書きます。</p>
+<pre><code>console.log(&quot;メッセージ&quot;);</code></pre>
+<p>alertでは、呼び出されたタイミングでメッセージボックスが表示され、プログラムの実行がそこで一旦止まってしまいますが、このconsole.logなら処理を止めることなくJavaScriptコンソールのログとして処理の経過を表示させることができます。</p>
+<h2 id="web">Webページ上に出力</h2>
+<p>JavaScriptのHTML要素を操作する手法を用いてWebページ上にメッセージを出力させます。</p>
+<p>HTMLファイルの内に準備が必要です。 <code>&lt;div id=&quot;message&quot;&gt;&lt;/div&gt;</code>を追加してください。</p>
+<p>以下のscriptタグをHTML内に書き込んでブラウザで開き、動作確認をしてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> <span class="st">&quot;メッセージ&quot;</span><span class="op">;</span></code></pre></div>
+<p>今回は、HTMLで中身を入れなかったdivタグ内に「Hello, World!!」という文字列が入ります。 このように、JavaScriptからHTMLの要素の中身にアクセスし、値を操作することも可能です。</p>
+<p>デバッギングは必要に応じて行いましょう。</p>
+<p>自分で書いたプログラムの動作でおかしな動きをしている場合の原因究明には、デバッギングが必要になります。 Google Chromeなど、最新のブラウザなら、エラーログ表示機能などもあるのでそれを利用してもらっても良いですし、紹介した3つのメッセージ表示処理などを行い、処理の途中経過などを表示して、おかしな動きをしている原因を探すのもひとつの手です。</p>
+<p>JavaScript付きのWebページをリリースする前には、JavaScriptのエラーやバグなどは極力なくすようによく確認をしましょう。</p>
+<h1>変数編</h1>
+<p>プログラミングで、非常に重要となる変数について勉強していきましょう。</p>
+<h2>変数とは</h2>
+<p>変数とはデータに付けるラベルのことです。</p>
+<h2>変数は宣言して使う</h2>
+<p>JavaScriptでは、変数を使う場合、「今からこの名前の変数を使います」という宣言をします。書き方は以下のようになります。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> text<span class="op">;</span>
+
+<span class="co">// ↓はECMAScript2015での新しい変数宣言</span>
+<span class="kw">const</span> hoge<span class="op">;</span>
+<span class="kw">let</span> fuga<span class="op">;</span>  <span class="co">// よくわからない内は、letを使うと良いでしょう</span></code></pre></div>
+<p>古い書き方ですと、varという構文を使用します。スペースを開けて書かれている文字列が「変数名」となります。ここでは、「textという名前の変数を宣言しました。」ということになります。</p>
+<h2>データに変数を割り当てましょう</h2>
+<p>データに変数を割り当てる場合は、以下のように=(代入演算子)を使います。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> text<span class="op">;</span>
+text <span class="op">=</span> <span class="st">&quot;✌('ω'✌ )三✌('ω')✌三( ✌'ω')✌&quot;</span><span class="op">;</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> text<span class="op">;</span></code></pre></div>
+<p>保存して、ブラウザで開くと、変数に割り当てたデータがきちんと表示されていることが確認できます。</p>
+<p>変数の宣言と、代入は一行にまとめることもできます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> text <span class="op">=</span> <span class="st">&quot;✌('ω'✌ )三✌('ω')✌三( ✌'ω')✌&quot;</span><span class="op">;</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> text<span class="op">;</span></code></pre></div>
+<p>また、複数の変数を同時に宣言することも可能です。そう言う場合は、変数をカンマで区切り、以下のように書きます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> text1<span class="op">,</span> text2 <span class="op">=</span> <span class="st">&quot;text2&quot;</span><span class="op">,</span> text3 <span class="op">=</span> <span class="st">&quot;text3&quot;</span><span class="op">;</span></code></pre></div>
+<h2 id="javascript">JavaScriptのデータ型について知ろう</h2>
+<p>JavaScriptのデータには、幾つかの型があります。</p>
+<p>主要なものを幾つか紹介します。</p>
+<ul>
+<li>文字列</li>
+<li>数値</li>
+<li>真偽 (true or false)</li>
+<li>未定義 (Undefined)</li>
+<li>無 (null)</li>
+<li>配列 (Array)</li>
+<li>オブジェクトなど</li>
+</ul>
+<p>それぞれどのように宣言すれば、その型となるか、以下にまとめます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">//文字列 ： ダブルクォーテーションもしくはシングルクォーテーションで括ると文字列となる。</span>
+<span class="kw">let</span> str <span class="op">=</span> <span class="st">&quot;文字列&quot;</span><span class="op">;</span>
+
+<span class="co">//数値　： 数字のみの場合は数値となる。</span>
+<span class="kw">let</span> num <span class="op">=</span> <span class="dv">10</span><span class="op">;</span>
+<span class="kw">let</span> num2 <span class="op">=</span> <span class="op">-</span><span class="dv">5</span><span class="op">;</span>          <span class="co">//マイナスも扱える。</span>
+<span class="kw">let</span> num3 <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span>         <span class="co">//小数も扱える。</span>
+
+<span class="co">//真偽 ： true もしくは false でフラグとして扱える。</span>
+<span class="kw">let</span> flg <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>
+<span class="kw">let</span> flg2 <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>
+
+<span class="co">//未定義 ： なにも定義されていない状態を表す。</span>
+<span class="kw">let</span> data1 <span class="op">=</span> <span class="kw">undefined</span><span class="op">;</span>
+
+<span class="co">//無 ： なにもない。</span>
+<span class="kw">let</span> data2 <span class="op">=</span> <span class="kw">null</span><span class="op">;</span>
+
+<span class="co">//配列 ： 1つの変数名に、複数のデータを割り当てたい場合に使用します。</span>
+<span class="kw">let</span> arr <span class="op">=</span> <span class="kw">new</span> <span class="at">Array</span>()<span class="op">;</span>
+<span class="kw">let</span> arr2 <span class="op">=</span> []<span class="op">;</span> <span class="co">// これも配列定義</span>
+<span class="kw">let</span> array <span class="op">=</span> <span class="kw">new</span> <span class="at">Array</span>(<span class="dv">3</span>)<span class="op">;</span>
+array[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&quot;Sun&quot;</span><span class="op">;</span>
+array[<span class="dv">1</span>] <span class="op">=</span> <span class="st">&quot;Mon&quot;</span><span class="op">;</span>
+array[<span class="dv">5</span>] <span class="op">=</span> <span class="st">&quot;Fri&quot;</span><span class="op">;</span>
+<span class="va">array</span>.<span class="at">push</span>(<span class="st">&quot;Sat&quot;</span>)<span class="op">;</span>  <span class="co">//末尾に追加</span>
+<span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">array</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span>
+  <span class="va">window</span>.<span class="at">alert</span>(array[i])<span class="op">;</span>
+<span class="op">}</span>
+<span class="co">// 以下のコードで初期化も可能</span>
+<span class="kw">let</span> array2 <span class="op">=</span> [<span class="st">&quot;Sun&quot;</span><span class="op">,</span> <span class="st">&quot;Mon&quot;</span><span class="op">,</span> <span class="st">&quot;Tue&quot;</span>]<span class="op">;</span>
+
+<span class="co">// オブジェクト ： JavaScriptでは全てがオブジェクトなので、関数もオブジェクト</span>
+<span class="kw">let</span> obj <span class="op">=</span> <span class="op">{};</span>
+<span class="va">obj</span>.<span class="at">name</span> <span class="op">=</span> <span class="st">&quot;hoge&quot;</span><span class="op">;</span>
+<span class="va">obj</span>.<span class="at">value</span> <span class="op">=</span> <span class="fl">0.1</span><span class="op">;</span>
+<span class="va">obj</span>.<span class="at">func</span> <span class="op">=</span> <span class="kw">function</span>(message)<span class="op">{</span>
+  <span class="va">window</span>.<span class="at">alert</span>(message)<span class="op">;</span>
+<span class="op">};</span>
+<span class="co">// ↓の書き方は、↑と同じ意味</span>
+<span class="kw">let</span> obj <span class="op">=</span> <span class="op">{</span>
+  <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;hoge&quot;</span><span class="op">,</span>
+  <span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span>
+  <span class="dt">func</span><span class="op">:</span> <span class="kw">function</span>(message)<span class="op">{</span>
+    <span class="va">window</span>.<span class="at">alert</span>(message)<span class="op">;</span>
+  <span class="op">},</span>
+<span class="op">}</span></code></pre></div>
+<p>JavaScriptでは、すべての変数や関数はオブジェクトです。この辺は多少込み入った話になるので、ここでは割愛します。</p>
+<h2 id="es2015-">ES2015 新しい変数宣言</h2>
+<p>ECMAScript 2015より、以下の変数宣言構文が追加されました。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// 再代入不可変数の定義</span>
+<span class="kw">const</span> hoge <span class="op">=</span> <span class="dv">123</span><span class="op">;</span>
+<span class="co">// hoge = 567; &lt;- これ以降は再代入NG</span>
+
+<span class="co">// 再定義不可変数の定義</span>
+<span class="kw">let</span> fuga <span class="op">=</span> <span class="st">&quot;fuga&quot;</span><span class="op">;</span>
+<span class="co">// let fuga = &quot;fugafuga&quot;; &lt;- これ以降は再定義NG</span>
+<span class="co">// var の場合↑は可能</span></code></pre></div>
+<p>何でもありの<code>var</code>よりも、新しい仕様で追加された<code>const</code>, <code>let</code>のほうがルールが厳密で、かつ、他のプログラミング言語の仕様に近いため、極力<code>const</code>, <code>let</code>を使うようにしましょう。</p>
+<h1>演算子編</h1>
+<p>演算子は、データに対して何らかの計算を行うものです。</p>
+<h2>代入演算子 ( <code>=</code> )</h2>
+<p>実はもう既に使っています。=がそれです。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> num <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></code></pre></div>
+<h2>文字列に関する演算子 ( <code>+</code> )</h2>
+<p>文字列の連結には+を使います。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> str <span class="op">=</span> <span class="st">&quot;Hello, &quot;</span> <span class="op">+</span> <span class="st">&quot;World!!&quot;</span><span class="op">;</span></code></pre></div>
+<h2 id="--">数値に関する演算子 ( <code>+</code> <code>-</code> <code>*</code> <code>/</code> )</h2>
+<p>数値に対して四則演算を行う場合には、加算は+、減算は-、乗算は-、除算は/を使います。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> num1 <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">//num1 は 3</span>
+<span class="kw">let</span> num2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">//num2 は -1</span>
+<span class="kw">let</span> num3 <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">//num3 は 2</span>
+<span class="kw">let</span> num4 <span class="op">=</span> <span class="dv">1</span> / <span class="dv">2</span><span class="op">;</span>   <span class="co">//num4 は 0.5</span>
+<span class="co">//除算の余りを求めるには % を使います。</span>
+<span class="kw">let</span> num5 <span class="op">=</span> <span class="dv">11</span> <span class="op">%</span> <span class="dv">5</span><span class="op">;</span>  <span class="co">//num5 は 1</span></code></pre></div>
+<p>また、特殊な書き方として、x = x + 1;を、x++と書いたり、y = y - 1;を、y--と書いたりします。</p>
+<p>頻繁に出てくる書き方なので、覚えておきましょう。また、注意点として、x++、y--とすると、x,yそれぞれ値が変わってしまっています。気をつけましょう。</p>
+<h2 id="--">代入を伴う演算子 ( <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> )</h2>
+<p>また、特殊な書き方として、x = x + 5;など、同じ変数に対して何らかの演算を行う場合は、代入演算子と組み合わせて以下の様にも書けます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> x <span class="op">=</span> <span class="dv">4</span><span class="op">;</span>
+x <span class="op">+=</span> <span class="dv">5</span><span class="op">;</span> <span class="co">//x = x + 5 と同じ xは9になる。</span></code></pre></div>
+<p>四則演算どれでも使うことができます。</p>
+<p>この辺りは基本なので、きちんと身につけておきましょう。</p>
+<h1>条件分岐編</h1>
+<p>プログラミングでは、基本中の基本となる、条件分岐について学んでいきます。</p>
+<h2 id="-if">条件分岐 ( <code>if</code> )</h2>
+<p>条件分岐は、if文にて行います。これは、「とある条件を満たしている場合に処理を実行します。」という処理の分岐ができます。コードは以下のとおりになります。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>   <span class="co">//画面表示用文字列 (空文字を代入して初期化してます)</span>
+
+<span class="kw">let</span> age <span class="op">=</span> <span class="dv">18</span><span class="op">;</span>       <span class="co">//年齢</span>
+<span class="cf">if</span> ( age <span class="op">&lt;</span> <span class="dv">20</span> ) <span class="op">{</span>
+    message <span class="op">=</span> <span class="st">&quot;未成年です。&quot;</span><span class="op">;</span>
+    <span class="cf">if</span> ( age <span class="op">&gt;=</span> <span class="dv">18</span> ) <span class="op">{</span>
+      message <span class="op">+=</span> <span class="st">&quot;ですが選挙権はあります！&quot;</span><span class="op">;</span>
+    <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> message<span class="op">;</span></code></pre></div>
+<p>このコードでは、年齢を比較して、成人しているかどうかを判断しています。 ageの値を変えて、いろいろと試してみましょう。</p>
+<p>if(……)の中にある比較が返す真偽(true or false)によって、trueの場合のみ{ }の中の処理に入ります。</p>
+<h2>比較演算子</h2>
+<p>if文に使える比較条件は、比較演算子によって決定します。以下に一覧を載せます。</p>
+<table>
+<thead>
+<tr class="header">
+<th>比較演算子</th>
+<th>説明</th>
+<th>真(true)を返す例(var1 = 3, var2 = 5とします。)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code>(等しい)</td>
+<td>両辺のデータが等しい場合。(数値と文字列でも比較は可能)</td>
+<td>3 == var1,&quot;3&quot; == var1,3 == '3'</td>
+</tr>
+<tr class="even">
+<td><code>!=</code>(等しくない)</td>
+<td>両辺のデータが等しくない場合。(数値と文字列でも比較は可能)</td>
+<td>var2 != 3,var2 != &quot;3&quot;</td>
+</tr>
+<tr class="odd">
+<td><code>===</code>(厳密に等しい)</td>
+<td>両辺のデータが等しい場合。(データ型が違う場合は等しくないとされる)</td>
+<td>3 === var1</td>
+</tr>
+<tr class="even">
+<td><code>!==</code>(厳密に等しくない)</td>
+<td>両辺のデータが等しくない場合。(データ型が違う場合は等しくないとされる)</td>
+<td>var2 !== 3,var2 !== &quot;5&quot;</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code>(より大きい)</td>
+<td>左辺が右辺より大きいならば真</td>
+<td>var2 &gt; var1</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code>(以上)</td>
+<td>左辺が右辺以上ならば真</td>
+<td>var2 &gt;= var1,var2 &gt;= 5</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code>(より小さい)</td>
+<td>左辺が右辺より小さいならば真</td>
+<td>var1 &lt; var2</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code>(以下)</td>
+<td>左辺が右辺以上ならば真</td>
+<td>var1 &lt;= var2,var2 &lt;= 5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-if-else-if-else">条件分岐 ( if ~ else if ~ else )</h2>
+<p>if文にて偽(false)だった場合に対して、それに対して処理を行う場合は以下の様にします。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>   <span class="co">//画面表示用文字列 (空文字を代入して初期化してます)</span>
+
+<span class="kw">let</span> age <span class="op">=</span> <span class="dv">20</span><span class="op">;</span>       <span class="co">//年齢</span>
+<span class="cf">if</span> ( age <span class="op">&lt;</span> <span class="dv">20</span> ) <span class="op">{</span>
+    message <span class="op">=</span> <span class="st">&quot;未成年です。&quot;</span><span class="op">;</span>
+<span class="op">}</span> <span class="cf">else</span> <span class="op">{</span>
+    message <span class="op">=</span> <span class="st">&quot;成人してます。選挙へ行こう。&quot;</span><span class="op">;</span>
+<span class="op">}</span>
+
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> message<span class="op">;</span></code></pre></div>
+<p>このコードでは、年齢を比較して、成人しているかどうかを判断しています。成人している場合は、選挙へ行く旨を伝えます。</p>
+<p>また、if文にて偽(false)だった場合に対して、更に条件分岐を付ける場合もできます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>   <span class="co">//画面表示用文字列 (空文字を代入して初期化してます)</span>
+
+<span class="kw">let</span> score <span class="op">=</span> <span class="dv">60</span><span class="op">;</span>     <span class="co">//点数</span>
+<span class="cf">if</span> ( score <span class="op">&gt;=</span> <span class="dv">60</span> ) <span class="op">{</span>
+    message <span class="op">=</span> <span class="st">&quot;合格！おめでとう！！&quot;</span><span class="op">;</span>
+<span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> ( score <span class="op">&gt;=</span> <span class="dv">40</span> ) <span class="op">{</span>
+    message <span class="op">=</span> <span class="st">&quot;不合格です。残念。&quot;</span><span class="op">;</span>
+<span class="op">}</span> <span class="cf">else</span> <span class="op">{</span>
+    message <span class="op">=</span> <span class="st">&quot;もう一年頑張りましょう。&quot;</span><span class="op">;</span>
+<span class="op">}</span>
+
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> message<span class="op">;</span></code></pre></div>
+<p>このコードでは、点数に対して合否を告げます。 また、else ifはいくつでもつなげることができます。</p>
+<h2 id="-switch">条件分岐 ( switch )</h2>
+<p>特定の１つのデータに対して、選択肢が複数ある場合はswitch文での条件分岐が便利です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;月末は &quot;</span><span class="op">;</span>   <span class="co">//画面表示用文字列</span>
+
+<span class="kw">let</span> month <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>      <span class="co">//月</span>
+<span class="cf">switch</span> (month) <span class="op">{</span>
+    <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span>
+        message <span class="op">+=</span> <span class="st">&quot;28日（29日）&quot;</span><span class="op">;</span>
+        <span class="cf">break</span><span class="op">;</span>      <span class="co">//忘れずに書きましょう。</span>
+    <span class="cf">case</span> <span class="dv">4</span><span class="op">:</span>
+    <span class="cf">case</span> <span class="dv">6</span><span class="op">:</span>
+    <span class="cf">case</span> <span class="dv">9</span><span class="op">:</span>
+    <span class="cf">case</span> <span class="dv">11</span><span class="op">:</span>
+        message <span class="op">+=</span> <span class="st">&quot;30日&quot;</span><span class="op">;</span>
+        <span class="cf">break</span><span class="op">;</span>
+    <span class="dt">default</span><span class="op">:</span>        <span class="co">//上記以外の場合</span>
+        message <span class="op">+=</span> <span class="st">&quot;31日&quot;</span><span class="op">;</span>
+        <span class="cf">break</span><span class="op">;</span>
+<span class="op">}</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> message<span class="op">;</span></code></pre></div>
+<p>switch()では、caseに指定した値と等しい場合は、break;がある行まで続きの処理を実行します。</p>
+<p>caseは、上記のように続けて書くことで複数の指定もできます。比較演算子は使えません。また、どの条件にも当てはまらない場合は、default:の部分が実行されます。</p>
+<h1>ループ編</h1>
+<p>これも基本中の基本、ループ処理について学んでいきます。</p>
+<h2 id="while">whileループ</h2>
+<p>以下のコードを実行してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;計算内容: &quot;</span><span class="op">;</span> <span class="co">//画面表示用文字列</span>
+<span class="kw">let</span> answer <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>             <span class="co">//結果出力用数値</span>
+
+<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>
+message <span class="op">+=</span> <span class="at">String</span>(answer)<span class="op">;</span>
+
+<span class="cf">while</span> (i <span class="op">&lt;</span> <span class="dv">20</span>) <span class="op">{</span>
+    <span class="va">console</span>.<span class="at">log</span>(i)<span class="op">;</span>     <span class="co">//コンソールにループ対象となる値を出力</span>
+    i<span class="op">++;</span>    <span class="co">// i = i + 1;</span>
+    message <span class="op">+=</span> <span class="st">&quot; + &quot;</span> <span class="op">+</span> <span class="at">String</span>(i)<span class="op">;</span>
+    answer <span class="op">+=</span> i<span class="op">;</span>
+<span class="op">}</span>
+
+message <span class="op">+=</span> <span class="st">&quot; 計算結果: &quot;</span> <span class="op">+</span> <span class="at">String</span>(answer)<span class="op">;</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> message<span class="op">;</span></code></pre></div>
+<p>上記コードでは、0~20までを加算しつづけます。</p>
+<p>whileでは指定した条件が真(true)である限り、ループを繰り返します。</p>
+<p>Ctrl + Shift + jを押して、どの値でループを抜けているか確認をしてみましょう。</p>
+<h2 id="for">forループ</h2>
+<p>whileと同様に、ループを行うfor文を学びましょう。折角なので、while文と同じ条件で実行してみます。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;計算内容: &quot;</span><span class="op">;</span> <span class="co">//画面表示用文字列</span>
+<span class="kw">let</span> answer <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>             <span class="co">//結果出力用数値</span>
+
+message <span class="op">+=</span> <span class="at">String</span>(answer)<span class="op">;</span>
+<span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">20</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span>
+    <span class="va">console</span>.<span class="at">log</span>(i)<span class="op">;</span>     <span class="co">//コンソールにループ対象となる値を出力</span>
+    message <span class="op">+=</span> <span class="st">&quot; + &quot;</span> <span class="op">+</span> <span class="at">String</span>(i)<span class="op">;</span>
+    answer <span class="op">+=</span> i<span class="op">;</span>
+<span class="op">}</span>
+
+message <span class="op">+=</span> <span class="st">&quot; 計算結果: &quot;</span> <span class="op">+</span> <span class="at">String</span>(answer)<span class="op">;</span>
+<span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> message<span class="op">;</span></code></pre></div>
+<p>forでは括弧内に3つの処理を書くことができます。ここに書く内容は決まっていて、「ループ要素の変数(カウンタ)を初期化」、「ループを抜ける条件」、「ループカウンタの加算」の3つです。</p>
+<p>実行結果が先ほどのwhileと異なっているのがわかるかと思います。</p>
+<p>同様にGoogleChromeで[option]+[Command]+[j]を押して、どの値でループを抜けているか確認をしてみましょう。</p>
+<p>両方のコードを特に条件の部分について、いろいろ書き換えてみて、実行結果がどのように変わるか確かめてみましょう。</p>
+<h2>条件分岐とループとそれぞれの命令</h2>
+<p>大抵のプログラムは細かいところまで拡大すれば、これらの組み合わせでできています。</p>
+<p>どのプログラミング言語でも、最初に条件分岐とループの書き方を覚えることになると思いますので、きっちりと押さえておきましょう。</p>
+<h1>関数編</h1>
+<p>同じコードを複数箇所に書くのは、手間がかかりますし、バグも残しやすいです。<br />
+コードをまとめたり、計算処理を統合したりするには関数を使います。</p>
+<p>実際にコードを見てもらったほうが良いと思うので、以下を御覧ください。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">//aとbを加算し返します。</span>
+<span class="kw">function</span> <span class="at">sum</span>(a<span class="op">,</span> b) <span class="op">{</span>
+    <span class="cf">return</span> (a <span class="op">+</span> b)<span class="op">;</span> <span class="co">//関数の呼び出し元へデータを返す（戻り値）</span>
+<span class="op">}</span>
+
+<span class="co">//div#consoleに指定したメッセージを表示させます。</span>
+<span class="kw">function</span> <span class="at">setMessage</span>(str) <span class="op">{</span>
+    <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> str<span class="op">;</span>
+<span class="op">}</span>
+
+<span class="kw">let</span> answer <span class="op">=</span> <span class="at">sum</span>(<span class="dv">48</span><span class="op">,</span> <span class="dv">25</span>)<span class="op">;</span>
+<span class="at">setMessage</span>(<span class="at">String</span>(answer))<span class="op">;</span></code></pre></div>
+<p>関数には引数と呼ばれるデータの受け渡し口が用意できます。<br />
+上のコードで言うとsum(a, b)のaとbです。これは、varで変数宣言したことと同義で、関数を呼び出す側にてデータを指定します。let answer = sum(48, 25);の中では、48, 25のところです。</p>
+<p>ちなみに、引数はなしでも大丈夫です。</p>
+<p>関数を右辺として代入演算子を使用したい場合は、<code>return構文</code>にて必ず戻り値を指定する必要があります。</p>
+<p>また、関数の宣言方法として、以下のような書き方も可能です。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// 関数自体を変数として定義可能</span>
+<span class="kw">const</span> sum <span class="op">=</span> <span class="kw">function</span>(a<span class="op">,</span> b) <span class="op">{</span>
+    <span class="cf">return</span> (a <span class="op">+</span> b)<span class="op">;</span>
+<span class="op">};</span>
+<span class="co">// 実行方法は、sum(48, 25); などのように関数名のあとに括弧をつける</span>
+
+<span class="co">// ES2015より、以下の書き方も可能となっています。</span>
+<span class="kw">const</span> sum <span class="op">=</span> (a<span class="op">,</span> b) <span class="op">=&gt;</span> <span class="op">{</span>
+    <span class="cf">return</span> (a <span class="op">+</span> b)<span class="op">;</span>
+<span class="op">};</span>
+<span class="co">// function() { ... } の書き方を、 () =&gt; { ... } として省略表記ができる</span></code></pre></div>
+<p>JavaScriptにおける関数は、定義のための構文や、変数への代入が可能など、特徴的な書き方ができます。 慣れないうちは分かりづらいところもありますので、<code>function hoge() { ... }</code>の書き方に統一しておくことが無難かと思います。</p>
+<p><code>const func = function() { ... };</code>という書き方は、他のプログラミング言語でも似たような書き方で実現できるものもあります。 その場合は、匿名関数という名前がついていたりします。</p>
+<h2>グローバル変数とローカル変数</h2>
+<p>変数には、それが使える範囲というものが決まっています。以下のコードを参照してください。</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> g <span class="op">=</span> <span class="st">&quot;グローバルだぜ&quot;</span><span class="op">;</span>
+
+<span class="kw">function</span> <span class="at">f</span>(a) <span class="op">{</span>
+    <span class="kw">let</span> l <span class="op">=</span> <span class="st">&quot;ローカルだぜ&quot;</span><span class="op">;</span>
+    <span class="at">setMessage</span>(g <span class="op">+</span> <span class="st">&quot;:&quot;</span> <span class="op">+</span> l <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> a)<span class="op">;</span>
+<span class="op">}</span>
+
+<span class="at">f</span>(<span class="st">&quot;引数もローカルだぜ&quot;</span>)<span class="op">;</span>
+<span class="at">setMessage</span>(l)<span class="op">;</span> <span class="co">//これはエラーになる</span>
+<span class="at">setMessage</span>(a)<span class="op">;</span> <span class="co">//これもエラーになる</span>
+
+<span class="co">//div#consoleに指定したメッセージを表示させます。</span>
+<span class="kw">function</span> <span class="at">setMessage</span>(str) <span class="op">{</span>
+    <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;message&quot;</span>).<span class="at">textContent</span> <span class="op">=</span> str<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
+<p>関数のコードブロックfunction xxx(～){～}内で宣言された変数及び引数は、その外で参照することはできません。また、別の関数では同じ名前の変数名にしてもエラーとなりません。（グローバルで宣言された変数は関数内で再宣言するとエラーになります。）</p>
+<p>こういった変数の扱える(見える)範囲を<code>スコープ</code>と呼びます。覚えておきましょう。</p>
+</body>
+</html>

@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15A16D2B254FE4AC00772C85 /* Jinro_TouhyouApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16D2A254FE4AC00772C85 /* Jinro_TouhyouApp.swift */; };
+		15A16D2D254FE4AC00772C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16D2C254FE4AC00772C85 /* ContentView.swift */; };
+		15A16D2F254FE4AF00772C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A16D2E254FE4AF00772C85 /* Assets.xcassets */; };
+		15A16D32254FE4AF00772C85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A16D31254FE4AF00772C85 /* Preview Assets.xcassets */; };
+		15A16D3D254FE4AF00772C85 /* Jinro_TouhyouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16D3C254FE4AF00772C85 /* Jinro_TouhyouTests.swift */; };
+		15A16D48254FE4AF00772C85 /* Jinro_TouhyouUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16D47254FE4AF00772C85 /* Jinro_TouhyouUITests.swift */; };
+		15A16D8F2550186500772C85 /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16D8E2550186500772C85 /* Discussion.swift */; };
+		15A16D942550199400772C85 /* TouhyouRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16D932550199400772C85 /* TouhyouRule.swift */; };
+		15A16DA12550EAD100772C85 /* TouhyouSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DA02550EAD100772C85 /* TouhyouSelect.swift */; };
+		15A16DA62550EBC200772C85 /* TouhyouResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DA52550EBC200772C85 /* TouhyouResult.swift */; };
+		15A16DAB2550F5B900772C85 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DAA2550F5B900772C85 /* GameResult.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15A16D39254FE4AF00772C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A16D1F254FE4AB00772C85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15A16D26254FE4AB00772C85;
+			remoteInfo = Jinro_Touhyou;
+		};
+		15A16D44254FE4AF00772C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A16D1F254FE4AB00772C85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15A16D26254FE4AB00772C85;
+			remoteInfo = Jinro_Touhyou;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15A16D27254FE4AB00772C85 /* Jinro_Touhyou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jinro_Touhyou.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A16D2A254FE4AC00772C85 /* Jinro_TouhyouApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jinro_TouhyouApp.swift; sourceTree = "<group>"; };
+		15A16D2C254FE4AC00772C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15A16D2E254FE4AF00772C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15A16D31254FE4AF00772C85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15A16D33254FE4AF00772C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A16D38254FE4AF00772C85 /* Jinro_TouhyouTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Jinro_TouhyouTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A16D3C254FE4AF00772C85 /* Jinro_TouhyouTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jinro_TouhyouTests.swift; sourceTree = "<group>"; };
+		15A16D3E254FE4AF00772C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A16D43254FE4AF00772C85 /* Jinro_TouhyouUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Jinro_TouhyouUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A16D47254FE4AF00772C85 /* Jinro_TouhyouUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jinro_TouhyouUITests.swift; sourceTree = "<group>"; };
+		15A16D49254FE4AF00772C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A16D8E2550186500772C85 /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
+		15A16D932550199400772C85 /* TouhyouRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouhyouRule.swift; sourceTree = "<group>"; };
+		15A16DA02550EAD100772C85 /* TouhyouSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouhyouSelect.swift; sourceTree = "<group>"; };
+		15A16DA52550EBC200772C85 /* TouhyouResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouhyouResult.swift; sourceTree = "<group>"; };
+		15A16DAA2550F5B900772C85 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15A16D24254FE4AB00772C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16D35254FE4AF00772C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16D40254FE4AF00772C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15A16D1E254FE4AB00772C85 = {
+			isa = PBXGroup;
+			children = (
+				15A16D29254FE4AB00772C85 /* Jinro_Touhyou */,
+				15A16D3B254FE4AF00772C85 /* Jinro_TouhyouTests */,
+				15A16D46254FE4AF00772C85 /* Jinro_TouhyouUITests */,
+				15A16D28254FE4AB00772C85 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15A16D28254FE4AB00772C85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15A16D27254FE4AB00772C85 /* Jinro_Touhyou.app */,
+				15A16D38254FE4AF00772C85 /* Jinro_TouhyouTests.xctest */,
+				15A16D43254FE4AF00772C85 /* Jinro_TouhyouUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15A16D29254FE4AB00772C85 /* Jinro_Touhyou */ = {
+			isa = PBXGroup;
+			children = (
+				15A16D2A254FE4AC00772C85 /* Jinro_TouhyouApp.swift */,
+				15A16D2C254FE4AC00772C85 /* ContentView.swift */,
+				15A16D8E2550186500772C85 /* Discussion.swift */,
+				15A16D932550199400772C85 /* TouhyouRule.swift */,
+				15A16DA02550EAD100772C85 /* TouhyouSelect.swift */,
+				15A16DA52550EBC200772C85 /* TouhyouResult.swift */,
+				15A16DAA2550F5B900772C85 /* GameResult.swift */,
+				15A16D2E254FE4AF00772C85 /* Assets.xcassets */,
+				15A16D33254FE4AF00772C85 /* Info.plist */,
+				15A16D30254FE4AF00772C85 /* Preview Content */,
+			);
+			path = Jinro_Touhyou;
+			sourceTree = "<group>";
+		};
+		15A16D30254FE4AF00772C85 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				15A16D31254FE4AF00772C85 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		15A16D3B254FE4AF00772C85 /* Jinro_TouhyouTests */ = {
+			isa = PBXGroup;
+			children = (
+				15A16D3C254FE4AF00772C85 /* Jinro_TouhyouTests.swift */,
+				15A16D3E254FE4AF00772C85 /* Info.plist */,
+			);
+			path = Jinro_TouhyouTests;
+			sourceTree = "<group>";
+		};
+		15A16D46254FE4AF00772C85 /* Jinro_TouhyouUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15A16D47254FE4AF00772C85 /* Jinro_TouhyouUITests.swift */,
+				15A16D49254FE4AF00772C85 /* Info.plist */,
+			);
+			path = Jinro_TouhyouUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15A16D26254FE4AB00772C85 /* Jinro_Touhyou */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A16D4C254FE4AF00772C85 /* Build configuration list for PBXNativeTarget "Jinro_Touhyou" */;
+			buildPhases = (
+				15A16D23254FE4AB00772C85 /* Sources */,
+				15A16D24254FE4AB00772C85 /* Frameworks */,
+				15A16D25254FE4AB00772C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jinro_Touhyou;
+			productName = Jinro_Touhyou;
+			productReference = 15A16D27254FE4AB00772C85 /* Jinro_Touhyou.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15A16D37254FE4AF00772C85 /* Jinro_TouhyouTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A16D4F254FE4AF00772C85 /* Build configuration list for PBXNativeTarget "Jinro_TouhyouTests" */;
+			buildPhases = (
+				15A16D34254FE4AF00772C85 /* Sources */,
+				15A16D35254FE4AF00772C85 /* Frameworks */,
+				15A16D36254FE4AF00772C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A16D3A254FE4AF00772C85 /* PBXTargetDependency */,
+			);
+			name = Jinro_TouhyouTests;
+			productName = Jinro_TouhyouTests;
+			productReference = 15A16D38254FE4AF00772C85 /* Jinro_TouhyouTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15A16D42254FE4AF00772C85 /* Jinro_TouhyouUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A16D52254FE4AF00772C85 /* Build configuration list for PBXNativeTarget "Jinro_TouhyouUITests" */;
+			buildPhases = (
+				15A16D3F254FE4AF00772C85 /* Sources */,
+				15A16D40254FE4AF00772C85 /* Frameworks */,
+				15A16D41254FE4AF00772C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A16D45254FE4AF00772C85 /* PBXTargetDependency */,
+			);
+			name = Jinro_TouhyouUITests;
+			productName = Jinro_TouhyouUITests;
+			productReference = 15A16D43254FE4AF00772C85 /* Jinro_TouhyouUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15A16D1F254FE4AB00772C85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					15A16D26254FE4AB00772C85 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+					15A16D37254FE4AF00772C85 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 15A16D26254FE4AB00772C85;
+					};
+					15A16D42254FE4AF00772C85 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 15A16D26254FE4AB00772C85;
+					};
+				};
+			};
+			buildConfigurationList = 15A16D22254FE4AB00772C85 /* Build configuration list for PBXProject "Jinro_Touhyou" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15A16D1E254FE4AB00772C85;
+			productRefGroup = 15A16D28254FE4AB00772C85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15A16D26254FE4AB00772C85 /* Jinro_Touhyou */,
+				15A16D37254FE4AF00772C85 /* Jinro_TouhyouTests */,
+				15A16D42254FE4AF00772C85 /* Jinro_TouhyouUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15A16D25254FE4AB00772C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16D32254FE4AF00772C85 /* Preview Assets.xcassets in Resources */,
+				15A16D2F254FE4AF00772C85 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16D36254FE4AF00772C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16D41254FE4AF00772C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15A16D23254FE4AB00772C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16D8F2550186500772C85 /* Discussion.swift in Sources */,
+				15A16DAB2550F5B900772C85 /* GameResult.swift in Sources */,
+				15A16D942550199400772C85 /* TouhyouRule.swift in Sources */,
+				15A16DA62550EBC200772C85 /* TouhyouResult.swift in Sources */,
+				15A16DA12550EAD100772C85 /* TouhyouSelect.swift in Sources */,
+				15A16D2D254FE4AC00772C85 /* ContentView.swift in Sources */,
+				15A16D2B254FE4AC00772C85 /* Jinro_TouhyouApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16D34254FE4AF00772C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16D3D254FE4AF00772C85 /* Jinro_TouhyouTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16D3F254FE4AF00772C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16D48254FE4AF00772C85 /* Jinro_TouhyouUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15A16D3A254FE4AF00772C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15A16D26254FE4AB00772C85 /* Jinro_Touhyou */;
+			targetProxy = 15A16D39254FE4AF00772C85 /* PBXContainerItemProxy */;
+		};
+		15A16D45254FE4AF00772C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15A16D26254FE4AB00772C85 /* Jinro_Touhyou */;
+			targetProxy = 15A16D44254FE4AF00772C85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15A16D4A254FE4AF00772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15A16D4B254FE4AF00772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15A16D4D254FE4AF00772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Jinro_Touhyou/Preview Content\"";
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Jinro_Touhyou/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-Touhyou";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15A16D4E254FE4AF00772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Jinro_Touhyou/Preview Content\"";
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Jinro_Touhyou/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-Touhyou";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		15A16D50254FE4AF00772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_TouhyouTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-TouhyouTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jinro_Touhyou.app/Jinro_Touhyou";
+			};
+			name = Debug;
+		};
+		15A16D51254FE4AF00772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_TouhyouTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-TouhyouTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jinro_Touhyou.app/Jinro_Touhyou";
+			};
+			name = Release;
+		};
+		15A16D53254FE4AF00772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_TouhyouUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-TouhyouUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jinro_Touhyou;
+			};
+			name = Debug;
+		};
+		15A16D54254FE4AF00772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_TouhyouUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-TouhyouUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jinro_Touhyou;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15A16D22254FE4AB00772C85 /* Build configuration list for PBXProject "Jinro_Touhyou" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16D4A254FE4AF00772C85 /* Debug */,
+				15A16D4B254FE4AF00772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A16D4C254FE4AF00772C85 /* Build configuration list for PBXNativeTarget "Jinro_Touhyou" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16D4D254FE4AF00772C85 /* Debug */,
+				15A16D4E254FE4AF00772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A16D4F254FE4AF00772C85 /* Build configuration list for PBXNativeTarget "Jinro_TouhyouTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16D50254FE4AF00772C85 /* Debug */,
+				15A16D51254FE4AF00772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A16D52254FE4AF00772C85 /* Build configuration list for PBXNativeTarget "Jinro_TouhyouUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16D53254FE4AF00772C85 /* Debug */,
+				15A16D54254FE4AF00772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15A16D1F254FE4AB00772C85 /* Project object */;
+}

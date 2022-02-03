@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(function(){
+        $("#btn")
+        .on("click", printHello)
+        .on("click", sayHello);
+      });
+      function printHello(){
+        console.log("こんにちは");
+      }
+      function sayHello(){
+        alert("こんにちは");
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn">クリック</button>
+  </body>
+</html>

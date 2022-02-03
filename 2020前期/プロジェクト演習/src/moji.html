@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>文字色</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- jQuery1.9.1以降をインクルード -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<!-- Bootstrap3.3.7以降をインクルード -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <select id="color3">
+    <option value="" hidden>文字色を選択してください</option>
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+    <option value="Red">Red</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    </select>
+
+    <select id="color4">
+    <option value="" hidden>背景色を選択してください</option>
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+    <option value="Red">Red</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    </select>
+
+    <select id="color5">
+    <option value="" hidden>文字の大きさを選択してください</option>
+    <option value="80%">80%</option>
+    <option value="100%">100%</option>
+    <option value="120%">120%</option>
+    <option value="140%">140%</option>
+    <option value="160%">160%</option>
+    </select>
+
+    <select id="color6">
+    <option value="" hidden>フォントを選択してください</option>
+    <option value="sans-serif">ゴシック</option>
+    <option value="serif">明朝</option>
+    <option value="monospace">等幅</option>
+    <option value="fantasy">装飾系</option>
+    <option value="cursive">筆記体</option>
+    </select>
+    <input type="button" value="ボタン" onclick="location.href = 'StopWatch.html';clickBtn3()">
+
+
+<script>
+  function clickBtn3(){
+    const str = document.getElementById("color3").value;
+    const bst = document.getElementById("color4").value;
+    const str2 = document.getElementById("color5").value;
+    const str3 = document.getElementById("color6").value;
+    /*location.href = 'StopWatch.html?name=' + encodeURIComponent(str);*/
+    location.href = 'StopWatch.html?name=' + str + '=' + bst + '=' +str2 + '=' +str3;
+  }
+
+</script>
+  </body>
+</html>

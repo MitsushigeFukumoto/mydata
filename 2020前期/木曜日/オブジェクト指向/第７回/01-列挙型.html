@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="”robots”" content="”noindex,nofollow,noarchive”">
+  <meta name="generator" content="pandoc">
+  <title>列挙型 - enum</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">列挙型 - enum</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習1 第7回</p>
+<p>Javaでの列挙型について最も単純な使い方について解説します。</p>
+</blockquote>
+<h1 id="列挙型とは">列挙型とは</h1>
+<p>一連の値（定数値）とそれに関する処理を含めたものを定義することができる特殊なクラス</p>
+<h2 id="c言語の列挙型と似て非なるもの">C言語の列挙型と似て非なるもの</h2>
+<p>C言語での列挙型は、値として整数値しか持つことが出来ませんでした。<br />
+しかし、Javaの列挙型はクラス型と不変オブジェクトとメソッドを持てる特徴があります。</p>
+<p>後述しますが、定義された列挙型は広義ではクラスであり、列挙型の一つ一つの列挙子は、列挙型を実行時に即時インスタンス化された不変的なオブジェクトとなります。</p>
+<p>様々な参考書をみても書かれることが少なく見落とされがちなenumですが、Javaではとても強力な機能の一つです。</p>
+<h1 id="最も簡単な列挙型の定義方法">最も簡単な列挙型の定義方法</h1>
+<p>シンプルに列挙型を定義するには以下のように行う。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>アクセス修飾子 <span class="kw">enum</span> 列挙型名 {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    列挙子１,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    列挙子２,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    列挙子３,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>}</span></code></pre></div>
+<p>列挙型名は、通常のクラスやインターフェイスと同様、先頭文字を大文字とすることが通例です。</p>
+<h2 id="列挙子の書き方の補足">列挙子の書き方の補足</h2>
+<p><code>{ }</code>の中に入れる各列挙子は、<code>,</code>カンマで区切る必要があります。最後尾の列挙子については、以下のパターンで任意にカンマやセミコロンを付けることが可能です。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">enum</span> 列挙型名 {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    列挙子,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    列挙子,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    …</span>
+<span id="cb2-5"><a href="#cb2-5"></a>}</span></code></pre></div>
+<p>列挙子の最後にセミコロンが付いていても大丈夫です。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">enum</span> 列挙型名 {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    列挙子,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    列挙子,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    …;</span>
+<span id="cb3-5"><a href="#cb3-5"></a>}</span></code></pre></div>
+<p>また、C言語のenumと同様、最後の列挙子の末尾にカンマが付いていても大丈夫です。（単に無視される）</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">enum</span> 列挙型名 {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    列挙子,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    列挙子,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    …,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>}</span></code></pre></div>
+<p>通常は、この書き方をオススメします。理由は列挙子が後から追加されるときでもカンマのつけ忘れを極力防ぐことができるからです。(ただし、列挙型にフィールドやメソッドを実装する場合を除く)</p>
+<p>上記を組合わせて、最後にカンマとセミコロンが付いていても大丈夫です。（変なのでやらない方がよい）</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">enum</span> 列挙型名 {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    列挙子,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    列挙子,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    …,;</span>
+<span id="cb5-5"><a href="#cb5-5"></a>}</span></code></pre></div>
+<h2 id="列挙型の利用法switchを使う場合">列挙型の利用法(switchを使う場合)</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">public</span> <span class="kw">enum</span> EnumSample {</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    SAMPLE1,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    SAMPLE2,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    SAMPLE3,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>}</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">public</span> <span class="kw">class</span> Hoge {</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="fu">method</span>(EnumSample.<span class="fu">SAMPLE1</span>);</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        <span class="fu">method</span>(EnumSample.<span class="fu">SAMPLE2</span>);</span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="fu">method</span>(EnumSample.<span class="fu">SAMPLE3</span>);</span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a>        EnumSample e = EnumSample.<span class="fu">SAMPLE2</span>;</span>
+<span id="cb6-14"><a href="#cb6-14"></a>        <span class="fu">method</span>(e);</span>
+<span id="cb6-15"><a href="#cb6-15"></a></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    }</span>
+<span id="cb6-17"><a href="#cb6-17"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">method</span>(EnumSample e) {</span>
+<span id="cb6-18"><a href="#cb6-18"></a>        <span class="kw">switch</span> (e) {</span>
+<span id="cb6-19"><a href="#cb6-19"></a>            <span class="kw">case</span> EnumSample.<span class="fu">SAMPLE1</span>:</span>
+<span id="cb6-20"><a href="#cb6-20"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;1&quot;</span>);</span>
+<span id="cb6-21"><a href="#cb6-21"></a>                <span class="kw">break</span>;</span>
+<span id="cb6-22"><a href="#cb6-22"></a>            <span class="kw">case</span> EnumSample.<span class="fu">SAMPLE2</span>:</span>
+<span id="cb6-23"><a href="#cb6-23"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;2&quot;</span>);</span>
+<span id="cb6-24"><a href="#cb6-24"></a>                <span class="kw">break</span>;</span>
+<span id="cb6-25"><a href="#cb6-25"></a>            <span class="kw">default</span>:</span>
+<span id="cb6-26"><a href="#cb6-26"></a>                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;その他&quot;</span>);</span>
+<span id="cb6-27"><a href="#cb6-27"></a>                <span class="kw">break</span>;</span>
+<span id="cb6-28"><a href="#cb6-28"></a>        }</span>
+<span id="cb6-29"><a href="#cb6-29"></a>    }</span>
+<span id="cb6-30"><a href="#cb6-30"></a>}</span></code></pre></div>
+<p>実行結果は以下のようになります。</p>
+<pre><code>1
+2
+その他
+2</code></pre>
+<h1 id="enumは特殊なクラス">enumは特殊なクラス</h1>
+<p><strong><em>new演算子で新しくインスタンス生成はできない</em></strong> 制約があります。</p>
+<h1 id="メソッドやフィールドを持つ列挙型">メソッドやフィールドを持つ列挙型</h1>
+<p>Javaの列挙型はもとを辿れば他のクラスと同じです。そのため、メソッドやフィールドを持つことができます。</p>
+<p>月の名前を列挙子にて英語名、フィールドで日本語名を保持する列挙型のサンプルソースを見ながら解説します。</p>
+<h4 id="月列挙monthjava">月列挙(Month.java)</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">package</span><span class="im"> monthlist;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">public</span> <span class="kw">enum</span> Month {</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="co">// ↓ enumの列挙子の定義(これら一つ一つがインスタンスとして使用できる)</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">JANUARY</span>(<span class="st">&quot;睦月&quot;</span>),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="fu">FEBRUARY</span>(<span class="st">&quot;如月&quot;</span>),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="fu">MARCH</span>(<span class="st">&quot;弥生&quot;</span>),</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">APRIL</span>(<span class="st">&quot;卯月&quot;</span>),</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="fu">MAY</span>(<span class="st">&quot;皐月&quot;</span>),</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="fu">JUNE</span>(<span class="st">&quot;水無月&quot;</span>),</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="fu">JULY</span>(<span class="st">&quot;文月&quot;</span>),</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="fu">AUGUST</span>(<span class="st">&quot;葉月&quot;</span>),</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="fu">SEPTEMBER</span>(<span class="st">&quot;長月&quot;</span>),</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="fu">OCTOBER</span>(<span class="st">&quot;神無月&quot;</span>),</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="fu">NOVEMBER</span>(<span class="st">&quot;霜月&quot;</span>),</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="fu">DECEMBER</span>(<span class="st">&quot;師走&quot;</span>);</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="co">// ↑ enumの列挙子の定義</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a></span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="co">// ↓ 列挙子一つ一つに対してフィールド、メソッドを用意する</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="co">// 月の日本語名を格納するフィールド</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="kw">private</span> <span class="bu">String</span> name;</span>
+<span id="cb8-21"><a href="#cb8-21"></a>    <span class="co">// コンストラクタは必須でprivateにしておくこと、必ず列挙子の定義時に指定する引数を保つ必要があります。</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>    <span class="kw">private</span> <span class="fu">Month</span>(<span class="bu">String</span> name) {</span>
+<span id="cb8-23"><a href="#cb8-23"></a>        <span class="kw">this</span>.<span class="fu">name</span> = name;</span>
+<span id="cb8-24"><a href="#cb8-24"></a>    }</span>
+<span id="cb8-25"><a href="#cb8-25"></a>    <span class="co">// アクセサメソッド</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">getName</span>() {</span>
+<span id="cb8-27"><a href="#cb8-27"></a>        <span class="kw">return</span> name;</span>
+<span id="cb8-28"><a href="#cb8-28"></a>    }</span>
+<span id="cb8-29"><a href="#cb8-29"></a>}</span></code></pre></div>
+<p>慣れないと非常にわかりにくいですが、この列挙型では、列挙子1つ1つに、<code>name</code>フィールド,<code>String name</code>を引数に持つコンストラクタ、<code>getName</code>メソッドが実装され、列挙子の定義時に、コンストラクタが呼ばれています。</p>
+<h4 id="メインクラスmonthlistjava">メインクラス(MonthList.java)</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">package</span><span class="im"> monthlist;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">public</span> <span class="kw">class</span> MonthList {</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb9-4"><a href="#cb9-4"></a>        <span class="co">//Month.JANUARY.getName() で &quot;睦月&quot;が得られます。</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">JANUARY</span>);</span>
+<span id="cb9-6"><a href="#cb9-6"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">FEBRUARY</span>);</span>
+<span id="cb9-7"><a href="#cb9-7"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">MARCH</span>);</span>
+<span id="cb9-8"><a href="#cb9-8"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">APRIL</span>);</span>
+<span id="cb9-9"><a href="#cb9-9"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">MAY</span>);</span>
+<span id="cb9-10"><a href="#cb9-10"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">JUNE</span>);</span>
+<span id="cb9-11"><a href="#cb9-11"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">JULY</span>);</span>
+<span id="cb9-12"><a href="#cb9-12"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">AUGUST</span>);</span>
+<span id="cb9-13"><a href="#cb9-13"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">SEPTEMBER</span>);</span>
+<span id="cb9-14"><a href="#cb9-14"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">OCTOBER</span>);</span>
+<span id="cb9-15"><a href="#cb9-15"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">NOVEMBER</span>);</span>
+<span id="cb9-16"><a href="#cb9-16"></a>        <span class="fu">showMonthName</span>(Month.<span class="fu">DECEMBER</span>);</span>
+<span id="cb9-17"><a href="#cb9-17"></a>    }</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">showMonthName</span>(Month m) {</span>
+<span id="cb9-19"><a href="#cb9-19"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(m + <span class="st">&quot;:&quot;</span> + m.<span class="fu">getName</span>());</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    }</span>
+<span id="cb9-21"><a href="#cb9-21"></a>}</span></code></pre></div>
+<h4 id="実行結果">実行結果</h4>
+<pre><code>JANUARY:睦月
+FEBRUARY:如月
+MARCH:弥生
+APRIL:卯月
+MAY:皐月
+JUNE:水無月
+JULY:文月
+AUGUST:葉月
+SEPTEMBER:長月
+OCTOBER:神無月
+NOVEMBER:霜月
+DECEMBER:師走</code></pre>
+<h1 id="列挙型まとめ">列挙型まとめ</h1>
+<ol>
+<li>Javaにおいて、複数の値を持つ定数は列挙型で管理しよう。</li>
+<li>Javaの列挙型は、メソッドを持たせることが可能であり、それを利用することで様々な意味を持った定数を作成する事ができる。</li>
+<li>一見複雑な見た目のJavaのEnumは、型を意識したプログラミングにおいて、型の安全性を高めることができる。</li>
+</ol>
+<h2 id="その他詳しくは以下のリンクを熟読すること">その他詳しくは以下のリンクを熟読すること</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/jp/11/docs/api/java.base/java/lang/Enum.html" target="_blank">Enum (Java SE 11 &amp; JDK 11 )</a></li>
+<li><a href="https://www.atmarkit.co.jp/ait/articles/1103/03/news107.html" target="_blank">7ステップで理解するJavaでの列挙型／enum使用法 (1/3)：【改訂版】Eclipseではじめるプログラミング（21） - ＠IT</a></li>
+</ul>
+</body>
+</html>

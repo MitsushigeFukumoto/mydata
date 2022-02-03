@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js">
+    </script>
+    <script>
+      $(function(){
+        $("#switch").on("click", function(){
+          $("#block").toggle("normal");
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="style_2.css" type="text/css">
+  </head>
+  <body>
+    <div>
+      <button id="switch">切り替え</button>
+    </div>
+    <div id="block"></div>
+  </body>
+</html>

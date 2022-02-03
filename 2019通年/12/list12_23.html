@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(function(){
+        $("#btn").on("click", {name:"よしお"},sayHello);
+      });
+      function sayHello(event){
+        alert(event.data.name + "さん、こんにちは");
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn">クリック</button>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>絵文字ピッカー</title>
+    <script>
+      function init() {
+        // ユニ コード "1F300" から絵文字を表示
+        setEmoji("1F300");
+      }
+      function setEmoji(startCode) {
+        // 先頭コードを10進数に変換
+        var startCode10 = parseInt(startCode, 16);
+        // 絵文字ボタン (16×16) を作成
+        document.getElementById("emojiList").innerHTML = "";
+        var cnt = 0;
+        for (var i=0; i<16; i++) {
+          for (var j=0; j<16; j++) {
+            // ユニコードを取得
+            var code10 = startCode10 + cnt;
+            var code = code10.toString(16).toUpperCase();
+            endCode = code;
+            cnt++;
+            // ボタンを作成
+            var button = document.createElement("button");
+            button.id = "b_" + code;
+            button.innerHTML = "&#x" + code + ";";
+            button.onclick = pick;
+            document.getElementById("emojiList").appendChild(button);
+          }
+          // 改行（回り込み解除）
+          var clear = document.createElement("div");
+          document.getElementById("emojiList").appendChild(clear);
+        }
+        // 先頭コードと末尾コードを表示
+        document.getElementById("startCode").innerHTML = startCode;
+        document.getElementById("endCode").innerHTML = endCode;
+      }
+      function pick(e) {
+        // 選択した絵文字のコードを取得
+        var code = e.target.id.split("_")[1];
+        // 選択した絵文字要素を作成
+        var pick = document.createElement("div");
+        // 絵文字を作成
+        var emoji = document.createElement("button");
+        emoji.id = "p_" + code;
+        emoji.innerHTML = "&#x" + code + ";";
+        emoji.onclick = select;
+        emoji.oncontextmenu = erase;
+        pick.appendChild(emoji);
+        // HTML特殊文字コードを作成
+        var emojiCode = document.createElement("input");
+        emojiCode.type = "text";
+        emojiCode.value += "&#x" + code + ";";
+        pick.appendChild(emojiCode);
+        // 選択した絵文字要素を追加
+        document.getElementById("pickList").appendChild(pick);
+      }
+      function select(e) {
+        // HTML特殊文字コードを取得
+        var pick = document.getElementById(e.target.id).parentNode;
+        pick.children[1].select();
+      }
+      function erase(e) {
+        // デフォルトのメニュー表示をキャンセル
+        e.preventDefault();
+        // 絵文字要素を削除
+        var pick = document.getElementById(e.target.id).parentNode;
+        document.getElementById("pickList").removeChild(pick);
+      }
+      function changeEmoji(n) {
+        // 現在の先頭のユニコードを10進数の変換
+        var startCode = document.getElementById("startCode").innerHTML;
+        var code10 = parseInt(startCode, 16);
+        // n=0:前へ，1:後へ
+        if (n==0) {
+          // 256個前へ
+          code10 -= 256;
+          if (code10<0) code10 = 0;
+        } else {
+          // 256個後へ
+          code10 += 256;
+        }
+        // 16進数に変換，絵文字を表示
+        var code = code10.toString(16).toUpperCase();
+        setEmoji(code);
+      }
+      function searchEmoji() {
+        // 入力されたユニコードからの絵文字を表示
+        var code = document.getElementById("searchCode").value;
+        if (parseInt(code,16) >= 0) setEmoji(code);
+      }
+      function deleteAll() {
+        // 選択した絵文字をすべて削除
+        document.getElementById("pickList").innerHTML = "";
+      }
+    </script>
+    <style>
+      #emojiList {
+        margin-right: 10px;
+        float: left;
+      }
+      #emojiList button {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        float: left;
+      }
+      #emojiList div {clear: both;}
+      #pickList {overflow: hidden;}
+      #pickList button {
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+        vertical-align: bottom;
+      }
+      #pickList input {
+        width: 200px;
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body onload="init()">
+    <p>絵文字ピッカー</p>
+    Unicode: <span id="startCode"></span>～<span id="endCode"></span>
+    <input type="button" value="前へ" onclick="changeEmoji(0)">
+    <input type="button" value="後へ" onclick="changeEmoji(1)">
+    <input type="text" id="searchCode" value="2600" size="6">
+    <input type="button" value="検索" onclick="searchEmoji()">
+    <input type="button" value="絵文字欄を初期値に戻す" onclick="init()">
+    <input type="button" value="選択した絵文字をすべて削除" onclick="deleteAll()">
+    <hr>
+    <div id="emojiList"></div>
+    <div id="pickList"></div>
+  </body>
+</html>

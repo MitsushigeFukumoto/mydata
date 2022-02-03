@@ -1,0 +1,20 @@
+CheckTeat1
+Q1 HTMLタグが解析され、DOMが利用可能になったとき
+Q2 $(function(){});
+CheckTest2
+Q1 div p
+Q2 div >*
+CheckTest3
+Q1 :first
+Q2 [name='hoge']
+CheckTest4
+Q1 A on B html
+Q2 A attr B name
+到達度チェック
+Q1 p,#hoge
+Q2 off
+Q3 .filter
+Q4 A click B toggleClass
+Q5 replaceWith
+Q6 append
+Q7 A empty B after

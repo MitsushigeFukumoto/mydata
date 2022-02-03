@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="generator" content="pandoc">
+  <title>Python GUIライブラリの紹介</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+div.sourceCode pre,
+div.sourceCode code {
+  background-color: transparent;
+  margin: 0;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">Python GUIライブラリの紹介</h1>
+        </header>
+<blockquote>
+<p>PythonでGUIアプリを作る場合の選択肢</p>
+</blockquote>
+<p>PythonでGUIアプリ(デスクトップ向けアプリケーション)を作るには、大抵の場合ライブラリを利用することになります。</p>
+<p>この資料は、GUIライブラリの代表的なものをいくつか紹介して、必要に応じて選択ができるようにする目的があります。 作成しようと思っているアプリケーションによって、使用するライブラリを選定していただければ幸いです。</p>
+<h2 id="pythongui">Pythonでの代表的なGUIライブラリ</h2>
+<p>この講義では、GUIアプリの作成にTkinterを使用しました。 TkinterはPython公式のライブラリに標準搭載されており、ライブラリ自体を別途インストールする必要のないGUIライブラリです。 講義ではMacOSを使用する関係上、MacOS上のTcl/Tkライブラリのインストールや細かな設定変更が必要でしたが、これでも標準ライブラリの一つです。</p>
+<p>Tkinterも含めてPythonで利用できる代表的なGUIライブラリを紹介します。</p>
+<ol>
+<li>Tkinter
+<ul>
+<li>Python標準ライブラリ</li>
+<li>古くからあるTclというスクリプト言語を使ってGUIライブラリを作成するTkと呼ばれるツールを使用するためのPythonライブラリで、PythonのコードをTcl/Tkに変換することで動作します。MacOSでそのまま動作しなかったのは、Tcl/Tk自体がMacOSのライブラリ群から外されたり設定が変わっていたりで面倒なことになっていました。</li>
+<li>参考リンク : <a href="https://docs.python.org/ja/3/library/tkinter.html">tkinter --- Tcl/Tk の Python インタフェース — Python 3.9.0 ドキュメント</a></li>
+</ul></li>
+<li>Kivy
+<ul>
+<li>クロスプラットフォーム対応のGUIライブラリ
+<ul>
+<li>Windows,MacOS,Linuxだけでなく、AndroidやiOS向けのアプリ開発もできるらしいが、私は詳しくありません。</li>
+</ul></li>
+<li>グラフィックの描写にOpenGLを用いることで、動作の軽量化やゲーム開発などにも対応できる</li>
+<li>デメリットは、GUIの標準パーツに少し癖がある。しかし、それを許容できれば問題はない</li>
+<li>参考リンク : <a href="https://kivy.org/#home">Kivy: Cross-platform Python Framework for NUI Development</a></li>
+</ul></li>
+<li>PyQt
+<ul>
+<li>Qtと呼ばれるGUIライブラリをPythonで使えるようにしたライブラリ
+<ul>
+<li>Qt自体はC++で記述されているため敷居が高く使用しづらいものだが、こちらはPythonコードで書けるため重宝されている。</li>
+</ul></li>
+<li>GUIの各パーツやコンポーネントが洗練されており、ネイティブアプリと遜色ないデザインのアプリが作れる</li>
+<li>現時点では、PyQt4とPyQt5でバージョンが混在しているが、Python 3.8.5を使用するならPyQt5で良いと思われる</li>
+<li>デメリットはPyQtはGPLライセンスを採用している関係で、商用利用は有償となる点で、どうしても無料で商用利用したい場合は、機能が少し制限されているPySideというライブラリがあるためそちらを使用すること(PySideの機能制限は意図的なものか単に開発が遅いだけかは判断ができていません)
+<ul>
+<li>ライセンスについてはこちらを参照してください : <a href="https://www.gnu.org/licenses/gpl-faq.ja.html">GNUライセンスに関してよく聞かれる質問 - GNUプロジェクト - フリーソフトウェアファウンデーション</a></li>
+</ul></li>
+<li>参考リンク : <a href="https://wiki.python.org/moin/PyQt">PyQt - Python Wiki</a>
+<ul>
+<li>インストールから動作確認のチュートリアルにvenvを使用する旨が記載されているが、venvはPythonライブラリの使用バージョンを細かく分けるためのプロジェクト構築系ライブラリです。これを使う前には、venvについて少し調べてから使用してください。</li>
+</ul></li>
+</ul></li>
+<li>wxPython
+<ul>
+<li>wxWidgetと呼ばれるGUIライブラリのPython版
+<ul>
+<li>wxWidgetもC++</li>
+</ul></li>
+<li>他のGUIライブラリと比べるとアプリの動作が安定しているらしい</li>
+<li>Tkinterと比べて、追加されたコンポーネントが豊富で、外部ツールに優秀な画面デザイン作成ツールがあるのが魅力(他のGUIライブラリにもデザイン作成ツールはあるが、使用感がそこまで良くない)
+<ul>
+<li><a href="https://github.com/wxformbuilder/wxformbuilder/releases">wxFormBuilder/wxFormBuilder</a></li>
+</ul></li>
+<li>参考リンク : <a href="https://wxpython.org/#">Welcome to wxPython! | wxPython</a></li>
+</ul></li>
+</ol>
+<p>代表的でないもの関しては割愛いたします。</p>
+<h2 id="gui">GUIライブラリの選定方法</h2>
+<p>各GUIライブラリを使用したサンプルプログラムやGitHubなどで公開されている実際に作成されたアプリケーションのコード等をよく見て、実行結果のデザイン、コードの書きやすさ、拡張のしやすさなど、開発しようとしているアプリケーションにうまく適合するライブラリを選んでください。</p>
+<p>ライブラリの選定自体がプロジェクト開発の足かせになる場合があるので、選定は慎重に行いましょう。</p>
+<h2 id="webgui">Webアプリケーションとデスクトップ向けGUIアプリケーション</h2>
+<p>Webアプリケーションは、Webブラウザ上で動作するアプリケーションのため、正しくクロスプラットフォームなアプリケーションと言えます。 昨今のアプリケーション開発事情で言うと、わざわざGUIライブラリを使用して開発するよりは、Webでいいよね？となるケースが多いように思います。</p>
+<p>ただし、もちろんのことながらWebアプリケーション、GUIアプリそれぞれメリット・デメリットが存在しているのでそれらをよく理解した上で、Webかデスクトップ向けGUIアプリかを選びましょう。</p>
+<p>例えば……</p>
+<p>Webアプリケーションのメリット:</p>
+<ul>
+<li>画面の構築はHTML,CSS, JavaScriptなどのWeb標準技術である</li>
+<li>Webブラウザで動作し、Webブラウザは大抵のプラットフォームで標準搭載されているため導入が容易</li>
+<li>デスクトップアプリケーションや、モバイル向けアプリケーションもWeb技術の延長で作れなくもない</li>
+</ul>
+<p>Webアプリケーションのデメリット:</p>
+<ul>
+<li>Webアプリケーションをインターネット上で動作させるには、必ずWebアプリケーションを動作させるためのWebサーバーが必要で、基本的に有料である</li>
+<li>通信仕様のHTTPを勉強することが必須かつ、ある程度のコンピュータネットワークに対する知識が必要</li>
+<li>HTML,CSS,JavaScriptを覚えなくてはならない</li>
+<li>新機能や新仕様の開発ペースが他と比べると格段に早く、常に新しいことに対して敏感にならないと置いていかれる可能性が高い</li>
+</ul>
+<p>それに対してデスクトップアプリケーションは、配布さえできればどうにでもなります。</p>
+<p>状況に応じて、デスクトップアプリケーションかWebかを選びましょう。</p>
+<p>(※講師の永谷はWebを猛プッシュします。)</p>
+</body>
+</html>

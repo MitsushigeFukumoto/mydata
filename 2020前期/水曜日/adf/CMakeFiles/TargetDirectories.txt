@@ -1,0 +1,3 @@
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeFiles/face_k19093.dir
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeFiles/ALL_BUILD.dir
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeFiles/ZERO_CHECK.dir

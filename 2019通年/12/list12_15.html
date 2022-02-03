@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(function(){
+        var elm = $("#fruits > li");
+        elm.css("background-color", "red");
+        elm.filter(":even").css("color", "white");
+      });
+    </script>
+  </head>
+  <body>
+    <ul id="fruits">
+      <li>りんご</li>
+      <li>みかん</li>
+      <li>いちご</li>
+      <li>ぶどう</li>
+      <li>いよかん</li>
+    </ul>
+  </body>
+</html>

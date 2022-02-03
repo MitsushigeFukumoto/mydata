@@ -1,0 +1,639 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		08DB9DE7E6E14CEF8842F5F5 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1B842E303800420B8DBAC12C /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				0D7FF37BB9A84D14807C2809 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		0E657141551444ED8F775968 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B3FE6958DC014976B2FBA58D /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				E40559A108A9425AAE1A3221 /* CMake Rules */,
+			);
+			dependencies = (
+				39B7E7B1BCC34867A67E6FD2 /* PBXTargetDependency */,
+				7C1148181FFC4067BDEDA01A /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		336287FA638D4CAC87825404 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/face_k19093.cpp */ = {isa = PBXBuildFile; fileRef = 1B028761F5C1489CB3A8DFE0 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/face_k19093.cpp */; };
+		46A81173327D46EEBF7EC919 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 56BE21ECDDD049108CDADBA8 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeLists.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		2286FDB6C2C94B26AF906DEA /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		635A984CD7874002962BFCF5 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		7BBD172CF6DB4C838266D7D0 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		CEF65CD7D61A402AA9BF018C /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		544B830440F644DDA40A4D02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3117781E19E24D5097EC5B3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03E70610A5D741FAA00144F9;
+			remoteInfo = face_k19093;
+		};
+		6C3BAC9042634CA8A3F9E594 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3117781E19E24D5097EC5B3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08DB9DE7E6E14CEF8842F5F5;
+			remoteInfo = ZERO_CHECK;
+		};
+		F51AB486EBE84FCA80BBF88B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3117781E19E24D5097EC5B3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08DB9DE7E6E14CEF8842F5F5;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		195553CD04134A1185D085E8 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		1B028761F5C1489CB3A8DFE0 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/face_k19093.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = face_k19093.cpp; path = face_k19093.cpp; sourceTree = SOURCE_ROOT; };
+		56BE21ECDDD049108CDADBA8 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		E4C6FFD22D0644FBBF46DB36 /* face_k19093 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = face_k19093; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06B412C4890B48E58BBDB39F /* face_k19093 */ = {
+			isa = PBXGroup;
+			children = (
+				C53DA90D3FFC43A59D28D3CC /* Source Files */,
+				56BE21ECDDD049108CDADBA8 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeLists.txt */,
+			);
+			name = face_k19093;
+			sourceTree = "<group>";
+		};
+		21204C7F52234F12BD8B9AFA = {
+			isa = PBXGroup;
+			children = (
+				06B412C4890B48E58BBDB39F /* face_k19093 */,
+				A278AD83C32043EBBEE4B62B /* ALL_BUILD */,
+				D5B64D91D68040F9A653D590 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A278AD83C32043EBBEE4B62B /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				A2FF08D3CFB9442EA91FCCF8 /* CMake Rules */,
+				195553CD04134A1185D085E8 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		A2FF08D3CFB9442EA91FCCF8 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		C53DA90D3FFC43A59D28D3CC /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B028761F5C1489CB3A8DFE0 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/face_k19093.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		D5B64D91D68040F9A653D590 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E4C6FFD22D0644FBBF46DB36 /* face_k19093 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03E70610A5D741FAA00144F9 /* face_k19093 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA6A70395E9940959C56BF7F /* Build configuration list for PBXNativeTarget "face_k19093" */;
+			buildPhases = (
+				D51529A6FE22463A9F93CBFB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A5F373E2BBC448281E21686 /* PBXTargetDependency */,
+			);
+			name = face_k19093;
+			productName = face_k19093;
+			productReference = E4C6FFD22D0644FBBF46DB36 /* face_k19093 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3117781E19E24D5097EC5B3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1140;
+			};
+			buildConfigurationList = 9C0C0972260B46448B423269 /* Build configuration list for PBXProject "face_k19093" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				2286FDB6C2C94B26AF906DEA /* Debug */,
+				7BBD172CF6DB4C838266D7D0 /* Release */,
+				635A984CD7874002962BFCF5 /* MinSizeRel */,
+				CEF65CD7D61A402AA9BF018C /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 21204C7F52234F12BD8B9AFA;
+			projectDirPath = .;
+			projectRoot = "";
+			targets = (
+				0E657141551444ED8F775968 /* ALL_BUILD */,
+				08DB9DE7E6E14CEF8842F5F5 /* ZERO_CHECK */,
+				03E70610A5D741FAA00144F9 /* face_k19093 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D7FF37BB9A84D14807C2809 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/k19093kk/src/imgProc/第1回/01_01_k19093 -f /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+		A6A4E05B97554D8B980B3A64 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		E40559A108A9425AAE1A3221 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/k19093kk/src/imgProc/第1回/01_01_k19093 -f /Users/k19093kk/src/imgProc/第1回/01_01_k19093/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+		EE73E26705A94FB59A527C49 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D51529A6FE22463A9F93CBFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				336287FA638D4CAC87825404 /* /Users/k19093kk/src/imgProc/第1回/01_01_k19093/face_k19093.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		39B7E7B1BCC34867A67E6FD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08DB9DE7E6E14CEF8842F5F5 /* ZERO_CHECK */;
+			targetProxy = F51AB486EBE84FCA80BBF88B /* PBXContainerItemProxy */;
+		};
+		7C1148181FFC4067BDEDA01A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03E70610A5D741FAA00144F9 /* face_k19093 */;
+			targetProxy = 544B830440F644DDA40A4D02 /* PBXContainerItemProxy */;
+		};
+		8A5F373E2BBC448281E21686 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08DB9DE7E6E14CEF8842F5F5 /* ZERO_CHECK */;
+			targetProxy = 6C3BAC9042634CA8A3F9E594 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		03534FAFCCDA4D8DAFD84A79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /usr/local/lib/libopencv_gapi.4.3.0.dylib /usr/local/lib/libopencv_stitching.4.3.0.dylib /usr/local/lib/libopencv_alphamat.4.3.0.dylib /usr/local/lib/libopencv_aruco.4.3.0.dylib /usr/local/lib/libopencv_bgsegm.4.3.0.dylib /usr/local/lib/libopencv_bioinspired.4.3.0.dylib /usr/local/lib/libopencv_ccalib.4.3.0.dylib /usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib /usr/local/lib/libopencv_dnn_superres.4.3.0.dylib /usr/local/lib/libopencv_dpm.4.3.0.dylib /usr/local/lib/libopencv_face.4.3.0.dylib /usr/local/lib/libopencv_freetype.4.3.0.dylib /usr/local/lib/libopencv_fuzzy.4.3.0.dylib /usr/local/lib/libopencv_hfs.4.3.0.dylib /usr/local/lib/libopencv_img_hash.4.3.0.dylib /usr/local/lib/libopencv_intensity_transform.4.3.0.dylib /usr/local/lib/libopencv_line_descriptor.4.3.0.dylib /usr/local/lib/libopencv_quality.4.3.0.dylib /usr/local/lib/libopencv_rapid.4.3.0.dylib /usr/local/lib/libopencv_reg.4.3.0.dylib /usr/local/lib/libopencv_rgbd.4.3.0.dylib /usr/local/lib/libopencv_saliency.4.3.0.dylib /usr/local/lib/libopencv_sfm.4.3.0.dylib /usr/local/lib/libopencv_stereo.4.3.0.dylib /usr/local/lib/libopencv_structured_light.4.3.0.dylib /usr/local/lib/libopencv_superres.4.3.0.dylib /usr/local/lib/libopencv_surface_matching.4.3.0.dylib /usr/local/lib/libopencv_tracking.4.3.0.dylib /usr/local/lib/libopencv_videostab.4.3.0.dylib /usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib /usr/local/lib/libopencv_xobjdetect.4.3.0.dylib /usr/local/lib/libopencv_xphoto.4.3.0.dylib /usr/local/lib/libopencv_highgui.4.3.0.dylib /usr/local/lib/libopencv_shape.4.3.0.dylib /usr/local/lib/libopencv_datasets.4.3.0.dylib /usr/local/lib/libopencv_plot.4.3.0.dylib /usr/local/lib/libopencv_text.4.3.0.dylib /usr/local/lib/libopencv_dnn.4.3.0.dylib /usr/local/lib/libopencv_ml.4.3.0.dylib /usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib /usr/local/lib/libopencv_optflow.4.3.0.dylib /usr/local/lib/libopencv_ximgproc.4.3.0.dylib /usr/local/lib/libopencv_video.4.3.0.dylib /usr/local/lib/libopencv_videoio.4.3.0.dylib /usr/local/lib/libopencv_imgcodecs.4.3.0.dylib /usr/local/lib/libopencv_objdetect.4.3.0.dylib /usr/local/lib/libopencv_calib3d.4.3.0.dylib /usr/local/lib/libopencv_features2d.4.3.0.dylib /usr/local/lib/libopencv_flann.4.3.0.dylib /usr/local/lib/libopencv_photo.4.3.0.dylib /usr/local/lib/libopencv_imgproc.4.3.0.dylib /usr/local/lib/libopencv_core.4.3.0.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = face_k19093;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/Cellar/opencv/4.3.0/include/opencv4);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		0826C992F1D2473A9A811968 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /usr/local/lib/libopencv_gapi.4.3.0.dylib /usr/local/lib/libopencv_stitching.4.3.0.dylib /usr/local/lib/libopencv_alphamat.4.3.0.dylib /usr/local/lib/libopencv_aruco.4.3.0.dylib /usr/local/lib/libopencv_bgsegm.4.3.0.dylib /usr/local/lib/libopencv_bioinspired.4.3.0.dylib /usr/local/lib/libopencv_ccalib.4.3.0.dylib /usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib /usr/local/lib/libopencv_dnn_superres.4.3.0.dylib /usr/local/lib/libopencv_dpm.4.3.0.dylib /usr/local/lib/libopencv_face.4.3.0.dylib /usr/local/lib/libopencv_freetype.4.3.0.dylib /usr/local/lib/libopencv_fuzzy.4.3.0.dylib /usr/local/lib/libopencv_hfs.4.3.0.dylib /usr/local/lib/libopencv_img_hash.4.3.0.dylib /usr/local/lib/libopencv_intensity_transform.4.3.0.dylib /usr/local/lib/libopencv_line_descriptor.4.3.0.dylib /usr/local/lib/libopencv_quality.4.3.0.dylib /usr/local/lib/libopencv_rapid.4.3.0.dylib /usr/local/lib/libopencv_reg.4.3.0.dylib /usr/local/lib/libopencv_rgbd.4.3.0.dylib /usr/local/lib/libopencv_saliency.4.3.0.dylib /usr/local/lib/libopencv_sfm.4.3.0.dylib /usr/local/lib/libopencv_stereo.4.3.0.dylib /usr/local/lib/libopencv_structured_light.4.3.0.dylib /usr/local/lib/libopencv_superres.4.3.0.dylib /usr/local/lib/libopencv_surface_matching.4.3.0.dylib /usr/local/lib/libopencv_tracking.4.3.0.dylib /usr/local/lib/libopencv_videostab.4.3.0.dylib /usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib /usr/local/lib/libopencv_xobjdetect.4.3.0.dylib /usr/local/lib/libopencv_xphoto.4.3.0.dylib /usr/local/lib/libopencv_highgui.4.3.0.dylib /usr/local/lib/libopencv_shape.4.3.0.dylib /usr/local/lib/libopencv_datasets.4.3.0.dylib /usr/local/lib/libopencv_plot.4.3.0.dylib /usr/local/lib/libopencv_text.4.3.0.dylib /usr/local/lib/libopencv_dnn.4.3.0.dylib /usr/local/lib/libopencv_ml.4.3.0.dylib /usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib /usr/local/lib/libopencv_optflow.4.3.0.dylib /usr/local/lib/libopencv_ximgproc.4.3.0.dylib /usr/local/lib/libopencv_video.4.3.0.dylib /usr/local/lib/libopencv_videoio.4.3.0.dylib /usr/local/lib/libopencv_imgcodecs.4.3.0.dylib /usr/local/lib/libopencv_objdetect.4.3.0.dylib /usr/local/lib/libopencv_calib3d.4.3.0.dylib /usr/local/lib/libopencv_features2d.4.3.0.dylib /usr/local/lib/libopencv_flann.4.3.0.dylib /usr/local/lib/libopencv_photo.4.3.0.dylib /usr/local/lib/libopencv_imgproc.4.3.0.dylib /usr/local/lib/libopencv_core.4.3.0.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = face_k19093;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/Cellar/opencv/4.3.0/include/opencv4);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		16CB695A2D164F198A57FB7C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		3A724032EF5045878F6EFB2C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093/build";
+			};
+			name = MinSizeRel;
+		};
+		51E7AE2B1F1B43E6A302B85B /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /usr/local/lib/libopencv_gapi.4.3.0.dylib /usr/local/lib/libopencv_stitching.4.3.0.dylib /usr/local/lib/libopencv_alphamat.4.3.0.dylib /usr/local/lib/libopencv_aruco.4.3.0.dylib /usr/local/lib/libopencv_bgsegm.4.3.0.dylib /usr/local/lib/libopencv_bioinspired.4.3.0.dylib /usr/local/lib/libopencv_ccalib.4.3.0.dylib /usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib /usr/local/lib/libopencv_dnn_superres.4.3.0.dylib /usr/local/lib/libopencv_dpm.4.3.0.dylib /usr/local/lib/libopencv_face.4.3.0.dylib /usr/local/lib/libopencv_freetype.4.3.0.dylib /usr/local/lib/libopencv_fuzzy.4.3.0.dylib /usr/local/lib/libopencv_hfs.4.3.0.dylib /usr/local/lib/libopencv_img_hash.4.3.0.dylib /usr/local/lib/libopencv_intensity_transform.4.3.0.dylib /usr/local/lib/libopencv_line_descriptor.4.3.0.dylib /usr/local/lib/libopencv_quality.4.3.0.dylib /usr/local/lib/libopencv_rapid.4.3.0.dylib /usr/local/lib/libopencv_reg.4.3.0.dylib /usr/local/lib/libopencv_rgbd.4.3.0.dylib /usr/local/lib/libopencv_saliency.4.3.0.dylib /usr/local/lib/libopencv_sfm.4.3.0.dylib /usr/local/lib/libopencv_stereo.4.3.0.dylib /usr/local/lib/libopencv_structured_light.4.3.0.dylib /usr/local/lib/libopencv_superres.4.3.0.dylib /usr/local/lib/libopencv_surface_matching.4.3.0.dylib /usr/local/lib/libopencv_tracking.4.3.0.dylib /usr/local/lib/libopencv_videostab.4.3.0.dylib /usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib /usr/local/lib/libopencv_xobjdetect.4.3.0.dylib /usr/local/lib/libopencv_xphoto.4.3.0.dylib /usr/local/lib/libopencv_highgui.4.3.0.dylib /usr/local/lib/libopencv_shape.4.3.0.dylib /usr/local/lib/libopencv_datasets.4.3.0.dylib /usr/local/lib/libopencv_plot.4.3.0.dylib /usr/local/lib/libopencv_text.4.3.0.dylib /usr/local/lib/libopencv_dnn.4.3.0.dylib /usr/local/lib/libopencv_ml.4.3.0.dylib /usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib /usr/local/lib/libopencv_optflow.4.3.0.dylib /usr/local/lib/libopencv_ximgproc.4.3.0.dylib /usr/local/lib/libopencv_video.4.3.0.dylib /usr/local/lib/libopencv_videoio.4.3.0.dylib /usr/local/lib/libopencv_imgcodecs.4.3.0.dylib /usr/local/lib/libopencv_objdetect.4.3.0.dylib /usr/local/lib/libopencv_calib3d.4.3.0.dylib /usr/local/lib/libopencv_features2d.4.3.0.dylib /usr/local/lib/libopencv_flann.4.3.0.dylib /usr/local/lib/libopencv_photo.4.3.0.dylib /usr/local/lib/libopencv_imgproc.4.3.0.dylib /usr/local/lib/libopencv_core.4.3.0.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = face_k19093;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/Cellar/opencv/4.3.0/include/opencv4);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		6307F0932A494B9CB7911606 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093/build";
+			};
+			name = Release;
+		};
+		74CF36A32E5A43E2B5DB77E2 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /usr/local/lib/libopencv_gapi.4.3.0.dylib /usr/local/lib/libopencv_stitching.4.3.0.dylib /usr/local/lib/libopencv_alphamat.4.3.0.dylib /usr/local/lib/libopencv_aruco.4.3.0.dylib /usr/local/lib/libopencv_bgsegm.4.3.0.dylib /usr/local/lib/libopencv_bioinspired.4.3.0.dylib /usr/local/lib/libopencv_ccalib.4.3.0.dylib /usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib /usr/local/lib/libopencv_dnn_superres.4.3.0.dylib /usr/local/lib/libopencv_dpm.4.3.0.dylib /usr/local/lib/libopencv_face.4.3.0.dylib /usr/local/lib/libopencv_freetype.4.3.0.dylib /usr/local/lib/libopencv_fuzzy.4.3.0.dylib /usr/local/lib/libopencv_hfs.4.3.0.dylib /usr/local/lib/libopencv_img_hash.4.3.0.dylib /usr/local/lib/libopencv_intensity_transform.4.3.0.dylib /usr/local/lib/libopencv_line_descriptor.4.3.0.dylib /usr/local/lib/libopencv_quality.4.3.0.dylib /usr/local/lib/libopencv_rapid.4.3.0.dylib /usr/local/lib/libopencv_reg.4.3.0.dylib /usr/local/lib/libopencv_rgbd.4.3.0.dylib /usr/local/lib/libopencv_saliency.4.3.0.dylib /usr/local/lib/libopencv_sfm.4.3.0.dylib /usr/local/lib/libopencv_stereo.4.3.0.dylib /usr/local/lib/libopencv_structured_light.4.3.0.dylib /usr/local/lib/libopencv_superres.4.3.0.dylib /usr/local/lib/libopencv_surface_matching.4.3.0.dylib /usr/local/lib/libopencv_tracking.4.3.0.dylib /usr/local/lib/libopencv_videostab.4.3.0.dylib /usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib /usr/local/lib/libopencv_xobjdetect.4.3.0.dylib /usr/local/lib/libopencv_xphoto.4.3.0.dylib /usr/local/lib/libopencv_highgui.4.3.0.dylib /usr/local/lib/libopencv_shape.4.3.0.dylib /usr/local/lib/libopencv_datasets.4.3.0.dylib /usr/local/lib/libopencv_plot.4.3.0.dylib /usr/local/lib/libopencv_text.4.3.0.dylib /usr/local/lib/libopencv_dnn.4.3.0.dylib /usr/local/lib/libopencv_ml.4.3.0.dylib /usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib /usr/local/lib/libopencv_optflow.4.3.0.dylib /usr/local/lib/libopencv_ximgproc.4.3.0.dylib /usr/local/lib/libopencv_video.4.3.0.dylib /usr/local/lib/libopencv_videoio.4.3.0.dylib /usr/local/lib/libopencv_imgcodecs.4.3.0.dylib /usr/local/lib/libopencv_objdetect.4.3.0.dylib /usr/local/lib/libopencv_calib3d.4.3.0.dylib /usr/local/lib/libopencv_features2d.4.3.0.dylib /usr/local/lib/libopencv_flann.4.3.0.dylib /usr/local/lib/libopencv_photo.4.3.0.dylib /usr/local/lib/libopencv_imgproc.4.3.0.dylib /usr/local/lib/libopencv_core.4.3.0.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = face_k19093;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/Cellar/opencv/4.3.0/include/opencv4);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		78F05B36B97A44F5AD20FA87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		888D5C9104E54FA8B4B78549 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093/build";
+			};
+			name = Debug;
+		};
+		91A993DECEB44148BB3E4156 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		9800A7D0A3604307AEB5A39D /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk;
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093/build";
+			};
+			name = RelWithDebInfo;
+		};
+		D7B4B23717424EC28D28BCB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		DA29D74A6D3744458AD652DB /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E59F94EF8D49454CB74FB671 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		EC841852F6F94EAA8F831951 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		EF7930B6238E4CF78E4397BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/k19093kk/src/imgProc/第1回/01_01_k19093";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1B842E303800420B8DBAC12C /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91A993DECEB44148BB3E4156 /* Debug */,
+				EF7930B6238E4CF78E4397BA /* Release */,
+				16CB695A2D164F198A57FB7C /* MinSizeRel */,
+				EC841852F6F94EAA8F831951 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9C0C0972260B46448B423269 /* Build configuration list for PBXProject "face_k19093" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				888D5C9104E54FA8B4B78549 /* Debug */,
+				6307F0932A494B9CB7911606 /* Release */,
+				3A724032EF5045878F6EFB2C /* MinSizeRel */,
+				9800A7D0A3604307AEB5A39D /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B3FE6958DC014976B2FBA58D /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78F05B36B97A44F5AD20FA87 /* Debug */,
+				D7B4B23717424EC28D28BCB0 /* Release */,
+				E59F94EF8D49454CB74FB671 /* MinSizeRel */,
+				DA29D74A6D3744458AD652DB /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EA6A70395E9940959C56BF7F /* Build configuration list for PBXNativeTarget "face_k19093" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03534FAFCCDA4D8DAFD84A79 /* Debug */,
+				0826C992F1D2473A9A811968 /* Release */,
+				51E7AE2B1F1B43E6A302B85B /* MinSizeRel */,
+				74CF36A32E5A43E2B5DB77E2 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3117781E19E24D5097EC5B3B /* Project object */;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>ソナグラフ</title>
+    <script>
+      var audioContext = new AudioContext(); // オーディオコンテキスト
+      var micStream, sourceNode; // マイク入力，Sourceノード
+      var analyserNode, dataArray; // Analyserノード
+      var canvas, canvasContext; // キャンバス
+      var timer, cnt = 0, clipCnt = 0; // タイマー，カウンター
+      function init() {
+        // キャンバスの取得
+        canvas = document.getElementById("graph");
+        canvasContext = canvas.getContext("2d");
+        // Analyserノードの作成
+        analyserNode = audioContext.createAnalyser();
+        if (audioContext.sampleRate % 44100 == 0) {
+          analyserNode.fftSize = audioContext.sampleRate/44100*2048;
+        } else if (audioContext.sampleRate % 48000 == 0) {
+          analyserNode.fftSize = audioContext.sampleRate/48000*2048;
+        }
+        dataArray = new Uint8Array(analyserNode.frequencyBinCount);
+        // 軸の描画
+        drawAxis();
+      }
+      function connectMic() {
+        // マイクからの入力を開始
+        navigator.mediaDevices.getUserMedia({
+          audio: true, video: false
+        }).then(function(stream) {
+          // 接続成功
+          micStream = stream;
+          document.getElementById("status").innerHTML = "解析中";
+          document.getElementById("start").disabled = true;
+          // マイクからの入力をSourceノードへセット，ノードの接続
+          sourceNode = audioContext.createMediaStreamSource(micStream);
+          sourceNode.connect(analyserNode);
+          analyserNode.connect(audioContext.destination);
+          audioContext.resume();
+          // 解析開始
+          drawAxis();
+          cnt = 0;
+          timer = setInterval(analyze,20);
+        }).catch(function(error) {
+          // 接続失敗（エラー名を表示）
+          document.getElementById("status").innerHTML = error.name;
+        });
+      }
+      function drawAxis() {
+        // キャンバスを黒で塗りつぶす
+        canvasContext.fillStyle = "#000000";
+        canvasContext.fillRect(0,0,canvas.width,canvas.height);
+        // 軸の描画
+        canvasContext.strokeStyle = "#FFFFFF";
+        canvasContext.beginPath();
+        canvasContext.moveTo(40,canvas.height-39);
+        canvasContext.lineTo(canvas.width,canvas.height-39);
+        canvasContext.moveTo(40,canvas.height-40);
+        canvasContext.lineTo(40,0);
+        canvasContext.stroke();
+        // ラベルの描画
+        canvasContext.fillStyle = "#FFFFFF";
+        canvasContext.font = "12px monospace";
+        // 縦軸（Hz）
+        canvasContext.textAlign = "right";
+        canvasContext.textBaseline = "middle";
+        canvasContext.fillText("[Hz]",35,20);
+        for (var i=0; i<11; i++) {
+          // 周波数i×1000Hzの位置
+          var d = i*1000/audioContext.sampleRate*analyserNode.fftSize;
+          var y = (canvas.height - 40) * (1-d/521);
+          if (i == 0) {
+            canvasContext.fillText(i,35,y)
+          } else {
+            canvasContext.fillText(i+"k",35,y);
+          }
+        }
+        // 横軸（s）
+        canvasContext.textAlign = "center";
+        canvasContext.textBaseline = "top";
+        canvasContext.fillText("[s]",canvas.width-20,canvas.height-35);
+        for (var i=0; i<12; i++) {
+          if (i == 0) {
+            canvasContext.fillText(i,i*50+40,canvas.height-35);
+          } else {
+            canvasContext.fillText(i+".0",i*50+40,canvas.height-35);
+          }
+        }
+      }
+      function analyze() {
+        // 周波数は波形データを取得
+        analyserNode.getByteFrequencyData(dataArray);
+        // 解析データを描画（0～511）
+        for (var i=0; i<512; i++) {
+          var x = cnt + 40;
+          var y = (canvas.height - 40) * (1-i/512);
+          var color = "hsl("+(255-dataArray[i])+",100%,50%)";
+          if (dataArray[i] == 0) color = "#000000";
+          canvasContext.fillStyle = color;
+          canvasContext.fillRect(x,y,1,1);
+        }
+        // カウンタの更新，終了処理
+        cnt++;
+        if (cnt > canvas.width-40) {
+          // 解析終了
+          clearInterval(timer);
+          document.getElementById("status").innerHTML = "解析終了";
+          // マイク切断
+          micStream.getAudioTracks()[0].stop();
+          document.getElementById("start").disabled = false;
+        }
+      }
+      function clip() {
+        // グラフのクリップ
+        var titleText = window.prompt("クリップしますか？","voice_"+clipCnt);
+        if (titleText != null) {
+          // クリップを作成
+          var clipDiv = document.createElement("div");
+          clipDiv.id = "clip_"+clipCnt;
+          // タイトル
+          var title = document.createElement("div");
+          title.innerText = titleText;
+          clipDiv.appendChild(title);
+          // 削除ボタン
+          var del = document.createElement("span");
+          del.innerText = " [✕]";
+          del.onclick = deleteClip;
+          title.appendChild(del);
+          // グラフを画像に変換
+          var image = document.createElement("img");
+          image.src = canvas.toDataURL("image/png");
+          image.width = 240;
+          image.height = 240;
+          clipDiv.appendChild(image);
+          document.getElementById("clipList").appendChild(clipDiv);
+          // クリップカウンターの更新
+          clipCnt++;
+        }
+      }
+      function deleteClip(event) {
+        // クリップの削除
+        var clipDiv = event.target.parentNode.parentNode;
+        document.getElementById("clipList").removeChild(clipDiv);
+      }
+    </script>
+    <style>
+      span {
+        font-size: small;
+        color: #0000FF;
+      }
+      #graph {
+        margin-right: 10px;
+        float: left;
+      }
+      #clipList {
+        width: 240px;
+        overflow: hidden;
+      }
+      #clipList span {
+        cursor: pointer;
+        float: right;
+      }
+    </style>
+  </head>
+  <body onload="init()">
+    <p>ソナグラフ</p>
+    <input type="button" id="start" value="解析" onclick="connectMic()">
+    <span id="status"></span>
+    <hr>
+    <canvas id="graph" width="640" height="640" onmousedown="clip()"></canvas>
+    <div id="clipList"></div>
+  </body>
+  </html>

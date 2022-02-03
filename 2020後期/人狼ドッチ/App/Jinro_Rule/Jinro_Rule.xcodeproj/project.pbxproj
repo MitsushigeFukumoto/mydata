@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15A16DBC255137E900772C85 /* Jinro_RuleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DBB255137E900772C85 /* Jinro_RuleApp.swift */; };
+		15A16DBE255137E900772C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DBD255137E900772C85 /* ContentView.swift */; };
+		15A16DC0255137EF00772C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A16DBF255137EF00772C85 /* Assets.xcassets */; };
+		15A16DC3255137EF00772C85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A16DC2255137EF00772C85 /* Preview Assets.xcassets */; };
+		15A16DCE255137F000772C85 /* Jinro_RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DCD255137F000772C85 /* Jinro_RuleTests.swift */; };
+		15A16DD9255137F000772C85 /* Jinro_RuleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A16DD8255137F000772C85 /* Jinro_RuleUITests.swift */; };
+		15C6021E256288F000613EDD /* gaiyou.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C6021D256288F000613EDD /* gaiyou.swift */; };
+		15C60223256337EA00613EDD /* gamesinkou.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C60222256337EA00613EDD /* gamesinkou.swift */; };
+		15C602282563447600613EDD /* yakusyoku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C602272563447600613EDD /* yakusyoku.swift */; };
+		15C6022D2563448400613EDD /* shouhai.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C6022C2563448400613EDD /* shouhai.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15A16DCA255137F000772C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A16DB0255137E900772C85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15A16DB7255137E900772C85;
+			remoteInfo = Jinro_Rule;
+		};
+		15A16DD5255137F000772C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A16DB0255137E900772C85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15A16DB7255137E900772C85;
+			remoteInfo = Jinro_Rule;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15A16DB8255137E900772C85 /* Jinro_Rule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jinro_Rule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A16DBB255137E900772C85 /* Jinro_RuleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jinro_RuleApp.swift; sourceTree = "<group>"; };
+		15A16DBD255137E900772C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15A16DBF255137EF00772C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15A16DC2255137EF00772C85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15A16DC4255137EF00772C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A16DC9255137F000772C85 /* Jinro_RuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Jinro_RuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A16DCD255137F000772C85 /* Jinro_RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jinro_RuleTests.swift; sourceTree = "<group>"; };
+		15A16DCF255137F000772C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A16DD4255137F000772C85 /* Jinro_RuleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Jinro_RuleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A16DD8255137F000772C85 /* Jinro_RuleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jinro_RuleUITests.swift; sourceTree = "<group>"; };
+		15A16DDA255137F000772C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15C6021D256288F000613EDD /* gaiyou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gaiyou.swift; sourceTree = "<group>"; };
+		15C60222256337EA00613EDD /* gamesinkou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamesinkou.swift; sourceTree = "<group>"; };
+		15C602272563447600613EDD /* yakusyoku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yakusyoku.swift; sourceTree = "<group>"; };
+		15C6022C2563448400613EDD /* shouhai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shouhai.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15A16DB5255137E900772C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16DC6255137F000772C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16DD1255137F000772C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15A16DAF255137E900772C85 = {
+			isa = PBXGroup;
+			children = (
+				15A16DBA255137E900772C85 /* Jinro_Rule */,
+				15A16DCC255137F000772C85 /* Jinro_RuleTests */,
+				15A16DD7255137F000772C85 /* Jinro_RuleUITests */,
+				15A16DB9255137E900772C85 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15A16DB9255137E900772C85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15A16DB8255137E900772C85 /* Jinro_Rule.app */,
+				15A16DC9255137F000772C85 /* Jinro_RuleTests.xctest */,
+				15A16DD4255137F000772C85 /* Jinro_RuleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15A16DBA255137E900772C85 /* Jinro_Rule */ = {
+			isa = PBXGroup;
+			children = (
+				15A16DBB255137E900772C85 /* Jinro_RuleApp.swift */,
+				15A16DBD255137E900772C85 /* ContentView.swift */,
+				15C60222256337EA00613EDD /* gamesinkou.swift */,
+				15C6021D256288F000613EDD /* gaiyou.swift */,
+				15C602272563447600613EDD /* yakusyoku.swift */,
+				15C6022C2563448400613EDD /* shouhai.swift */,
+				15A16DBF255137EF00772C85 /* Assets.xcassets */,
+				15A16DC4255137EF00772C85 /* Info.plist */,
+				15A16DC1255137EF00772C85 /* Preview Content */,
+			);
+			path = Jinro_Rule;
+			sourceTree = "<group>";
+		};
+		15A16DC1255137EF00772C85 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				15A16DC2255137EF00772C85 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		15A16DCC255137F000772C85 /* Jinro_RuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				15A16DCD255137F000772C85 /* Jinro_RuleTests.swift */,
+				15A16DCF255137F000772C85 /* Info.plist */,
+			);
+			path = Jinro_RuleTests;
+			sourceTree = "<group>";
+		};
+		15A16DD7255137F000772C85 /* Jinro_RuleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15A16DD8255137F000772C85 /* Jinro_RuleUITests.swift */,
+				15A16DDA255137F000772C85 /* Info.plist */,
+			);
+			path = Jinro_RuleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15A16DB7255137E900772C85 /* Jinro_Rule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A16DDD255137F000772C85 /* Build configuration list for PBXNativeTarget "Jinro_Rule" */;
+			buildPhases = (
+				15A16DB4255137E900772C85 /* Sources */,
+				15A16DB5255137E900772C85 /* Frameworks */,
+				15A16DB6255137E900772C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jinro_Rule;
+			productName = Jinro_Rule;
+			productReference = 15A16DB8255137E900772C85 /* Jinro_Rule.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15A16DC8255137F000772C85 /* Jinro_RuleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A16DE0255137F000772C85 /* Build configuration list for PBXNativeTarget "Jinro_RuleTests" */;
+			buildPhases = (
+				15A16DC5255137F000772C85 /* Sources */,
+				15A16DC6255137F000772C85 /* Frameworks */,
+				15A16DC7255137F000772C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A16DCB255137F000772C85 /* PBXTargetDependency */,
+			);
+			name = Jinro_RuleTests;
+			productName = Jinro_RuleTests;
+			productReference = 15A16DC9255137F000772C85 /* Jinro_RuleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15A16DD3255137F000772C85 /* Jinro_RuleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A16DE3255137F000772C85 /* Build configuration list for PBXNativeTarget "Jinro_RuleUITests" */;
+			buildPhases = (
+				15A16DD0255137F000772C85 /* Sources */,
+				15A16DD1255137F000772C85 /* Frameworks */,
+				15A16DD2255137F000772C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A16DD6255137F000772C85 /* PBXTargetDependency */,
+			);
+			name = Jinro_RuleUITests;
+			productName = Jinro_RuleUITests;
+			productReference = 15A16DD4255137F000772C85 /* Jinro_RuleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15A16DB0255137E900772C85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					15A16DB7255137E900772C85 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+					15A16DC8255137F000772C85 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 15A16DB7255137E900772C85;
+					};
+					15A16DD3255137F000772C85 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 15A16DB7255137E900772C85;
+					};
+				};
+			};
+			buildConfigurationList = 15A16DB3255137E900772C85 /* Build configuration list for PBXProject "Jinro_Rule" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15A16DAF255137E900772C85;
+			productRefGroup = 15A16DB9255137E900772C85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15A16DB7255137E900772C85 /* Jinro_Rule */,
+				15A16DC8255137F000772C85 /* Jinro_RuleTests */,
+				15A16DD3255137F000772C85 /* Jinro_RuleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15A16DB6255137E900772C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16DC3255137EF00772C85 /* Preview Assets.xcassets in Resources */,
+				15A16DC0255137EF00772C85 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16DC7255137F000772C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16DD2255137F000772C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15A16DB4255137E900772C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16DBE255137E900772C85 /* ContentView.swift in Sources */,
+				15A16DBC255137E900772C85 /* Jinro_RuleApp.swift in Sources */,
+				15C60223256337EA00613EDD /* gamesinkou.swift in Sources */,
+				15C6021E256288F000613EDD /* gaiyou.swift in Sources */,
+				15C602282563447600613EDD /* yakusyoku.swift in Sources */,
+				15C6022D2563448400613EDD /* shouhai.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16DC5255137F000772C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16DCE255137F000772C85 /* Jinro_RuleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A16DD0255137F000772C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A16DD9255137F000772C85 /* Jinro_RuleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15A16DCB255137F000772C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15A16DB7255137E900772C85 /* Jinro_Rule */;
+			targetProxy = 15A16DCA255137F000772C85 /* PBXContainerItemProxy */;
+		};
+		15A16DD6255137F000772C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15A16DB7255137E900772C85 /* Jinro_Rule */;
+			targetProxy = 15A16DD5255137F000772C85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15A16DDB255137F000772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15A16DDC255137F000772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15A16DDE255137F000772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Jinro_Rule/Preview Content\"";
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Jinro_Rule/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-Rule";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15A16DDF255137F000772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Jinro_Rule/Preview Content\"";
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Jinro_Rule/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-Rule";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		15A16DE1255137F000772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_RuleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-RuleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jinro_Rule.app/Jinro_Rule";
+			};
+			name = Debug;
+		};
+		15A16DE2255137F000772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_RuleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-RuleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jinro_Rule.app/Jinro_Rule";
+			};
+			name = Release;
+		};
+		15A16DE4255137F000772C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_RuleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-RuleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jinro_Rule;
+			};
+			name = Debug;
+		};
+		15A16DE5255137F000772C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = Jinro_RuleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.Jinro-RuleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jinro_Rule;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15A16DB3255137E900772C85 /* Build configuration list for PBXProject "Jinro_Rule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16DDB255137F000772C85 /* Debug */,
+				15A16DDC255137F000772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A16DDD255137F000772C85 /* Build configuration list for PBXNativeTarget "Jinro_Rule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16DDE255137F000772C85 /* Debug */,
+				15A16DDF255137F000772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A16DE0255137F000772C85 /* Build configuration list for PBXNativeTarget "Jinro_RuleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16DE1255137F000772C85 /* Debug */,
+				15A16DE2255137F000772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A16DE3255137F000772C85 /* Build configuration list for PBXNativeTarget "Jinro_RuleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A16DE4255137F000772C85 /* Debug */,
+				15A16DE5255137F000772C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15A16DB0255137E900772C85 /* Project object */;
+}

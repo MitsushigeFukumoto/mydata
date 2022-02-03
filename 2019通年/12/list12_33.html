@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(function(){
+        $("#btn").on("click", function(){
+          $("p").replaceWith("<img src='images/orange.png'></img>");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <button id="btn">クリック</button>
+    <div>
+      <p>みかん</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>第8回課題</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<style type="text/css">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+div.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
+    Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+
+p,
+table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+ul,
+ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+ul li,
+ol li {
+  padding-left: .5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+
+a {
+  color: #5484c8;
+}
+
+.margin-clear {
+  margin-left: 0;
+}
+
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+
+blockquote * {
+  color: #999;
+}
+
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+
+img,
+iframe,
+figure {
+  max-width: 100%;
+}
+
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+pre,
+code,
+var,
+samp,
+kbd,
+.mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+pre code,
+pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+}
+
+table.sourceCode pre {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  color: inherit;
+}
+table.sourceCode code {
+  color: inherit;
+}
+
+table.sourceCode {
+  width: 100%;
+  line-height: 100%;
+}
+
+td.lineNumbers {
+  text-align: right;
+  color: #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<body>
+  <header>
+  <h1 class="title">第8回課題</h1>
+        </header>
+<blockquote>
+<p>オブジェクト指向プログラミングおよび演習1 第8回<br />
+データ構造を意識したプログラム</p>
+</blockquote>
+<h1 id="プロジェクト">プロジェクト</h1>
+<ul>
+<li>プロジェクト名: ScoresSorter</li>
+<li>パッケージ名: jp.ac.ait.k00000 (k00000 は自分の学籍番号)</li>
+<li>メインクラス名: Main.java (おもに動作確認用です。)</li>
+</ul>
+<h1 id="成績管理プログラムの作成">成績管理プログラムの作成</h1>
+<h2 id="管理データクラスの作成">管理データクラスの作成</h2>
+<p>以下のような形式のデータで入力されるプログラムを想定して、入力された(または用意した)データをもとに成績を管理します。</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>データ管理上の名称</th>
+<th>形式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>学籍番号</td>
+<td>id</td>
+<td>文字列(K00000のようなアルファベット1文字+数字5桁のフォーマット)</td>
+</tr>
+<tr class="even">
+<td>名前</td>
+<td>name</td>
+<td>文字列(全角あり)</td>
+</tr>
+<tr class="odd">
+<td>国語の点数</td>
+<td>japanese</td>
+<td>整数値(0〜100)</td>
+</tr>
+<tr class="even">
+<td>数学の点数</td>
+<td>mathematic</td>
+<td>整数値(0〜100)</td>
+</tr>
+<tr class="odd">
+<td>理科の点数</td>
+<td>science</td>
+<td>整数値(0〜100)</td>
+</tr>
+<tr class="even">
+<td>社会科の点数</td>
+<td>socialStudy</td>
+<td>整数値(0〜100)</td>
+</tr>
+<tr class="odd">
+<td>英語の点数</td>
+<td>english</td>
+<td>整数値(0〜100)</td>
+</tr>
+</tbody>
+</table>
+<p>上記データは、<code>Score</code>クラスで1件分管理します。</p>
+<p>Scoreクラスには、以下のメソッドを持たせましょう。</p>
+<table>
+<colgroup>
+<col style="width: 30%"></col>
+<col style="width: 70%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>メソッド定義</th>
+<th>処理内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>String getId()</td>
+<td>idのアクセサ</td>
+</tr>
+<tr class="even">
+<td>String getName()</td>
+<td>nameのアクセサ</td>
+</tr>
+<tr class="odd">
+<td>int getJapanese()</td>
+<td>japaneseのアクセサ</td>
+</tr>
+<tr class="even">
+<td>int getMathematic()</td>
+<td>mathematicのアクセサ</td>
+</tr>
+<tr class="odd">
+<td>int getScience()</td>
+<td>scienceのアクセサ</td>
+</tr>
+<tr class="even">
+<td>int getSocialStudy()</td>
+<td>socialStudyのアクセサ</td>
+</tr>
+<tr class="odd">
+<td>int getEnglish()</td>
+<td>englishのアクセサ</td>
+</tr>
+<tr class="even">
+<td>int getSum()</td>
+<td>5教科の合計点を返す</td>
+</tr>
+<tr class="odd">
+<td>String getEvaluation()</td>
+<td>5教科の合計点に対する評価を文字列で返す(〜450:A, 449〜400:B, 399〜300:C, 299〜200:D, 199〜:E)</td>
+</tr>
+</tbody>
+</table>
+<p>これらのメソッドは、テストプログラムで使用しますので実装するべきインターフェイスをこちらで指定します。</p>
+<p>以下のインターフェイスをプロジェクトに追加し、<code>Score</code>クラスにて実装してください。</p>
+<p>インターフェイス名: <code>IScore</code><br />
+パッケージ: Scoreクラスと同じ</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">/**</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a> <span class="co">*</span> 第<span class="co">10回課題の点数データ1件分</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a> <span class="co">*/</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">public</span> <span class="kw">interface</span> IScore {</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="bu">String</span> <span class="fu">getId</span>();</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="bu">String</span> <span class="fu">getName</span>();</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="dt">int</span> <span class="fu">getJapanese</span>();</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="dt">int</span> <span class="fu">getMathematic</span>();</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="dt">int</span> <span class="fu">getScience</span>();</span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="dt">int</span> <span class="fu">getSocialStudy</span>();</span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="dt">int</span> <span class="fu">getEnglish</span>();</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">/**</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>   <span class="co">*</span> <span class="co">5教科の合計点を返す</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>   <span class="co">*</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>   <span class="co">* </span><span class="an">@return </span><span class="co">5教科の合計点</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>   <span class="co">*/</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="dt">int</span> <span class="fu">getSum</span>();</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="co">/**</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>   <span class="co">*</span> <span class="co">5教科の合計点に対する評価を文字列で返す</span> <span class="co">(</span>〜<span class="co">450:</span>A<span class="co">,</span> <span class="co">449</span>〜<span class="co">400:</span>B<span class="co">,</span> <span class="co">399</span>〜<span class="co">300:</span>C<span class="co">,</span> <span class="co">299</span>〜<span class="co">200:</span>D<span class="co">,</span> <span class="co">199</span>〜<span class="co">:</span>E<span class="co">)</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>   <span class="co">*</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>   <span class="co">* </span><span class="an">@return </span>A<span class="co">,</span>B<span class="co">,</span>C<span class="co">,</span>D<span class="co">,</span>Eのどれか</span>
+<span id="cb1-24"><a href="#cb1-24"></a>   <span class="co">*/</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="bu">String</span> <span class="fu">getEvaluation</span>();</span>
+<span id="cb1-26"><a href="#cb1-26"></a>}</span></code></pre></div>
+<p>また、コンストラクタはinterfaceで指定できませんので、以下のものを各自実装してください。</p>
+<ul>
+<li><code>public Score(String id, String name, int japanese, int mathematic, int science, int socialStudy, int english)</code>
+<ul>
+<li>引数のそれぞれのデータでフィールドに代入</li>
+</ul></li>
+</ul>
+<h2 id="データソートを行うクラスの作成">データソートを行うクラスの作成</h2>
+<p>成績データの管理と、データソートを行うクラスを<code>ScoresSorter</code>とします。</p>
+<h3 id="フィールド">フィールド</h3>
+<ul>
+<li><code>private List&lt;IScore&gt; data;</code></li>
+</ul>
+<p>必要に応じてprivateで追加すること。</p>
+<h3 id="メソッド">メソッド</h3>
+<ul>
+<li><code>public List&lt;IScore&gt; getData()</code>
+<ul>
+<li>フィールドの<code>data</code>を返す</li>
+<li>他のメソッドを呼び出した場合に、このメソッドの戻り値が変わってしまわないように注意すること。</li>
+</ul></li>
+<li><code>public List&lt;IScore&gt; sortBySumDsc()</code>
+<ul>
+<li>フィールドの<code>data</code>のコピーを合計点の降順で並び替えを行う。ただし、同じ点数のデータがある場合は、学籍番号のUnicode昇順で並び替えること。</li>
+</ul></li>
+<li><code>public List&lt;IScore&gt; sortByEvaluationAsc()</code>
+<ul>
+<li>フィールドの<code>data</code>のコピーを評価のUnicodeの昇順で並び替えを行う。ただし、同じ評価のデータがある場合は、学籍番号のUnicode昇順で並び替えること。</li>
+</ul></li>
+</ul>
+<p>その他必要なメソッドはprivateで追加すること。</p>
+<h3 id="コンストラクタ">コンストラクタ</h3>
+<ul>
+<li><code>public ScoresSorter(List&lt;IScore&gt; data)</code>
+<ul>
+<li>引数のデータでフィールドの<code>data</code>を初期化すること</li>
+</ul></li>
+</ul>
+<p>コンストラクタは、これ以外作成しないこと。</p>
+<h3 id="実装用インターフェイス">実装用インターフェイス</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">import</span><span class="im"> java.util.List;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">/**</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a> <span class="co">*</span> 第<span class="co">10回課題のソートプログラムインターフェイス</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a> <span class="co">*/</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">public</span> <span class="kw">interface</span> IScoresSorter {</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="co">/**</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>   <span class="co">*</span> フィールドのdataを返す。</span>
+<span id="cb2-8"><a href="#cb2-8"></a>   <span class="co">*</span> 他のメソッドを呼び出した場合に、<span class="co"></span>このメソッドの戻り値が変わってしまわないように注意すること。</span>
+<span id="cb2-9"><a href="#cb2-9"></a>   <span class="co">* @</span>return</span>
+<span id="cb2-10"><a href="#cb2-10"></a>   <span class="co">*/</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="kw">public</span> <span class="bu">List</span>&lt;IScore&gt; <span class="fu">getData</span>();</span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="co">/**</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>   <span class="co">*</span> フィールドのdataのコピーを合計点の降順で並び替えを行う。ただし、同じ点数のデータがある場合は、学籍番号のUnicode昇順で並び替えること。</span>
+<span id="cb2-14"><a href="#cb2-14"></a>   <span class="co">* @</span>return</span>
+<span id="cb2-15"><a href="#cb2-15"></a>   <span class="co">*/</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="kw">public</span> <span class="bu">List</span>&lt;IScore&gt; <span class="fu">sortBySumDsc</span>();</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="co">/**</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>   <span class="co">*</span> フィールドのdataのコピーを評価のUnicodeの昇順で並び替えを行う。ただし、同じ評価のデータがある場合は、学籍番号のUnicode昇順で並び替えること。</span>
+<span id="cb2-19"><a href="#cb2-19"></a>   <span class="co">* @</span>return</span>
+<span id="cb2-20"><a href="#cb2-20"></a>   <span class="co">*/</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="kw">public</span> <span class="bu">List</span>&lt;IScore&gt; <span class="fu">sortByEvaluationAsc</span>();</span>
+<span id="cb2-22"><a href="#cb2-22"></a>}</span></code></pre></div>
+<h1 id="メインクラスのヒント">メインクラスのヒント</h1>
+<p>データを用意するのは大変だと思うので、以下のようなサンプルコードを用意しました。</p>
+<p>もちろん、自分で様々なテストケースを考え、点数を設定してみてください。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">package</span><span class="im"> jp.ac.ait.k00000;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">import</span><span class="im"> java.util.ArrayList;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">import</span><span class="im"> java.util.List;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">public</span> <span class="kw">class</span> Main {</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="bu">List</span>&lt;IScore&gt; arr = <span class="kw">new</span> <span class="bu">ArrayList</span>&lt;&gt;();</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00002&quot;</span>, <span class="st">&quot;鈴木次郎&quot;</span>, <span class="dv">30</span>, <span class="dv">55</span>, <span class="dv">75</span>, <span class="dv">85</span>, <span class="dv">40</span>));</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00004&quot;</span>, <span class="st">&quot;田中四郎&quot;</span>, <span class="dv">92</span>, <span class="dv">50</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">88</span>));</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00005&quot;</span>, <span class="st">&quot;伊藤五郎&quot;</span>, <span class="dv">70</span>, <span class="dv">62</span>, <span class="dv">68</span>, <span class="dv">90</span>, <span class="dv">60</span>));</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00008&quot;</span>, <span class="st">&quot;中村八郎&quot;</span>, <span class="dv">80</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">80</span>, <span class="dv">80</span>));</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00009&quot;</span>, <span class="st">&quot;小林九&quot;</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">90</span>, <span class="dv">94</span>, <span class="dv">98</span>));</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00006&quot;</span>, <span class="st">&quot;渡辺六郎&quot;</span>, <span class="dv">60</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>));</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00001&quot;</span>, <span class="st">&quot;佐藤一郎&quot;</span>, <span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">90</span>, <span class="dv">96</span>, <span class="dv">78</span>));</span>
+<span id="cb3-17"><a href="#cb3-17"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00003&quot;</span>, <span class="st">&quot;高橋三郎&quot;</span>, <span class="dv">50</span>, <span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">25</span>, <span class="dv">30</span>));</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00010&quot;</span>, <span class="st">&quot;加藤十子&quot;</span>, <span class="dv">10</span>, <span class="dv">35</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">55</span>));</span>
+<span id="cb3-19"><a href="#cb3-19"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00007&quot;</span>, <span class="st">&quot;山本七子&quot;</span>, <span class="dv">77</span>, <span class="dv">92</span>, <span class="dv">73</span>, <span class="dv">88</span>, <span class="dv">80</span>));</span>
+<span id="cb3-20"><a href="#cb3-20"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00011&quot;</span>, <span class="st">&quot;吉田従一&quot;</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>));</span>
+<span id="cb3-21"><a href="#cb3-21"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00012&quot;</span>, <span class="st">&quot;山田従二&quot;</span>, <span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">90</span>));</span>
+<span id="cb3-22"><a href="#cb3-22"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00013&quot;</span>, <span class="st">&quot;佐々木十三&quot;</span>, <span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">90</span>, <span class="dv">89</span>));</span>
+<span id="cb3-23"><a href="#cb3-23"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00014&quot;</span>, <span class="st">&quot;山口十志&quot;</span>, <span class="dv">80</span>, <span class="dv">80</span>, <span class="dv">80</span>, <span class="dv">80</span>, <span class="dv">80</span>));</span>
+<span id="cb3-24"><a href="#cb3-24"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00015&quot;</span>, <span class="st">&quot;松本重吾&quot;</span>, <span class="dv">80</span>, <span class="dv">80</span>, <span class="dv">80</span>, <span class="dv">80</span>, <span class="dv">79</span>));</span>
+<span id="cb3-25"><a href="#cb3-25"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00016&quot;</span>, <span class="st">&quot;井上拾陸&quot;</span>, <span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>));</span>
+<span id="cb3-26"><a href="#cb3-26"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00017&quot;</span>, <span class="st">&quot;木村重質&quot;</span>, <span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">59</span>));</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00018&quot;</span>, <span class="st">&quot;林重鉢&quot;</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>));</span>
+<span id="cb3-28"><a href="#cb3-28"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00019&quot;</span>, <span class="st">&quot;斉藤拾玖&quot;</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">39</span>));</span>
+<span id="cb3-29"><a href="#cb3-29"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00020&quot;</span>, <span class="st">&quot;清水丹柔&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, -<span class="dv">1</span>));</span>
+<span id="cb3-30"><a href="#cb3-30"></a>    arr.<span class="fu">add</span>(<span class="kw">new</span> <span class="fu">Score</span>(<span class="st">&quot;K00021&quot;</span>, <span class="st">&quot;山崎梨&quot;</span>, <span class="dv">101</span>, <span class="dv">120</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>));</span>
+<span id="cb3-31"><a href="#cb3-31"></a></span>
+<span id="cb3-32"><a href="#cb3-32"></a>    IScoresSorter app = <span class="kw">new</span> <span class="fu">ScoresSorter</span>(arr);</span>
+<span id="cb3-33"><a href="#cb3-33"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;元データ&quot;</span>);</span>
+<span id="cb3-34"><a href="#cb3-34"></a>    app.<span class="fu">getData</span>().<span class="fu">stream</span>().<span class="fu">forEach</span>((s) -&gt; {</span>
+<span id="cb3-35"><a href="#cb3-35"></a>      <span class="bu">System</span>.<span class="fu">out.printf</span>(<span class="st">&quot;</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%d</span><span class="st">, </span><span class="sc">%s%s</span><span class="st">&quot;</span>, s.<span class="fu">getId</span>(), s.<span class="fu">getName</span>(), s.<span class="fu">getSum</span>(), s.<span class="fu">getEvaluation</span>(), <span class="bu">System</span>.<span class="fu">lineSeparator</span>());</span>
+<span id="cb3-36"><a href="#cb3-36"></a>    });</span>
+<span id="cb3-37"><a href="#cb3-37"></a></span>
+<span id="cb3-38"><a href="#cb3-38"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;合計点降順&quot;</span>);</span>
+<span id="cb3-39"><a href="#cb3-39"></a>    app.<span class="fu">sortBySumDsc</span>().<span class="fu">stream</span>().<span class="fu">forEach</span>((s) -&gt; {</span>
+<span id="cb3-40"><a href="#cb3-40"></a>      <span class="bu">System</span>.<span class="fu">out.printf</span>(<span class="st">&quot;</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%d</span><span class="st">, </span><span class="sc">%s%s</span><span class="st">&quot;</span>, s.<span class="fu">getId</span>(), s.<span class="fu">getName</span>(), s.<span class="fu">getSum</span>(), s.<span class="fu">getEvaluation</span>(), <span class="bu">System</span>.<span class="fu">lineSeparator</span>());</span>
+<span id="cb3-41"><a href="#cb3-41"></a>    });</span>
+<span id="cb3-42"><a href="#cb3-42"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;評価昇順&quot;</span>);</span>
+<span id="cb3-43"><a href="#cb3-43"></a>    app.<span class="fu">sortByEvaluationAsc</span>().<span class="fu">stream</span>().<span class="fu">forEach</span>((s) -&gt; {</span>
+<span id="cb3-44"><a href="#cb3-44"></a>      <span class="bu">System</span>.<span class="fu">out.printf</span>(<span class="st">&quot;</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%d</span><span class="st">, </span><span class="sc">%s%s</span><span class="st">&quot;</span>, s.<span class="fu">getId</span>(), s.<span class="fu">getName</span>(), s.<span class="fu">getSum</span>(), s.<span class="fu">getEvaluation</span>(), <span class="bu">System</span>.<span class="fu">lineSeparator</span>());</span>
+<span id="cb3-45"><a href="#cb3-45"></a>    });</span>
+<span id="cb3-46"><a href="#cb3-46"></a>  }</span>
+<span id="cb3-47"><a href="#cb3-47"></a>}</span></code></pre></div>
+<h2 id="課題の提出に関して">課題の提出に関して</h2>
+<p>提出するファイルは以下の通りです。</p>
+<ol>
+<li>プロジェクトフォルダにある<code>src</code>フォルダをzip圧縮したファイル</li>
+</ol>
+<p>moodleの指定された提出場所に提出を行ってください。</p>
+</body>
+</html>

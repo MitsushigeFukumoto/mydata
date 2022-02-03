@@ -1,0 +1,292 @@
+# DO NOT EDIT
+# This makefile makes sure all linkable targets are
+# up-to-date with anything they link to
+default:
+	echo "Do not invoke directly"
+
+# Rules to remove targets that are older than anything to which they
+# link.  This forces Xcode to relink the targets from scratch.  It
+# does not seem to check these dependencies itself.
+PostBuild.face_k19093.Debug:
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/Debug/face_k19093:\
+	/usr/local/lib/libopencv_gapi.4.3.0.dylib\
+	/usr/local/lib/libopencv_stitching.4.3.0.dylib\
+	/usr/local/lib/libopencv_alphamat.4.3.0.dylib\
+	/usr/local/lib/libopencv_aruco.4.3.0.dylib\
+	/usr/local/lib/libopencv_bgsegm.4.3.0.dylib\
+	/usr/local/lib/libopencv_bioinspired.4.3.0.dylib\
+	/usr/local/lib/libopencv_ccalib.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_dpm.4.3.0.dylib\
+	/usr/local/lib/libopencv_face.4.3.0.dylib\
+	/usr/local/lib/libopencv_freetype.4.3.0.dylib\
+	/usr/local/lib/libopencv_fuzzy.4.3.0.dylib\
+	/usr/local/lib/libopencv_hfs.4.3.0.dylib\
+	/usr/local/lib/libopencv_img_hash.4.3.0.dylib\
+	/usr/local/lib/libopencv_intensity_transform.4.3.0.dylib\
+	/usr/local/lib/libopencv_line_descriptor.4.3.0.dylib\
+	/usr/local/lib/libopencv_quality.4.3.0.dylib\
+	/usr/local/lib/libopencv_rapid.4.3.0.dylib\
+	/usr/local/lib/libopencv_reg.4.3.0.dylib\
+	/usr/local/lib/libopencv_rgbd.4.3.0.dylib\
+	/usr/local/lib/libopencv_saliency.4.3.0.dylib\
+	/usr/local/lib/libopencv_sfm.4.3.0.dylib\
+	/usr/local/lib/libopencv_stereo.4.3.0.dylib\
+	/usr/local/lib/libopencv_structured_light.4.3.0.dylib\
+	/usr/local/lib/libopencv_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_surface_matching.4.3.0.dylib\
+	/usr/local/lib/libopencv_tracking.4.3.0.dylib\
+	/usr/local/lib/libopencv_videostab.4.3.0.dylib\
+	/usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_xobjdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_xphoto.4.3.0.dylib\
+	/usr/local/lib/libopencv_highgui.4.3.0.dylib\
+	/usr/local/lib/libopencv_shape.4.3.0.dylib\
+	/usr/local/lib/libopencv_datasets.4.3.0.dylib\
+	/usr/local/lib/libopencv_plot.4.3.0.dylib\
+	/usr/local/lib/libopencv_text.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn.4.3.0.dylib\
+	/usr/local/lib/libopencv_ml.4.3.0.dylib\
+	/usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib\
+	/usr/local/lib/libopencv_optflow.4.3.0.dylib\
+	/usr/local/lib/libopencv_ximgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_video.4.3.0.dylib\
+	/usr/local/lib/libopencv_videoio.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgcodecs.4.3.0.dylib\
+	/usr/local/lib/libopencv_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_calib3d.4.3.0.dylib\
+	/usr/local/lib/libopencv_features2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_flann.4.3.0.dylib\
+	/usr/local/lib/libopencv_photo.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_core.4.3.0.dylib
+	/bin/rm -f /Users/k19093kk/src/imgProc/第1回/01_01_k19093/Debug/face_k19093
+
+
+PostBuild.face_k19093.Release:
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/Release/face_k19093:\
+	/usr/local/lib/libopencv_gapi.4.3.0.dylib\
+	/usr/local/lib/libopencv_stitching.4.3.0.dylib\
+	/usr/local/lib/libopencv_alphamat.4.3.0.dylib\
+	/usr/local/lib/libopencv_aruco.4.3.0.dylib\
+	/usr/local/lib/libopencv_bgsegm.4.3.0.dylib\
+	/usr/local/lib/libopencv_bioinspired.4.3.0.dylib\
+	/usr/local/lib/libopencv_ccalib.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_dpm.4.3.0.dylib\
+	/usr/local/lib/libopencv_face.4.3.0.dylib\
+	/usr/local/lib/libopencv_freetype.4.3.0.dylib\
+	/usr/local/lib/libopencv_fuzzy.4.3.0.dylib\
+	/usr/local/lib/libopencv_hfs.4.3.0.dylib\
+	/usr/local/lib/libopencv_img_hash.4.3.0.dylib\
+	/usr/local/lib/libopencv_intensity_transform.4.3.0.dylib\
+	/usr/local/lib/libopencv_line_descriptor.4.3.0.dylib\
+	/usr/local/lib/libopencv_quality.4.3.0.dylib\
+	/usr/local/lib/libopencv_rapid.4.3.0.dylib\
+	/usr/local/lib/libopencv_reg.4.3.0.dylib\
+	/usr/local/lib/libopencv_rgbd.4.3.0.dylib\
+	/usr/local/lib/libopencv_saliency.4.3.0.dylib\
+	/usr/local/lib/libopencv_sfm.4.3.0.dylib\
+	/usr/local/lib/libopencv_stereo.4.3.0.dylib\
+	/usr/local/lib/libopencv_structured_light.4.3.0.dylib\
+	/usr/local/lib/libopencv_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_surface_matching.4.3.0.dylib\
+	/usr/local/lib/libopencv_tracking.4.3.0.dylib\
+	/usr/local/lib/libopencv_videostab.4.3.0.dylib\
+	/usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_xobjdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_xphoto.4.3.0.dylib\
+	/usr/local/lib/libopencv_highgui.4.3.0.dylib\
+	/usr/local/lib/libopencv_shape.4.3.0.dylib\
+	/usr/local/lib/libopencv_datasets.4.3.0.dylib\
+	/usr/local/lib/libopencv_plot.4.3.0.dylib\
+	/usr/local/lib/libopencv_text.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn.4.3.0.dylib\
+	/usr/local/lib/libopencv_ml.4.3.0.dylib\
+	/usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib\
+	/usr/local/lib/libopencv_optflow.4.3.0.dylib\
+	/usr/local/lib/libopencv_ximgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_video.4.3.0.dylib\
+	/usr/local/lib/libopencv_videoio.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgcodecs.4.3.0.dylib\
+	/usr/local/lib/libopencv_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_calib3d.4.3.0.dylib\
+	/usr/local/lib/libopencv_features2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_flann.4.3.0.dylib\
+	/usr/local/lib/libopencv_photo.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_core.4.3.0.dylib
+	/bin/rm -f /Users/k19093kk/src/imgProc/第1回/01_01_k19093/Release/face_k19093
+
+
+PostBuild.face_k19093.MinSizeRel:
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/MinSizeRel/face_k19093:\
+	/usr/local/lib/libopencv_gapi.4.3.0.dylib\
+	/usr/local/lib/libopencv_stitching.4.3.0.dylib\
+	/usr/local/lib/libopencv_alphamat.4.3.0.dylib\
+	/usr/local/lib/libopencv_aruco.4.3.0.dylib\
+	/usr/local/lib/libopencv_bgsegm.4.3.0.dylib\
+	/usr/local/lib/libopencv_bioinspired.4.3.0.dylib\
+	/usr/local/lib/libopencv_ccalib.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_dpm.4.3.0.dylib\
+	/usr/local/lib/libopencv_face.4.3.0.dylib\
+	/usr/local/lib/libopencv_freetype.4.3.0.dylib\
+	/usr/local/lib/libopencv_fuzzy.4.3.0.dylib\
+	/usr/local/lib/libopencv_hfs.4.3.0.dylib\
+	/usr/local/lib/libopencv_img_hash.4.3.0.dylib\
+	/usr/local/lib/libopencv_intensity_transform.4.3.0.dylib\
+	/usr/local/lib/libopencv_line_descriptor.4.3.0.dylib\
+	/usr/local/lib/libopencv_quality.4.3.0.dylib\
+	/usr/local/lib/libopencv_rapid.4.3.0.dylib\
+	/usr/local/lib/libopencv_reg.4.3.0.dylib\
+	/usr/local/lib/libopencv_rgbd.4.3.0.dylib\
+	/usr/local/lib/libopencv_saliency.4.3.0.dylib\
+	/usr/local/lib/libopencv_sfm.4.3.0.dylib\
+	/usr/local/lib/libopencv_stereo.4.3.0.dylib\
+	/usr/local/lib/libopencv_structured_light.4.3.0.dylib\
+	/usr/local/lib/libopencv_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_surface_matching.4.3.0.dylib\
+	/usr/local/lib/libopencv_tracking.4.3.0.dylib\
+	/usr/local/lib/libopencv_videostab.4.3.0.dylib\
+	/usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_xobjdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_xphoto.4.3.0.dylib\
+	/usr/local/lib/libopencv_highgui.4.3.0.dylib\
+	/usr/local/lib/libopencv_shape.4.3.0.dylib\
+	/usr/local/lib/libopencv_datasets.4.3.0.dylib\
+	/usr/local/lib/libopencv_plot.4.3.0.dylib\
+	/usr/local/lib/libopencv_text.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn.4.3.0.dylib\
+	/usr/local/lib/libopencv_ml.4.3.0.dylib\
+	/usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib\
+	/usr/local/lib/libopencv_optflow.4.3.0.dylib\
+	/usr/local/lib/libopencv_ximgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_video.4.3.0.dylib\
+	/usr/local/lib/libopencv_videoio.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgcodecs.4.3.0.dylib\
+	/usr/local/lib/libopencv_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_calib3d.4.3.0.dylib\
+	/usr/local/lib/libopencv_features2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_flann.4.3.0.dylib\
+	/usr/local/lib/libopencv_photo.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_core.4.3.0.dylib
+	/bin/rm -f /Users/k19093kk/src/imgProc/第1回/01_01_k19093/MinSizeRel/face_k19093
+
+
+PostBuild.face_k19093.RelWithDebInfo:
+/Users/k19093kk/src/imgProc/第1回/01_01_k19093/RelWithDebInfo/face_k19093:\
+	/usr/local/lib/libopencv_gapi.4.3.0.dylib\
+	/usr/local/lib/libopencv_stitching.4.3.0.dylib\
+	/usr/local/lib/libopencv_alphamat.4.3.0.dylib\
+	/usr/local/lib/libopencv_aruco.4.3.0.dylib\
+	/usr/local/lib/libopencv_bgsegm.4.3.0.dylib\
+	/usr/local/lib/libopencv_bioinspired.4.3.0.dylib\
+	/usr/local/lib/libopencv_ccalib.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_dpm.4.3.0.dylib\
+	/usr/local/lib/libopencv_face.4.3.0.dylib\
+	/usr/local/lib/libopencv_freetype.4.3.0.dylib\
+	/usr/local/lib/libopencv_fuzzy.4.3.0.dylib\
+	/usr/local/lib/libopencv_hfs.4.3.0.dylib\
+	/usr/local/lib/libopencv_img_hash.4.3.0.dylib\
+	/usr/local/lib/libopencv_intensity_transform.4.3.0.dylib\
+	/usr/local/lib/libopencv_line_descriptor.4.3.0.dylib\
+	/usr/local/lib/libopencv_quality.4.3.0.dylib\
+	/usr/local/lib/libopencv_rapid.4.3.0.dylib\
+	/usr/local/lib/libopencv_reg.4.3.0.dylib\
+	/usr/local/lib/libopencv_rgbd.4.3.0.dylib\
+	/usr/local/lib/libopencv_saliency.4.3.0.dylib\
+	/usr/local/lib/libopencv_sfm.4.3.0.dylib\
+	/usr/local/lib/libopencv_stereo.4.3.0.dylib\
+	/usr/local/lib/libopencv_structured_light.4.3.0.dylib\
+	/usr/local/lib/libopencv_superres.4.3.0.dylib\
+	/usr/local/lib/libopencv_surface_matching.4.3.0.dylib\
+	/usr/local/lib/libopencv_tracking.4.3.0.dylib\
+	/usr/local/lib/libopencv_videostab.4.3.0.dylib\
+	/usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_xobjdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_xphoto.4.3.0.dylib\
+	/usr/local/lib/libopencv_highgui.4.3.0.dylib\
+	/usr/local/lib/libopencv_shape.4.3.0.dylib\
+	/usr/local/lib/libopencv_datasets.4.3.0.dylib\
+	/usr/local/lib/libopencv_plot.4.3.0.dylib\
+	/usr/local/lib/libopencv_text.4.3.0.dylib\
+	/usr/local/lib/libopencv_dnn.4.3.0.dylib\
+	/usr/local/lib/libopencv_ml.4.3.0.dylib\
+	/usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib\
+	/usr/local/lib/libopencv_optflow.4.3.0.dylib\
+	/usr/local/lib/libopencv_ximgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_video.4.3.0.dylib\
+	/usr/local/lib/libopencv_videoio.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgcodecs.4.3.0.dylib\
+	/usr/local/lib/libopencv_objdetect.4.3.0.dylib\
+	/usr/local/lib/libopencv_calib3d.4.3.0.dylib\
+	/usr/local/lib/libopencv_features2d.4.3.0.dylib\
+	/usr/local/lib/libopencv_flann.4.3.0.dylib\
+	/usr/local/lib/libopencv_photo.4.3.0.dylib\
+	/usr/local/lib/libopencv_imgproc.4.3.0.dylib\
+	/usr/local/lib/libopencv_core.4.3.0.dylib
+	/bin/rm -f /Users/k19093kk/src/imgProc/第1回/01_01_k19093/RelWithDebInfo/face_k19093
+
+
+
+
+# For each target create a dummy ruleso the target does not have to exist
+/usr/local/lib/libopencv_alphamat.4.3.0.dylib:
+/usr/local/lib/libopencv_aruco.4.3.0.dylib:
+/usr/local/lib/libopencv_bgsegm.4.3.0.dylib:
+/usr/local/lib/libopencv_bioinspired.4.3.0.dylib:
+/usr/local/lib/libopencv_calib3d.4.3.0.dylib:
+/usr/local/lib/libopencv_ccalib.4.3.0.dylib:
+/usr/local/lib/libopencv_core.4.3.0.dylib:
+/usr/local/lib/libopencv_datasets.4.3.0.dylib:
+/usr/local/lib/libopencv_dnn.4.3.0.dylib:
+/usr/local/lib/libopencv_dnn_objdetect.4.3.0.dylib:
+/usr/local/lib/libopencv_dnn_superres.4.3.0.dylib:
+/usr/local/lib/libopencv_dpm.4.3.0.dylib:
+/usr/local/lib/libopencv_face.4.3.0.dylib:
+/usr/local/lib/libopencv_features2d.4.3.0.dylib:
+/usr/local/lib/libopencv_flann.4.3.0.dylib:
+/usr/local/lib/libopencv_freetype.4.3.0.dylib:
+/usr/local/lib/libopencv_fuzzy.4.3.0.dylib:
+/usr/local/lib/libopencv_gapi.4.3.0.dylib:
+/usr/local/lib/libopencv_hfs.4.3.0.dylib:
+/usr/local/lib/libopencv_highgui.4.3.0.dylib:
+/usr/local/lib/libopencv_img_hash.4.3.0.dylib:
+/usr/local/lib/libopencv_imgcodecs.4.3.0.dylib:
+/usr/local/lib/libopencv_imgproc.4.3.0.dylib:
+/usr/local/lib/libopencv_intensity_transform.4.3.0.dylib:
+/usr/local/lib/libopencv_line_descriptor.4.3.0.dylib:
+/usr/local/lib/libopencv_ml.4.3.0.dylib:
+/usr/local/lib/libopencv_objdetect.4.3.0.dylib:
+/usr/local/lib/libopencv_optflow.4.3.0.dylib:
+/usr/local/lib/libopencv_phase_unwrapping.4.3.0.dylib:
+/usr/local/lib/libopencv_photo.4.3.0.dylib:
+/usr/local/lib/libopencv_plot.4.3.0.dylib:
+/usr/local/lib/libopencv_quality.4.3.0.dylib:
+/usr/local/lib/libopencv_rapid.4.3.0.dylib:
+/usr/local/lib/libopencv_reg.4.3.0.dylib:
+/usr/local/lib/libopencv_rgbd.4.3.0.dylib:
+/usr/local/lib/libopencv_saliency.4.3.0.dylib:
+/usr/local/lib/libopencv_sfm.4.3.0.dylib:
+/usr/local/lib/libopencv_shape.4.3.0.dylib:
+/usr/local/lib/libopencv_stereo.4.3.0.dylib:
+/usr/local/lib/libopencv_stitching.4.3.0.dylib:
+/usr/local/lib/libopencv_structured_light.4.3.0.dylib:
+/usr/local/lib/libopencv_superres.4.3.0.dylib:
+/usr/local/lib/libopencv_surface_matching.4.3.0.dylib:
+/usr/local/lib/libopencv_text.4.3.0.dylib:
+/usr/local/lib/libopencv_tracking.4.3.0.dylib:
+/usr/local/lib/libopencv_video.4.3.0.dylib:
+/usr/local/lib/libopencv_videoio.4.3.0.dylib:
+/usr/local/lib/libopencv_videostab.4.3.0.dylib:
+/usr/local/lib/libopencv_xfeatures2d.4.3.0.dylib:
+/usr/local/lib/libopencv_ximgproc.4.3.0.dylib:
+/usr/local/lib/libopencv_xobjdetect.4.3.0.dylib:
+/usr/local/lib/libopencv_xphoto.4.3.0.dylib:

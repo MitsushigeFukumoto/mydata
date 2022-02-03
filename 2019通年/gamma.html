@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+    <meta charset="UTF-8">
+    <title>ガンマ補正</title>
+    <script>
+      var canvas, context, canvasGraph, contextGraph; // キャンバス
+      var image = new Image(); // 画像
+      var data_r = new Array(256); // 赤要素
+      var data_g = new Array(256); // 緑要素
+      var data_b = new Array(256); // 青要素
+      function init() {
+        // キャンバスの取得
+        canvas = document.getElementById("image");
+        context = canvas.getContext("2d");
+        canvasGraph = document.getElementById("graph");
+        contextGraph = canvasGraph.getContext("2d");
+      }
+      function loadImage(e) {
+        // 画像の読み込み
+        image.src = URL.createObjectURL(e.files[0]);
+        image.onload = function() {
+          // 描画
+          initImage();
+        }
+      }
+      function drawImage() {
+        // キャンバスをクリア
+        context.clearRect(0,0,canvas.width,canvas.height);
+        // キャンバスにあわせて画像を描画
+        var dx,dx,dw,dh;
+        if (image.width > image.height) {
+          // 横長画像
+          dw = canvas.width;
+          dh = dw * image.height/image.width;
+          dx = 0;
+          dy = (canvas.height-dh)/2;
+        } else {
+          // 縦長画像
+          dw = canvas.height * image.width/image.height;
+          dh = canvas.height
+          dx = (canvas.width-dw)/2;
+          dy = 0;
+        }
+        context.drawImage(image,0,0,image.width,image.height,dx,dy,dw,dh);
+      }
+      function gamma() {
+        // ガンマ値を取得
+        var g_r = document.getElementById("g_r").value;
+        var g_g = document.getElementById("g_g").value;
+        var g_b = document.getElementById("g_b").value;
+        // 画像データを取得
+        drawImage();
+        var imageData = context.getImageData(0,0,canvas.width,canvas.height);
+        var num = canvas.width*canvas.height;
+        // ガンマ補正
+        context.clearRect(0,0,canvas.width,canvas.height);
+        for (var i=0; i<num*4; i+=4) {
+          imageData.data[i] = 255*Math.pow(imageData.data[i]/255, 1/g_r);
+          imageData.data[i+1] = 255*Math.pow(imageData.data[i+1]/255, 1/
+          g_g);
+          imageData.data[i+2] = 255*Math.pow(imageData.data[i+2]/255, 1/
+          g_g);
+        }
+        // 補正後の画像を描画
+        context.putImageData(imageData,0,0);
+        // 画像データを再取得
+        imageData = context.getImageData(0,0,canvas.width,canvas.height);
+        for (var i=0; i<256; i++) {
+          data_r[i] = 0;
+          data_g[i] = 0;
+          data_b[i] = 0;
+        }
+        for (var i=0; i<num*4; i+=4) {
+          if (imageData.data[i+3] > 0) {
+            data_r[imageData.data[i]]++;
+            data_g[imageData.data[i+1]]++;
+            data_b[imageData.data[i+2]]++;
+          }
+        }
+        // グラフの描画
+        contextGraph.clearRect(0,0,canvasGraph.width,canvasGraph.height);
+        // ヒストグラム
+        var max = Math.max.apply(null, data_r);
+        if (max < Math.max.apply(null, data_g)) max = Math.max.apply(null,
+        data_g);
+        if (max < Math.max.apply(null, data_b)) max = Math.max.apply(null,
+        data_b);
+        drawHistogram(data_r,max,"red");
+        drawHistogram(data_g,max,"green");
+        drawHistogram(data_b,max,"blue");
+        // ガンマ曲線
+        drawGamma(g_r,"red");
+        drawGamma(g_g,"green");
+        drawGamma(g_b,"blue");
+      }
+      function drawHistogram(data,max,color) {
+        // ヒストグラムの描画
+        contextGraph.strokeStyle = color;
+        contextGraph.beginPath();
+        for (var x=0; x<256; x++) {
+          contextGraph.moveTo(x,255);
+          contextGraph.lineTo(x,255-255*data[x]/max);
+        }
+        contextGraph.stroke();
+      }
+      function drawGamma(g, color) {
+        // ガンマ曲線の描画
+        contextGraph.strokeStyle = color;
+        contextGraph.beginPath();
+        contextGraph.moveTo(0,255);
+        for (var x=1; x<256; x++) {
+          var y = 255 - 255 * Math.pow(x/255,1/g);
+          contextGraph.lineTo(x,y);
+        }
+        contextGraph.stroke();
+      }
+      function initImage() {
+        // ガンマ値の初期化
+        document.getElementById("g_r").value = 1;
+        document.getElementById("g_g").value = 1;
+        document.getElementById("g_b").value = 1;
+        // 描画
+        gamma();
+      }
+      function saveImage() {
+        // 画像を名前をつけて保存（ダウンロード）
+        var filename = window.prompt("ファイル名を入力してください", "image.png");
+        if (filename != null) {
+          if (canvas.msToBlob) {
+            // msToBlobを使用できるブラウザ
+            var blob = canvas.msToBlob();
+            window.navigator.msSaveBlob(blob,filename);
+          } else {
+            // それ以外のブラウザ
+            var a = document.createElement("a");
+            a.href = canvas.toDataURL("image/png");
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+        }
+      }
+    </script>
+    <style>
+      canvas {border: thin solid #CCCCCC;}
+      #image {
+        margin-right: 10px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body onload="init()">
+    <p>ガンマ補正</p>
+    画像ファイル
+    <input type="file" accept="image/*" onChange="loadImage(this)">
+    <input type="button" value="元の画像に戻す" onclick="initImage()">
+    <input type="button" value="画像を保存する" onclick="saveImage()">
+    <hr>
+    <form oninput="gamma()">
+      ガンマ補正
+      R: <input type="number" id="g_r" value="1" min="0.1" max="8" step= "0.1">
+      G: <input type="number" id="g_g" value="1" min="0.1" max="8" step= "0.1">
+      B: <input type="number" id="g_b" value="1" min="0.1" max="8" step= "0.1">
+    </form>
+    <canvas id="image" width="800" height="600"></canvas>
+    <canvas id="graph" width="256" height="256"></canvas>
+  </body>
+</html>

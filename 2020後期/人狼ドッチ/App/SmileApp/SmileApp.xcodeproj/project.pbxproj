@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15A0512E252E9862002336DE /* SmileAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0512D252E9862002336DE /* SmileAppApp.swift */; };
+		15A05130252E9862002336DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0512F252E9862002336DE /* ContentView.swift */; };
+		15A05132252E9866002336DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A05131252E9866002336DE /* Assets.xcassets */; };
+		15A05135252E9866002336DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A05134252E9866002336DE /* Preview Assets.xcassets */; };
+		15A05140252E9866002336DE /* SmileAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0513F252E9866002336DE /* SmileAppTests.swift */; };
+		15A0514B252E9866002336DE /* SmileAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0514A252E9866002336DE /* SmileAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15A0513C252E9866002336DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A05122252E9861002336DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15A05129252E9861002336DE;
+			remoteInfo = SmileApp;
+		};
+		15A05147252E9866002336DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A05122252E9861002336DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15A05129252E9861002336DE;
+			remoteInfo = SmileApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15A0512A252E9861002336DE /* SmileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A0512D252E9862002336DE /* SmileAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileAppApp.swift; sourceTree = "<group>"; };
+		15A0512F252E9862002336DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15A05131252E9866002336DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15A05134252E9866002336DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15A05136252E9866002336DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A0513B252E9866002336DE /* SmileAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmileAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A0513F252E9866002336DE /* SmileAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileAppTests.swift; sourceTree = "<group>"; };
+		15A05141252E9866002336DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A05146252E9866002336DE /* SmileAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmileAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A0514A252E9866002336DE /* SmileAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileAppUITests.swift; sourceTree = "<group>"; };
+		15A0514C252E9866002336DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15A05127252E9861002336DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A05138252E9866002336DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A05143252E9866002336DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15A05121252E9861002336DE = {
+			isa = PBXGroup;
+			children = (
+				15A0512C252E9861002336DE /* SmileApp */,
+				15A0513E252E9866002336DE /* SmileAppTests */,
+				15A05149252E9866002336DE /* SmileAppUITests */,
+				15A0512B252E9861002336DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15A0512B252E9861002336DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15A0512A252E9861002336DE /* SmileApp.app */,
+				15A0513B252E9866002336DE /* SmileAppTests.xctest */,
+				15A05146252E9866002336DE /* SmileAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15A0512C252E9861002336DE /* SmileApp */ = {
+			isa = PBXGroup;
+			children = (
+				15A0512D252E9862002336DE /* SmileAppApp.swift */,
+				15A0512F252E9862002336DE /* ContentView.swift */,
+				15A05131252E9866002336DE /* Assets.xcassets */,
+				15A05136252E9866002336DE /* Info.plist */,
+				15A05133252E9866002336DE /* Preview Content */,
+			);
+			path = SmileApp;
+			sourceTree = "<group>";
+		};
+		15A05133252E9866002336DE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				15A05134252E9866002336DE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		15A0513E252E9866002336DE /* SmileAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				15A0513F252E9866002336DE /* SmileAppTests.swift */,
+				15A05141252E9866002336DE /* Info.plist */,
+			);
+			path = SmileAppTests;
+			sourceTree = "<group>";
+		};
+		15A05149252E9866002336DE /* SmileAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15A0514A252E9866002336DE /* SmileAppUITests.swift */,
+				15A0514C252E9866002336DE /* Info.plist */,
+			);
+			path = SmileAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15A05129252E9861002336DE /* SmileApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A0514F252E9866002336DE /* Build configuration list for PBXNativeTarget "SmileApp" */;
+			buildPhases = (
+				15A05126252E9861002336DE /* Sources */,
+				15A05127252E9861002336DE /* Frameworks */,
+				15A05128252E9861002336DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmileApp;
+			productName = SmileApp;
+			productReference = 15A0512A252E9861002336DE /* SmileApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15A0513A252E9866002336DE /* SmileAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A05152252E9866002336DE /* Build configuration list for PBXNativeTarget "SmileAppTests" */;
+			buildPhases = (
+				15A05137252E9866002336DE /* Sources */,
+				15A05138252E9866002336DE /* Frameworks */,
+				15A05139252E9866002336DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A0513D252E9866002336DE /* PBXTargetDependency */,
+			);
+			name = SmileAppTests;
+			productName = SmileAppTests;
+			productReference = 15A0513B252E9866002336DE /* SmileAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15A05145252E9866002336DE /* SmileAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A05155252E9866002336DE /* Build configuration list for PBXNativeTarget "SmileAppUITests" */;
+			buildPhases = (
+				15A05142252E9866002336DE /* Sources */,
+				15A05143252E9866002336DE /* Frameworks */,
+				15A05144252E9866002336DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A05148252E9866002336DE /* PBXTargetDependency */,
+			);
+			name = SmileAppUITests;
+			productName = SmileAppUITests;
+			productReference = 15A05146252E9866002336DE /* SmileAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15A05122252E9861002336DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					15A05129252E9861002336DE = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+					15A0513A252E9866002336DE = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 15A05129252E9861002336DE;
+					};
+					15A05145252E9866002336DE = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 15A05129252E9861002336DE;
+					};
+				};
+			};
+			buildConfigurationList = 15A05125252E9861002336DE /* Build configuration list for PBXProject "SmileApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15A05121252E9861002336DE;
+			productRefGroup = 15A0512B252E9861002336DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15A05129252E9861002336DE /* SmileApp */,
+				15A0513A252E9866002336DE /* SmileAppTests */,
+				15A05145252E9866002336DE /* SmileAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15A05128252E9861002336DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A05135252E9866002336DE /* Preview Assets.xcassets in Resources */,
+				15A05132252E9866002336DE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A05139252E9866002336DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A05144252E9866002336DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15A05126252E9861002336DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A05130252E9862002336DE /* ContentView.swift in Sources */,
+				15A0512E252E9862002336DE /* SmileAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A05137252E9866002336DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A05140252E9866002336DE /* SmileAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A05142252E9866002336DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A0514B252E9866002336DE /* SmileAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15A0513D252E9866002336DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15A05129252E9861002336DE /* SmileApp */;
+			targetProxy = 15A0513C252E9866002336DE /* PBXContainerItemProxy */;
+		};
+		15A05148252E9866002336DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15A05129252E9861002336DE /* SmileApp */;
+			targetProxy = 15A05147252E9866002336DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15A0514D252E9866002336DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15A0514E252E9866002336DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15A05150252E9866002336DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SmileApp/Preview Content\"";
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SmileApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.SmileApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15A05151252E9866002336DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SmileApp/Preview Content\"";
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SmileApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.SmileApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		15A05153252E9866002336DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = SmileAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.SmileAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmileApp.app/SmileApp";
+			};
+			name = Debug;
+		};
+		15A05154252E9866002336DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = SmileAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.SmileAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmileApp.app/SmileApp";
+			};
+			name = Release;
+		};
+		15A05156252E9866002336DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = SmileAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.SmileAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SmileApp;
+			};
+			name = Debug;
+		};
+		15A05157252E9866002336DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2LFL285H3;
+				INFOPLIST_FILE = SmileAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mitsushige-Fukumoto.SmileAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SmileApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15A05125252E9861002336DE /* Build configuration list for PBXProject "SmileApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A0514D252E9866002336DE /* Debug */,
+				15A0514E252E9866002336DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A0514F252E9866002336DE /* Build configuration list for PBXNativeTarget "SmileApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A05150252E9866002336DE /* Debug */,
+				15A05151252E9866002336DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A05152252E9866002336DE /* Build configuration list for PBXNativeTarget "SmileAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A05153252E9866002336DE /* Debug */,
+				15A05154252E9866002336DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15A05155252E9866002336DE /* Build configuration list for PBXNativeTarget "SmileAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A05156252E9866002336DE /* Debug */,
+				15A05157252E9866002336DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15A05122252E9861002336DE /* Project object */;
+}

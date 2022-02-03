@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script>
+      $(function(){
+        var q=encodeURIComponent("アルシア株式会社");
+        $.getJSON("http://search.twitter.com/search.json?callback=?&q=" + q,
+        function(data){
+          for(var i=0;i<data.result.length;i++){
+            $("table").append(
+              "<tr>" +
+              "<td><img src='" + data.results[i].profile_image_url +"'></td>" +
+              "<td>@" + data.results[i].from_user +
+              "</td>" +
+              "<td>" + data.results[i].from_user_name + "</td>" +
+              "<td>" + data.results[i].text + "</td>" +
+              "</tr>"
+            );
+          }
+        }
+      );
+    });
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>プロフ画像</th>
+        <th>アカウント</th>
+        <th>名前</th>
+        <th>ツイート</th>
+      </tr>
+    </table>
+  </body>
+</html>

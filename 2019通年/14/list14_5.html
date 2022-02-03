@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js">
+    </script>
+    <script>
+      $(function(){
+        $("#large").on("click", function(){
+          $("#photo").animate({
+              "width" : "90%",
+              "height" : "90%"
+            },2000, "linear");
+          });
+        });
+    </script>
+  </head>
+  <body>
+    <div>
+      <button id="large">拡大</button>
+    </div>
+    <img src="images/frog1.jpg" id="photo" width="20%" height="20%">
+  </body>
+</html>

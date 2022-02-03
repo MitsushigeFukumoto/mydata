@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>CountdownTimer</title>
+        <script src="Countdown.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="Countdown.css">
+    </head>
+    <body id="page">
+        <h1 id="CDtytle" style="width: 310px;">Countdown Timer</h1>
+        <form name="timer" action="">
+            <h2 id="monitor">
+              <input id="a"class="h-txt" type="text"size="20"name="hour"style="width:30px; height:20px; border-radius: 6px;"value="">h
+              <input id="b"class="m-txt"type="text"size="20"name="minute"style="width:30px;height:20px; border-radius: 6px;"value="">m
+              <input id="c"class="s-txt"type="text"size="20"name="second"style="width:30px;height:20px; border-radius: 6px;"value="">s<br>
+            </h2>
+            <div>
+                <input id="startbtn" class="startbtn" type="button" value="Start" onclick="cntStart()">
+                <input id="stopbtn" class="stopbtn" type="button" value="Stop" onclick="cntStop()"><br>
+                <input id="resetbtn" class="resetbtn" type="button" value="Reset" onclick="reSet()">
+
+                <input id="d"class="plus10s" type="button"value="+10s" onclick="plus10s()">
+                <input id="e"class="plus1m" type="button"value="+1m" onclick="plus1m()">
+                <input id="f"class="cut10s" type="button"value="-10s" onclick="cut10s()">
+                <input id="g"class="cut1m" type="button"value="-1m" onclick="cut1m()">
+
+                <input id="return" class="return" type="button"value="Return" onclick="location.href='main.html';return_title()">
+            </div>
+        </form>
+    </body>
+</html>

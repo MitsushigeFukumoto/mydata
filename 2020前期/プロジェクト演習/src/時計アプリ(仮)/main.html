@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>時計アプリ</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js">
+        </script>
+    </head>
+    <body onload="decide()">
+        <div>時計アプリ</div>
+        <table>
+            <tr>
+              <th><button type="button" onclick="location.href = 'clock.html';clickBtnClock()">Clock</button></th>
+              <th><button type="button" onclick="location.href = 'Countdown.html';clickBtnCount()">Countdown Timer</button></th>
+              <th><button type="button" onclick="location.href = 'StopWatch.html';clickBtnStop()">Stopwatch</button></th>
+            </tr>
+        </table>
+        <p>
+          <form name="maincolor" action="">
+            Theme
+              <input id="radio1" type="radio" name="color" value="dark" onchange="decide();">
+              <label for="radio1">dark</label>
+              <input id="radio2" type="radio" name="color" value="light" onchange="decide();">
+              <label for="radio2">light</label>
+          </form>
+        </p>
+        <p>
+          Background Color
+          <select id="bgcolor">
+            <option value="" hidden>-----</option>
+            <option value="Black">Black</option>
+            <option value="White"checked="checked">White</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+          </select>
+        </p>
+
+          Letter Color
+          <select id="color3">
+            <option value="" hidden>-----</option>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+          </select>
+
+        <script>
+        var check1 = document.maincolor.radio1.checked;
+        var check2 = document.maincolor.radio2.checked;
+
+        var query = location.search;
+        var value = query.split('=');
+
+        if(value[1]=="light"){
+
+          $("body").css("color",'blue');
+          $("button").css("color",'blue');
+          $("button").css("border-color",'blue');
+
+          $("body").css("background-color",'white');
+          $("button").css("background-color",'white');
+
+          $('input[value="light"]').prop('checked', true);
+        }else if(value[1]=="dark"){
+
+          $("body").css("color",'gold');
+          $("button").css("color",'gold');
+          $("button").css("border-color",'gold');
+
+          $("body").css("background-color",'black');
+          $("button").css("background-color",'black');
+
+          $('input[value="dark"]').prop('checked', true);
+        }else{
+          $("body").css("color",value[1]);
+          $("button").css("color",value[1]);
+          $("button").css("border-color",value[1]);
+
+          $("body").css("background-color",value[2]);
+          $("button").css("background-color",value[2]);
+
+          switch (value[1]) {
+            case "White":
+
+              break;
+            default:
+
+          }
+        }
+
+
+
+          function clickBtnClock(){
+            if(check1==true){
+                location.href='clock.html?theme='+'dark';
+            }else if(check2==true){
+                location.href='clock.html?theme='+'light';
+            }else{
+              const str = document.getElementById("color3").value;
+              const str2 = document.getElementById("bgcolor").value;
+              location.href = 'clock.html?color=' +　str + "=" + str2;
+
+            }
+          }
+
+          function clickBtnCount(){
+            if(check1==true){
+                location.href='Countdown.html?color='+'dark';
+            }else if(check2==true){
+                location.href='Countdown.html?color='+'light';
+            }else{
+              const str = document.getElementById("color3").value;
+              const str2 = document.getElementById("bgcolor").value;
+              location.href = 'Countdown.html?name=' +　str + "=" + str2;
+
+            }
+
+          }
+
+          function clickBtnStop(){
+            if(check1==true){
+                location.href='StopWatch.html?color='+'dark';
+            }else if(check2==true){
+                location.href='StopWatch.html?color='+'light';
+            }else{
+              const str = document.getElementById("color3").value;
+              const str2 = document.getElementById("bgcolor").value;
+              location.href = 'StopWatch.html?name=' +　str + "=" + str2;
+
+            }
+
+          }
+
+
+          var select = document.getElementById( 'bgcolor' );
+          select.onchange = function()
+          {
+            var selectedItem = this.options[ this.selectedIndex ];
+
+            $("body").css("background-color",selectedItem.value);
+            $("button").css("background-color",selectedItem.value);
+          }
+
+          var select2 = document.getElementById( 'color3' );
+          select2.onchange = function()
+          {
+            var selectedItem = this.options[ this.selectedIndex ];
+
+            $("body").css("color",selectedItem.value);
+            $("button").css("color",selectedItem.value);
+            $("button").css("border-color",selectedItem.value);
+          }
+
+          function decide(){
+              check1 = document.maincolor.radio1.checked;
+              check2 = document.maincolor.radio2.checked;
+
+
+              var out=document.getElementById("output");
+
+              if(check1==true){
+                  $("body").css("color",'gold');
+                  $("button").css("color",'gold');
+                  $("button").css("border-color",'gold');
+
+                  $("body").css("background-color",'black');
+                  $("button").css("background-color",'black');
+
+
+              }else if(check2==true){
+                  $("body").css("color",'blue');
+                  $("button").css("color",'blue');
+                  $("button").css("border-color",'blue');
+
+                  $("body").css("background-color",'white');
+                  $("button").css("background-color",'white');
+
+              }
+          }
+
+
+
+        </script>
+
+    </body>
+</html>

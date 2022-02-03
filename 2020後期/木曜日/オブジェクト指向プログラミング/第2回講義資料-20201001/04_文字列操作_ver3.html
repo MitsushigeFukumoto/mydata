@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>04_文字列操作</title>
+  <style type="text/css">
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+code{ white-space: pre-wrap; }
+span.smallcaps{ font-variant: small-caps; }
+span.underline{ text-decoration: underline; }
+div.column{ display: inline-block; vertical-align: top; width: 50%; }
+body {
+  font-size: 14pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  color: #232323;
+}
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 6rem 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  background:
+  url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC");
+}
+p, table {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.03rem;
+}
+strong {
+  text-decoration: none;
+  color: hsla(0, 75%, 55%, 1);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  color: #232323;
+  letter-spacing: 0.05rem;
+  margin-top: 2rem;
+}
+h1 { font-size: 2rem; margin: 2rem auto 1rem; text-align: center; }
+h2 { font-size: 1.75rem; border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin: 2rem 0 1rem; }
+h3 { font-size: 1.5rem; border-bottom: 1px solid rgba(0, 0, 0, 0.2); margin: 2rem 0 1rem; }
+h4 { font-size: 1.25rem; margin: 2rem 0 1rem; }
+h5 { font-size: 1.2rem; margin: 2rem 0 1rem; }
+h6 { font-size: 1.1rem; margin: 2rem 0 1rem; }
+ul, ol {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  line-height: 1.6;
+  letter-spacing: 0.025rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+ul li, ol li {
+  padding-left: .5rem;
+}
+ul ul, ol ul,
+ul ol, ol ol {
+  padding-left: 1.5rem;
+}
+table {
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+}
+table th {
+  text-align: center;
+  font-weight: nomal;
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+table tr {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+}
+a {
+  color: #5484c8;
+}
+.margin-clear {
+  margin-left: 0;
+}
+blockquote {
+  border-left: 4px #ddd solid;
+  padding: 0;
+  margin: 2rem;
+}
+blockquote * {
+  color: #999;
+}
+blockquote p {
+  padding: 0 1rem;
+  text-indent: 0;
+}
+pre, code, var, samp, kbd, .mono {
+  font-family: "Ricty Diminished", "Consolas", 'Courier New', Courier, Monaco, monospace;
+  line-height: 1.2;
+}
+table code,
+p code,
+ul code,
+ol code {
+  display: inline-block;
+  border: 1px solid #eaeaea;
+  background-color: rgb(119, 119, 119);
+  color: #f8f8f8;
+  white-space: nowrap;
+  border-radius: 2px;
+  display: inline-block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  margin: 0 4px;
+}
+pre code {
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  font-size: 1rem;
+}
+.highlight pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 4px;
+}
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+pre.sourceCode {
+  overflow: auto !important;
+}
+img, iframe, figure {
+  max-width: 100%;
+}
+p img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+  </style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="文字列操作ファイル操作">文字列操作（ファイル操作）</h1>
+<p>多くのデータはCSVやJSONやXMLのように文字列としてファイルに書きだされたり読み込んで利用する．</p>
+<p>ここでは，基本的な文字列操作とCSV，JSON,XMLファイルの取り扱いを紹介する．</p>
+<h2 id="基本編">基本編</h2>
+<p>文字列の宣言，1文字づつ取り出す方法，そしてファイルの読み書きを紹介する．</p>
+<pre><code># 文字列をstr1に代入
+str1 = &#39;私は学籍番号k19999の愛知で、豊田市八草町在住です。&#39;
+
+# 部分文字列を取り出す．
+print(f&#39;str1のindex 6から12を取り出すと&quot;{str1[6:12]}&quot;です．&#39;)
+# str1のindex 6から12を取り出すと&quot;k19999&quot;です．
+
+# ヒアドキュメント(バックスラッシュ\が入ると改行とみなされない)
+str2 =f&quot;&quot;&quot;\
+これから自己紹介をします。
+{str1}\
+&quot;&quot;&quot;
+print(str2)
+
+# 改行文字を探して分割
+for line in str2.split(&quot;\n&quot;):
+    print(line)
+
+# 改行文字を探して分割２
+[print(line) for line in str2.split(&quot;\n&quot;)]
+
+# 1行ずつ文字数を数える
+[len(line) for line in str2.split(&quot;\n&quot;)]
+
+# 1行ずつ指定した文字列が含まれているかを判定する
+[line.find(&quot;。&quot;) for line in str2.split(&quot;\n&quot;)]
+# [12, 27] 含まれている場合，先頭からのindexが返される（参考：index, rfind, rindex）
+[line.find(&quot;学籍番号&quot;) for line in str2.split(&quot;\n&quot;)]
+# [-1, 2] 含まれていない場合は-1が返される
+[line.find(&quot;自己紹介&quot;) for line in str2.split(&quot;\n&quot;)]
+# [4, -1] 含まれていない場合は-1が返される
+
+# str1から学籍番号とそのindexを正規表現で探し表示する
+import re
+matchObj = re.search(r&#39;[kx][\d]{5}&#39;, str1)
+if matchObj:
+    print(matchObj.group())
+    print(matchObj.span())
+# k19999
+# (6, 12)
+
+# str1から学籍番号の部分文字列を取り出す
+matchObj = re.search(r&#39;[kx][\d]{5}&#39;, str1)
+id = &#39;&#39; # 文字列として初期化
+if matchObj:
+    id = str1[matchObj.span()[0]:matchObj.span()[1]]
+
+
+print(id)
+# 学籍番号が含まれていれば&#39;k19999&#39;のように学籍番号を，含まれていなければ空文字&#39;&#39;を出力</code></pre>
+<h1 id="csvjsonxmlについてファイル読み書き">CSV・JSON・XMLについてファイル読み書き</h1>
+<p>基本的なことだけ伝えます．</p>
+<p>CSVはコンマ(,)で区切られたデータです．</p>
+<p>lecture02_Hero.csv</p>
+<pre class="csv"><code>ID,Name,HP,MP,Atk,Def,Age,Weapon
+1,太郎,100,100,52,39,18,1</code></pre>
+<p>lecture02_Weapon.csv</p>
+<pre class="csv"><code>ID,Weapon_Nam,HP,MP,Atk,Def,Age
+1,棍棒,10,0,20,0,-3</code></pre>
+<p>CSVファイルは1行読み取ってカンマで分割してもいいですが，Pythonにはcsvを扱うライブラリーが用意されています．</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>hero_header <span class="op">=</span> []</span>
+<span id="cb4-2"><a href="#cb4-2"></a>hero_data <span class="op">=</span> []</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;lecture02_Hero.csv&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb4-5"><a href="#cb4-5"></a>        <span class="cf">if</span> <span class="bu">len</span>(hero_header) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-6"><a href="#cb4-6"></a>            hero_header <span class="op">=</span> line.rstrip().split(<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7"></a>        <span class="cf">else</span> :</span>
+<span id="cb4-8"><a href="#cb4-8"></a>            data <span class="op">=</span> line.rstrip().split(<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>            hero_data.append(data)</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="bu">print</span>(hero_header)</span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="bu">print</span>(hero_data)</span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co"># csvライブラリを利用</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="im">import</span> csv</span>
+<span id="cb4-17"><a href="#cb4-17"></a>weapon_header <span class="op">=</span> []</span>
+<span id="cb4-18"><a href="#cb4-18"></a>weapon_data <span class="op">=</span> []</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;lecture02_Weapon.csv&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb4-20"><a href="#cb4-20"></a>    reader <span class="op">=</span> csv.reader(f)</span>
+<span id="cb4-21"><a href="#cb4-21"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb4-22"><a href="#cb4-22"></a>        <span class="cf">if</span> <span class="bu">len</span>(weapon_header) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-23"><a href="#cb4-23"></a>            weapon_header <span class="op">=</span> row</span>
+<span id="cb4-24"><a href="#cb4-24"></a>        <span class="cf">else</span> :</span>
+<span id="cb4-25"><a href="#cb4-25"></a>            weapon_data.append(row)</span>
+<span id="cb4-26"><a href="#cb4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="bu">print</span>(weapon_header)</span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="bu">print</span>(weapon_data)</span></code></pre></div>
+<p>JSON形式のデータは辞書型ににています．</p>
+<p>lecture02_json.json</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">{</span><span class="dt">&quot;ID&quot;</span><span class="fu">:</span> <span class="st">&quot;k19999&quot;</span><span class="fu">,</span> <span class="dt">&quot;名前&quot;</span><span class="fu">:</span> <span class="st">&quot;愛知太郎&quot;</span><span class="fu">,</span> <span class="dt">&quot;成績&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;国語&quot;</span><span class="fu">:</span> <span class="dv">45</span><span class="fu">,</span> <span class="dt">&quot;数学&quot;</span><span class="fu">:</span> <span class="dv">90</span><span class="fu">}}</span></span></code></pre></div>
+<p>取扱の詳細は公式ドキュメントをみてください．<a href="https://docs.python.org/ja/3/library/json.html">https://docs.python.org/ja/3/library/json.html</a></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> json</span>
+<span id="cb6-2"><a href="#cb6-2"></a>json_open <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;lecture02_json.json&#39;</span>, <span class="st">&#39;r&#39;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>j <span class="op">=</span> json.load(json_open)</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="bu">print</span>(j)</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># {&#39;ID&#39;: &#39;k19999&#39;, &#39;名前&#39;: &#39;愛知太郎&#39;, &#39;成績&#39;: {&#39;国語&#39;: 45, &#39;数学&#39;: 90}}</span></span></code></pre></div>
+<p>XMLはホームページで利用されているHTML（ハイパーテキストマークアップランゲージ）に似ています．</p>
+<p>取扱の詳細は公式ドキュメントをみてください．<a href="https://docs.python.org/ja/3/library/xml.etree.elementtree.html">https://docs.python.org/ja/3/library/xml.etree.elementtree.html</a></p>
+<p>XMLの例 lecture02_data.xml</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">&lt;book&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="kw">&lt;article</span><span class="ot"> title=</span><span class="st">&quot;卒業論文&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;1&quot;</span><span class="ot"> name=</span><span class="st">&quot;はじめに&quot;</span><span class="ot"> pages=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;2&quot;</span><span class="ot"> name=</span><span class="st">&quot;基礎理論&quot;</span><span class="ot"> pages=</span><span class="st">&quot;8&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;3&quot;</span><span class="ot"> name=</span><span class="st">&quot;実験方法&quot;</span><span class="ot"> pages=</span><span class="st">&quot;6&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;4&quot;</span><span class="ot"> name=</span><span class="st">&quot;結果と考察&quot;</span><span class="ot"> pages=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;5&quot;</span><span class="ot"> name=</span><span class="st">&quot;まとめ&quot;</span><span class="ot"> pages=</span><span class="st">&quot;1&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;6&quot;</span><span class="ot"> name=</span><span class="st">&quot;参考文献&quot;</span><span class="ot"> pages=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="kw">&lt;/article&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="kw">&lt;novel&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>      <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;1&quot;</span><span class="ot"> name=</span><span class="st">&quot;1日のはじまり&quot;</span><span class="ot"> pages=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>      <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;2&quot;</span><span class="ot"> name=</span><span class="st">&quot;朝食&quot;</span><span class="ot"> pages=</span><span class="st">&quot;8&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>      <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;3&quot;</span><span class="ot"> name=</span><span class="st">&quot;仕事&quot;</span><span class="ot"> pages=</span><span class="st">&quot;6&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>      <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;4&quot;</span><span class="ot"> name=</span><span class="st">&quot;帰宅後&quot;</span><span class="ot"> pages=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>      <span class="kw">&lt;chapter</span><span class="ot"> id=</span><span class="st">&quot;5&quot;</span><span class="ot"> name=</span><span class="st">&quot;新しい朝&quot;</span><span class="ot"> pages=</span><span class="st">&quot;1&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="kw">&lt;/novel&gt;</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="kw">&lt;/book&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> xml.etree.ElementTree <span class="im">as</span> ET</span>
+<span id="cb8-2"><a href="#cb8-2"></a>tree <span class="op">=</span> ET.parse(<span class="st">&#39;lecture02_data.xml&#39;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>root <span class="op">=</span> tree.getroot()</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="bu">print</span>(root.tag)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="bu">print</span>(root.attrib)</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="bu">print</span>(root[<span class="dv">0</span>])</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="bu">print</span>(root[<span class="dv">0</span>].tag)</span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co"># article</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="bu">print</span>(root[<span class="dv">0</span>].attrib)</span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co"># {&#39;title&#39;: &#39;卒業論文&#39;}</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="bu">print</span>(root[<span class="dv">1</span>][<span class="dv">2</span>].tag)</span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co"># chaper</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="bu">print</span>(root[<span class="dv">1</span>][<span class="dv">2</span>].attrib)</span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co"># {&#39;id&#39;: &#39;3&#39;, &#39;name&#39;: &#39;仕事&#39;, &#39;pages&#39;: &#39;6&#39;}</span></span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<p>CSV,JSON,XMLのファイルフォーマットはよくデータとして利用されるので一通り扱えるとアプリ開発がしやすいです．</p>
+</body>
+</html>

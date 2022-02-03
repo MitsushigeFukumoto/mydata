@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの練習</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(function(){
+        $("input[name='tel']").css("background-color", "red");
+      });
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>名前（漢字） <input type="text" name="kanji"></li>
+      <li>名前（カナ） <input type="text" name="kana"></li>
+      <li>住所 <input type="text" name="address"></li>
+      <li>電話番号 <input type="text" name="tel"></li>
+      <li>メールアドレス <input type="text" name="email"></li>
+    </ul>
+  </body>
+</html>

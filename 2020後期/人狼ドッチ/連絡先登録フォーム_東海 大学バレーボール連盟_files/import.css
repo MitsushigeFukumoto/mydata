@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS RESET */
+
+@import url("./common/reset.css");
+@import url("./common/bace-color.css");
+
+
+/* general item */
+@import url("./common/clearfix.css");
+
+
+/* zoning */
+@import url("./common/zorning.css");
+

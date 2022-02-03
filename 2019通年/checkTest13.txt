@@ -1,0 +1,11 @@
+CheckTest1
+Q1 load
+Q2 $("div").load("sample.html #hoge");
+
+到達度チェック
+Q1 JSON
+Q2 JSONP
+Q3 $.getJSON
+Q4 プロパティ名を""で囲む
+Q5 クロスドメイン通信
+Q6 callbacl=?

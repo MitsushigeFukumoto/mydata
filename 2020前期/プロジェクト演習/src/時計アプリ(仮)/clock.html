@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CLOCK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="clock.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    </head>
+    <body onload="onload()">
+        <div class="title">CLOCK</div>
+        <div class="time">
+          <p id="date"></p>
+          <p id="time"></p>
+        </div>
+        <div class="canvas">
+          <canvas id="clockboard"></canvas>
+          <canvas id="clockhands"></canvas>
+        </div>
+        <div class="button">
+        <button type="button" onclick="'main.html';clickBtnClock()">Return</button>
+        <script>
+                    var query = location.search;
+                    var value = query.split('=');
+
+                    if(value[1]=="light"){
+
+                      $("body").css("color",'blue');
+                      $(".time").css("color",'blue');
+                      $(".time").css("border-color",'blue');
+                      $("button").css("color",'blue');
+                      $("button").css("border-color",'blue');
+
+                      $("body").css("background-color",'white');
+                      $("button").css("background-color",'white');
+                    }else if(value[1]=="dark"){
+
+                      $("body").css("color",'gold');
+                      $(".time").css("color",'gold');
+                      $(".time").css("border-color",'gold');
+                      $("button").css("color",'gold');
+                      $("button").css("border-color",'gold');
+
+                      $("body").css("background-color",'black');
+                      $("button").css("background-color",'black');
+                    }else{
+
+                      $("body").css("color",value[1]);
+                      $(".time").css("color",value[1]);
+                      $(".time").css("border-color",value[1]);
+                      $("button").css("color",value[1]);
+                      $("button").css("border-color",value[1]);
+
+                      $("body").css("background-color",value[2]);
+                      $("button").css("background-color",value[2]);
+                    }
+
+                    function clickBtnClock(){
+                      location.href = 'main.html?name=' +　value[1] + "=" + value[2];
+                    }
+
+                    function onload() {
+                        setInterval('getdate()',10);
+                        setInterval('clockhands()',10);
+                        clockboard();
+
+                    }
+
+                    //日付、デジタル時計
+                    function getdate(){
+                        var now = new Date();
+                        var year = now.getFullYear();
+                        var month = now.getMonth()+1;
+                        var day = now.getDate();
+                        var w = now.getDay();
+                        var week = ("日月火水木金土").charAt(w);
+
+                        var hour = now.getHours();
+                        if (hour<=9) {
+                          hour='0'+hour;
+                        }
+                        var minute = now.getMinutes();
+                        if (minute<=9) {
+                          minute='0'+minute;
+                        }
+                        var second = now.getSeconds();
+                        if (second<=9) {
+                          second='0'+second;
+                        }
+
+                        //表示
+                        document.getElementById("date").innerHTML = year+"/"+month+"/"+day+"/"+"("+week+")";
+                        document.getElementById("time").innerHTML = hour+":"+minute+":"+second;
+
+                    }
+
+
+
+                    //アナログ時計の文字盤の描画
+                    function clockboard(){
+                      var canvas = document.getElementById("clockboard");
+                      if (canvas.getContext) {
+                          canvas.width = "500";
+                          canvas.height = "500";
+                          var context = canvas.getContext('2d');
+                      }
+                      context.lineCap = "round";
+                      context.translate(250,250);
+
+                      //外枠、背景
+                      context.beginPath();
+                      context.arc(0,0,240,0,Math.PI*2,true);
+                      context.lineWidth = 2;
+                      context.strokeStyle = "white";
+                      context.stroke();
+
+                      context.beginPath();
+                      context.fillStyle = "white";
+                      context.arc(0,0,230,0,Math.PI*2,true);
+                      context.fill();
+                      context.strokeStyle = "black";
+                      context.lineWidth = 15;
+                      context.stroke();
+
+                      //時の目盛り
+                      context.lineWidth = 6;
+
+                      for (var i = 0; i < 12; i++) {
+                          context.rotate(Math.PI/6);
+                          context.beginPath();
+                          context.moveTo(210,0);
+                          context.lineTo(230,0);
+                          context.stroke();
+                      }
+
+                      //分、秒の目盛り
+                      context.lineWidth = 2;
+                      for (var i = 0; i < 60; i++) {
+                          context.rotate(Math.PI/30);
+                          context.beginPath();
+                          context.moveTo(210,0);
+                          context.lineTo(230,0);
+                          context.stroke();
+                      }
+
+
+
+                      //文字
+                      context.fillStyle = "black";
+                      context.font = "48px Arial";
+                      context.textAlign = "center";
+                      context.textBaseline = "middle";
+                      context.fillText("12", 0, -185);
+                      context.fillText("3", 185, 0);
+                      context.fillText("6", 0, 185);
+                      context.fillText("9", -185, 0);
+
+
+
+
+
+                    }
+
+                    //アナログ時計の針の描画
+                    function clockhands(){
+                      var now = new Date();
+                      var hour = now.getHours();
+                      var minute = now.getMinutes();
+                      var second = now.getSeconds();
+
+                      var canvas2 = document.getElementById("clockhands");
+                      if (canvas2.getContext) {
+                          canvas2.width = "500";
+                          canvas2.height = "500";
+                          var context2 = canvas2.getContext('2d');
+                      }
+                      context2.translate(250,250);
+                      context2.lineCap = "round";
+
+                      //短針（時）
+                      context2.lineWidth = 13;
+                      context2.beginPath();
+                      context2.moveTo(-15*Math.cos(Math.PI/6*(hour-3+minute/60)),-15*Math.sin(Math.PI/6*(hour-3+minute/60)));
+                      context2.lineTo(100*Math.cos(Math.PI/6*(hour-3+minute/60)),100*Math.sin(Math.PI/6*(hour-3+minute/60)));
+                      context2.stroke();
+
+                      //長針（分）
+                      context2.lineWidth = 9;
+                      context2.beginPath();
+                      context2.moveTo(-15*Math.cos(Math.PI/30*(minute-15+second/60)),-15*Math.sin(Math.PI/30*(minute-15+second/60)));
+                      context2.lineTo(180*Math.cos(Math.PI/30*(minute-15+second/60)),180*Math.sin(Math.PI/30*(minute-15+second/60)));
+                      context2.stroke();
+
+                      //秒針
+                      context2.strokeStyle = "red";
+                      context2.lineWidth = 3;
+                      context2.beginPath();
+                      context2.moveTo(-30*Math.cos(Math.PI/30*(second-15)),-30*Math.sin(Math.PI/30*(second-15)));
+                      context2.lineTo(180*Math.cos(Math.PI/30*(second-15)),180*Math.sin(Math.PI/30*(second-15)));
+                      context2.stroke();
+
+
+                      context2.beginPath();
+                      context2.arc(0,0,5,0,Math.PI*2,true);
+                      context2.fill();
+                      context2.lineWidth = 1;
+                      context2.strokeStyle = "white";
+                      context2.stroke();
+
+                    }
+
+
+                </script>
+    </body>
+</html>

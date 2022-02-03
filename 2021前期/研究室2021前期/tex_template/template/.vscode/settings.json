@@ -1,0 +1,71 @@
+{
+    //tex設定(platexを使う場合)
+     "latex-workshop.latex.tools": [
+          {
+               "command": "ptex2pdf",
+               "args": [
+                    "-l",
+                    "-ot",
+                    "-halt-on-error -interaction=nonstopmode -file-line-error",
+                    "-kanji=utf8 -synctex=1",
+                    "%DOCFILE%.tex"
+               ],
+               "name": "Step 1: ptex2pdf"
+          },
+          {
+               "command": "pbibtex",
+               "args": [
+                    "%DOCFILE%",
+                    "-kanji=utf8"
+               ],
+               "name": "Step 2: pbibtex"
+          },
+          {
+               "command": "ptex2pdf",
+               "args": [
+                    "-l",
+                    "-ot",
+                    "-halt-on-error -interaction=nonstopmode -file-line-error",
+                    "-kanji=utf8 -synctex=1",
+                    "%DOCFILE%.tex"
+               ],
+               "name": "Step 3: ptex2pdf"
+          },
+          {
+               "command": "ptex2pdf",
+               "args": [
+                    "-l",
+                    "-ot",
+                    "-halt-on-error -interaction=nonstopmode -file-line-error",
+                    "-kanji=utf8 -synctex=1",
+                    "%DOCFILE%.tex"
+               ],
+               "name": "Step 4: ptex2pdf"
+          }
+     ],
+     "latex-workshop.latex.recipes": [
+          {
+               "name": "ptex2pdf",
+               "tools": [
+                    "Step 1: ptex2pdf"
+               ]
+          },
+          {
+               "name": "ptex2pdf+pbibtex",
+               "tools": [
+                    "Step 1: ptex2pdf",
+                    "Step 2: pbibtex",
+                    "Step 3: ptex2pdf",
+                    "Step 4: ptex2pdf"
+               ]
+          }
+     ],
+     "latex-workshop.latex.clean.fileTypes": [
+         "*.aux","*.bbl","*.blg","*.idx","*.ind","*.lof","*.lot","*.out","*.toc","*.acn","*.acr","*.alg","*.glg","*.glo","*.gls","*.ist","*.fls","*.log","*.fdb_latexmk","*.synctex.gz",
+         // for Beamer files
+         "_minted*","*.nav","*.snm","*.vrb",
+     ],
+     "latex-workshop.view.pdf.viewer": "tab",
+     "latex-workshop.latex.autoClean.run": "onFailed",
+     "latex-workshop.latex.autoBuild.run": "onFileChange"
+}
